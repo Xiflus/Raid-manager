@@ -1,12 +1,25 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
+import fileUpload from "express-fileupload";
 import routes from "./src/routes/index.js";
-import { PORT } from "./env.js";
+import { PORT, UPLOADS_DIR } from "./env.js";
 
 const app = express();
 
 app.use(express.json());
+
+app.use(
+	fileUpload({
+		createParentPath: true,
+		limits: {
+			fileSize: 50 * 1024 * 1024,
+		},
+		abortOnlimit: true,
+	}),
+);
+
+app.use(express.static(UPLOADS_DIR));
 
 app.use(cors());
 
