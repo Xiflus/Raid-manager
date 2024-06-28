@@ -26,8 +26,8 @@ const getPool = async () => {
 		});
 		console.log(pool.database);
 		return pool;
-	} catch (error) {
-		console.error(error);
+	} catch (err) {
+		console.error(err);
 	}
 };
 
