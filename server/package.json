@@ -6,6 +6,8 @@
 	"main": "app.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
+		"initDb": "node ./src/db/initDb.js",
+		"getPool": "node ./src/db/getPool.js",
 		"dev": "nodemon app.js"
 	},
 	"keywords": [],
