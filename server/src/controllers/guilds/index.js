@@ -1,3 +1,4 @@
-import guildListController from "./guildListController";
+import guildListController from "./guildListController.js";
+import createGuildController from "./createGuildController.js";
 
-export { guildListController };
+export { guildListController, createGuildController };
