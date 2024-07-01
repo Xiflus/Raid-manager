@@ -8,7 +8,7 @@ Se trata de una aplicación externa para Wolrd of Warcraft, orientada en la gest
 
 2. Guardar el archivo `.env.example` como `.env` y cubrir los datos necesarios.
 
-3. Ejecutar `npm run initDb` para crear las tablas necesarias en la base de datos.
+3. Ejecutar `npm run initDb` para crear la base de datos, tablas y un usuario admin.
 
 4. Ejecutar `npm run dev` para lanzar el servidor.
 
