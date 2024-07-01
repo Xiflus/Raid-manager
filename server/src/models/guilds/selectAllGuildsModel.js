@@ -1,6 +1,6 @@
 import getPool from "../../db/getPool.js";
 
-const selectAllGuildsModel = async (guildName = "", avatar = "", description = "", limit, offset) => {
+const selectAllGuildsModel = async (guildName = "", avatar = "", description = "", members = "", progress = "", limit, offset) => {
 	const pool = await getPool();
 
 	const [guilds] = await pool.query(
@@ -10,3 +10,5 @@ const selectAllGuildsModel = async (guildName = "", avatar = "", description = "
 
 	return guilds;
 };
+
+export default selectAllGuildsModel;
