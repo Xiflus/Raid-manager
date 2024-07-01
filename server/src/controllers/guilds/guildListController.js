@@ -3,15 +3,15 @@ import { selectAllGuildsModel } from "../../models/guilds/selectAllGuildsModel.j
 
 const guildListController = async (req, res, next) => {
 	try {
-		let { guildName, avatar, description, members, progress, page = 1 } = req.query;
+		let { guildName = "", avatar = "", description = "", page = 1 } = req.query;
 
 		page = Number(page);
 		const limit = 3;
 		const offset = (page - 1) * limit;
-		const totalGuilds = await totalGuildCountModel();
+		const totalGuilds = await totalGuildCountModel(guildName);
 		const totalPages = Math.ceil(totalGuilds / limit);
 
-		const guilds = await selectAllGuildsModel(guildName, avatar, description, members, progress, limit, offset);
+		const guilds = await selectAllGuildsModel(guildName, avatar, description, limit, offset);
 		res.send({
 			status: "ok",
 			data: {
