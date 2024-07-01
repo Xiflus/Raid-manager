@@ -21,8 +21,9 @@
 		"joi": "^17.13.3",
 		"jsonwebtoken": "^9.0.2",
 		"morgan": "^1.10.0",
-		"mysql2": "^3.10.1",
-		"nodemailer": "^6.9.14"
+		"mysql2": "^3.10.2",
+		"nodemailer": "^6.9.14",
+		"uuid4": "^2.0.3"
 	},
 	"devDependencies": {
 		"eslint": "^9.5.0",
