@@ -24,7 +24,9 @@ const createTables = async () => {
 		await createDatabase();
 		const pool = await getPool();
 		console.log("Borrar tablas...");
-		await pool.query("DROP TABLE IF EXISTS postFiles, posts,event_participants,raid_events,raid_bosses, raids, guild_members, guilds, users");
+		await pool.query(
+			"DROP TABLE IF EXISTS postsFiles, posts, event_participants, raid_events, raid_progress, raid_bosses, raids, guild_members, guilds, users"
+		);
 
 		console.log("Creando tablas...");
 
@@ -50,8 +52,10 @@ const createTables = async () => {
                 name VARCHAR(80) UNIQUE NOT NULL,
                 avatar VARCHAR(100),
                 description TEXT,
+                userId CHAR(36) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
+                FOREIGN KEY (userId) REFERENCES users(id)
             )	
         `);
 		// Creamos la tabla de guilds_members.
@@ -61,7 +65,7 @@ const createTables = async () => {
                 caracter_name VARCHAR(80) UNIQUE NOT NULL,
                 caracter_avatar VARCHAR(100),
                 caracter_class VARCHAR(100),
-                role ENUM('staff', 'normal', 'raider') DEFAULT 'normal',
+                role ENUM('staff', 'raider', 'normal') DEFAULT 'normal',
                 guild_id  CHAR(36) NOT NULL,
                 user_id  CHAR(36) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
@@ -128,7 +132,6 @@ const createTables = async () => {
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 tittle VARCHAR(80) UNIQUE NOT NULL,
                 content TEXT NOT NULL,
-                file VARCHAR(100),
                 guild_m_id CHAR(36),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
