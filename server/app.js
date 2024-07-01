@@ -25,7 +25,7 @@ app.use(express.static(UPLOADS_DIR));
 app.use(cors());
 
 app.use(morgan("dev"));
-
+// agregar ruta
 app.use(routes);
 
 app.use(errorController);

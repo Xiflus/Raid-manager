@@ -5,3 +5,11 @@ export const notFoundError = (resource) => {
         message: `El recurso requerido '${resource}' no existe`,
     };
 };
+
+export const sendEmailError = () => {
+    throw {
+      httpStatus: 500, // Internal server error
+      code: "SEND_EMAIL_FAILED",
+      message: "Error al enviar email",
+    };
+  };

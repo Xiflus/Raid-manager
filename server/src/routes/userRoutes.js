@@ -2,7 +2,10 @@ import express from "express";
 
 const router = express.Router();
 
-router.post("/api/users/login", loginController);
+router.post("/api/users/login", userController.login);
+
+// .com/users/register
+router.post("/register", userController.register);
 
 //Endpoint para crear un post
 router.post("/posts", async (req, res) => {
