@@ -13,3 +13,12 @@ export const guildlALreadyRegisterError = (resource) => {
         message: `La hermandad '${resource}' ya está creada.`,
     };
 }
+
+export const requiredFieldsError = ()=> {
+    throw{
+        httpStatus: 400,
+        code: 'RESOURCE_REQUIRED',
+        message: "Los campos characterId y guildId son obligatorios."
+    }
+}
+
