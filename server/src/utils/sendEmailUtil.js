@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { sendEmailError } from "../servicices/errorService.js";
+import { sendEmailError } from "../services/errorService.js";
 import {
   SMTP_HOST,
   SMTP_PORT,

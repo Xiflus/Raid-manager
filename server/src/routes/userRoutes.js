@@ -1,14 +1,15 @@
 import express from "express";
+import {newUserController} from '../controllers/users/index.js'
 
 const router = express.Router();
 
-router.post("/api/users/login", userController.login);
+//router.post("/api/users/login", userController.login);
 
 // .com/users/register
-router.post("/register", userController.register);
+router.post("/api/users/register", newUserController);
 
 //Endpoint para crear un post
-router.post("/posts", async (req, res) => {
+/* router.post("/posts", async (req, res) => {
 	try {
 		const { text, isPrivate } = req.body;
 		let mediaPath = null;
@@ -25,6 +26,6 @@ router.post("/posts", async (req, res) => {
 	} catch (error) {
 		res.status(400).json({ error: error.message });
 	}
-});
+}); */
 
 export default router;

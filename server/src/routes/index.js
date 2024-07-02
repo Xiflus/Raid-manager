@@ -4,7 +4,7 @@ import guildRoutes from "./guildRoutes.js";
 
 const router = express.Router();
 
-router.use('guilds',guildRoutes);
-router.use('/users',userRoutes);
+router.use(guildRoutes);
+router.use(userRoutes);
 
 export default router;

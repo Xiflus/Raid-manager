@@ -7,10 +7,10 @@ import * as userModel from "../../models/users/index.js";
 //? diarodeviajes.com/api/users/register
 const newUserController = async (req, res, next) => {
   try {
+    await validateSchema(newUserSchema, req.body);
     const { username, email, password } = req.body;
 
     // Validamos el body con Joi.
-    await validateSchema(newUserSchema, req.body);
 
     // generar el codigo de registro para activar la cuenta
     const registrationCode = randomstring.generate(30);
