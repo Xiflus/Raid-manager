@@ -25,7 +25,7 @@ const createTables = async () => {
 		const pool = await getPool();
 		console.log("Borrar tablas...");
 		await pool.query(
-			"DROP TABLE IF EXISTS postsFiles, posts, event_participants, raid_events, raid_progress, raid_bosses, raids, guild_members, guilds, users"
+			"DROP TABLE IF EXISTS postsFiles, posts, event_participants, raid_events, raid_progress, raid_bosses, raids, characters, guilds, users"
 		);
 
 		console.log("Creando tablas...");
@@ -60,14 +60,14 @@ const createTables = async () => {
         `);
 		// Creamos la tabla de guilds_members.
 		await pool.query(`
-            CREATE TABLE IF NOT EXISTS guild_members (
+            CREATE TABLE IF NOT EXISTS characters (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 caracter_name VARCHAR(80) UNIQUE NOT NULL,
                 caracter_avatar VARCHAR(100),
                 caracter_class VARCHAR(100),
                 role ENUM('staff', 'raider', 'normal') DEFAULT 'normal',
-                guild_id  CHAR(36) NOT NULL,
-                user_id  CHAR(36) NOT NULL,
+                guild_id CHAR(36) NOT NULL,
+                user_id CHAR(36) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
                 FOREIGN KEY (guild_id) REFERENCES guilds(id),
@@ -100,7 +100,7 @@ const createTables = async () => {
                 killedAt DATETIME,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (boss_id) REFERENCES raid_bosses(id),
-                FOREIGN KEY (guild_id) REFERENCES guild_members(id)
+                FOREIGN KEY (guild_id) REFERENCES guilds(id)
             )`
 		);
 
@@ -110,6 +110,7 @@ const createTables = async () => {
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 raid_id CHAR(36),
                 event_name VARCHAR(80) UNIQUE NOT NULL,
+                event_date DATETIME,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (raid_id) REFERENCES raids(id)
             )`
@@ -119,10 +120,10 @@ const createTables = async () => {
             CREATE TABLE IF NOT EXISTS event_participants (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 raid_id CHAR(36),
-                guild_m_id CHAR(36),
+                guild_id CHAR(36),
                 spec ENUM('dps', 'tank', 'healer') DEFAULT 'dps',
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (guild_m_id) REFERENCES guild_members(id),
+                FOREIGN KEY (guild_id) REFERENCES guilds(id),
                 FOREIGN KEY (raid_id) REFERENCES raids(id)
             )	
         `);
@@ -132,10 +133,10 @@ const createTables = async () => {
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 tittle VARCHAR(80) UNIQUE NOT NULL,
                 content TEXT NOT NULL,
-                guild_m_id CHAR(36),
+                character_id CHAR(36),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-                FOREIGN KEY (guild_m_id) REFERENCES guild_members(id)
+                FOREIGN KEY (character_id) REFERENCES characters(id)
             )	
         `);
 		// Creamos la tabla de files

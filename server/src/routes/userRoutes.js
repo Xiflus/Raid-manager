@@ -4,6 +4,8 @@ const router = express.Router();
 
 router.post("/api/users/login", loginController);
 
+router.post("/api/users/characters", characterController);
+
 //Endpoint para crear un post
 router.post("/posts", async (req, res) => {
 	try {
