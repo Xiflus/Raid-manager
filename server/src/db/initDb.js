@@ -25,7 +25,7 @@ const createTables = async () => {
 		const pool = await getPool();
 		console.log("Borrar tablas...");
 		await pool.query(
-			"DROP TABLE IF EXISTS postsFiles, posts, event_participants, raid_events, raid_progress, raid_bosses, raids, characters, guilds, users"
+			"DROP TABLE IF EXISTS postsFiles, posts, event_participants, raid_events, raid_progress, raid_bosses, raids,join_requests, characters, guilds, users"
 		);
 
 		console.log("Creando tablas...");
@@ -74,6 +74,19 @@ const createTables = async () => {
                 FOREIGN KEY (user_id) REFERENCES users(id)
             )	
         `);
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS join_requests (
+                id CHAR(36) PRIMARY KEY NOT NULL,
+                character_id CHAR(36) NOT NULL,
+                guild_id CHAR(36) NOT NULL,
+                status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (character_id) REFERENCES characters(id),
+                FOREIGN KEY (guild_id) REFERENCES guilds(id)
+                )
+       ` );
+
+
 		// Creamos la tabla de raids.
 		await pool.query(`
             CREATE TABLE IF NOT EXISTS raids (
