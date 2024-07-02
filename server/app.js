@@ -4,7 +4,7 @@ import morgan from "morgan";
 import fileUpload from "express-fileupload";
 import routes from "./src/routes/index.js";
 import { PORT, UPLOADS_DIR } from "./env.js";
-import { errorController } from "./src/controllers/errors/index.js";
+import { errorController, notFoundController } from "./src/controllers/errors/index.js";
 
 const app = express();
 
