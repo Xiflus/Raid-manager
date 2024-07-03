@@ -1,11 +1,13 @@
 import insertFileModel from "../../models/guilds/insertFileModel";
 import insertPostModel from "../../models/guilds/inserPostModel";
 
-import { saveFile } from "../../services/fileServices";
+import { saveFile } from "../../services/fileServices.js";
 
-//FALTA VALIDATE SCHEMA!
+// VALIDATE SCHEMA!
+import validateSchema from "../../schemas/utilities/validateSchema.js";
 
-//FALTA JOI SCHEMA!
+//JOI SCHEMA!
+import newPostSchema from "../../schemas/posts/newPostschema.js";
 
 //funcion controladora que añade entrada
 const newPostController = async (req, res, next) => {
