@@ -9,6 +9,6 @@ router.get("/api/guilds", guildListController);
 
 router.post("/api/guilds/join", joinGuildController);
 
-router.post("/api/guilds/posts", createPostController);
+// router.post("/api/guilds/posts", createPostController);
 
 export default router;

@@ -1,17 +1,13 @@
 import getPool from "../../db/getPool.js";
+import { notFoundError } from "../../services/errorService.js";
 
 const selectCharacterByIdModel = async (characterName) => {
-  const pool = getPool();
-  const [character] = await pool.query(
-    "SELECT * FROM characters WHERE name = ?",
-    [characterName]
-  );
-  if (character.length === 0) {
-
-    notFoundError(characterName);
-  }
-  return character[0];
-
+	const pool = await getPool();
+	const [characters] = await pool.query("SELECT * FROM characters WHERE caracter_name = ?", [characterName]);
+	if (characters.length === 0) {
+		notFoundError(characterName);
+	}
+	return characters;
 };
 
 export default selectCharacterByIdModel;
