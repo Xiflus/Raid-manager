@@ -2,6 +2,7 @@ import uuid4 from "uuid4";
 import selectCharacterByIdModel from "../../models/guilds/selectCharacterByIdModel.js";
 import selectGuildByIdModel from "../../models/guilds/selectGuildByIdModel.js";
 import joinRequestModel from "../../models/guilds/joinRequestModel.js";
+import errorService from "../../services/errorService.js"
 
 
 const joinGuildController = async (req, res, next) => {
