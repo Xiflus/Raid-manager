@@ -1,6 +1,6 @@
-import getPool from "../../db/getPool";
+import getPool from "../../db/getPool.js";
 
-insertPostModel = async (content, userId) => {
+const insertPostModel = async (content, userId) => {
 	const pool = await getPool();
 
 	const [entry] = await pool.query(`INSERT INTO posts (content, user_id) VALUES (?, ?)`, [content, userId]);

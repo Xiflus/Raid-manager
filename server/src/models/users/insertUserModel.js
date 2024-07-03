@@ -1,5 +1,5 @@
 import getPool from "../../db/getPool.js";
-import { v4 as uuid } from 'uuid';
+import uuid4 from "uuid4";
 import bcrypt from 'bcrypt';
 import { emailALreadyRegisterError, usernamelALreadyRegisterError } from '../../services/errorService.js';
 
@@ -21,7 +21,7 @@ const pool = await getPool();
   const newUser = await pool.
   query(
      `INSERT INTO users(id, email, username, password, registrationCode) VALUES(?, ?, ?, ?, ?)`,
-     [uuid(),email, username, hashedPassword, registrationCode]
+     [uuid4(),email, username, hashedPassword, registrationCode]
 );
   return newUser;
 };

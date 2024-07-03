@@ -3,7 +3,8 @@ import {
   guildListController,
   joinGuildController,
   createGuildController,
-  unsubscribeFromGuildController
+  unsubscribeFromGuildController,
+  newPostController
 } from "../controllers/guilds/index.js";
 
 const router = express.Router();

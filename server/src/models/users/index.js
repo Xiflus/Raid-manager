@@ -1,4 +1,4 @@
-import selectUserModel from "./selectUserModel";
-import insertUserModel from "./insertUserModel";
+import selectUserModel from "./selectUserModel.js";
+import insertUserModel from "./insertUserModel.js";
 
 export {selectUserModel, insertUserModel}
