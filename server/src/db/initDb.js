@@ -62,9 +62,9 @@ const createTables = async () => {
 		await pool.query(`
             CREATE TABLE IF NOT EXISTS characters (
                 id CHAR(36) PRIMARY KEY NOT NULL,
-                caracter_name VARCHAR(80) UNIQUE NOT NULL,
-                caracter_avatar VARCHAR(100),
-                caracter_class VARCHAR(100),
+                character_name VARCHAR(80) UNIQUE NOT NULL,
+                character_avatar VARCHAR(100),
+                character_class VARCHAR(100),
                 role ENUM('staff', 'raider', 'normal') DEFAULT 'normal',
                 guild_id CHAR(36) NOT NULL,
                 user_id CHAR(36) NOT NULL,

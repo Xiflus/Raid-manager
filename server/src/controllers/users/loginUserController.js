@@ -8,7 +8,7 @@ import selectUserModel from "../../models/users/selectUserModel.js";
 //FALTA schema de validación
 //schema de joi
 
-import { SECRET } from "../../env.js";
+import { SECRET } from "../../../env.js";
 
 const loginUserController = async (req, res, next) => {
 	try {

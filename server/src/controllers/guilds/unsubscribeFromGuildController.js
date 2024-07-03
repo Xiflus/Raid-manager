@@ -1,5 +1,5 @@
-import selectCharacterByIdModel from "../../models/guilds/selectCharacterByIdModel";
-import selectGuildByIdModel from "../../models/guilds/selectGuildByIdModel";
+import selectCharacterByIdModel from "../../models/guilds/selectCharacterByIdModel.js";
+import selectGuildByIdModel from "../../models/guilds/selectGuildByIdModel.js";
 import {requiredFieldsError,characterNotFoundError,guildNotFoundError} from "../../services/errorService.js"
 import deleteFromGuildModel from "../../models/guilds/deleteFromGuildModel.js";
 

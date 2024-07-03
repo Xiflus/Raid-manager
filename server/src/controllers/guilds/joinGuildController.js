@@ -15,13 +15,13 @@ const joinGuildController = async (req, res, next) => {
 		const guilds = await selectGuildByIdModel(guildName);
 
 		if (!characters || characters.length === 0) {
-			// characterNotFoundError(characterName);
-			throw new Error(`Character ${characterName} not found`);
+			 characterNotFoundError(characterName);
+	
 		}
 
 		if (!guilds || guilds.length === 0) {
-			// guildNotFoundError(guildName);
-			throw new Error(`Guild ${guildName} not found`);
+			guildNotFoundError(guildName);
+
 		}
 
 		const character = characters[0];

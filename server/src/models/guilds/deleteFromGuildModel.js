@@ -1,4 +1,4 @@
-import getPool from "../../db/getPool"
+import getPool from "../../db/getPool.js"
 
 const deleteFromGuildModel = async(characterId)=>{
     const pool = getPool();
