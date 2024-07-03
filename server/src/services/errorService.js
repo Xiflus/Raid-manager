@@ -53,3 +53,11 @@ export const deleteFileError = () => {
 		message: "Error al eliminar el archivo del disco",
 	};
 };
+
+export const sendEmailError = () => {
+    throw {
+      httpStatus: 500, // Internal server error
+      code: "SEND_EMAIL_FAILED",
+      message: "Error al enviar email",
+    };
+  };
