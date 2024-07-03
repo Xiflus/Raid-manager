@@ -54,7 +54,6 @@ export const deleteFileError = () => {
 	};
 };
 
-
 export const characterNotFoundError = (resource) => {
 	throw {
 		httpStatus: 404, // Not Found
@@ -72,25 +71,41 @@ export const guildNotFoundError = (resource) => {
 };
 
 export const sendEmailError = () => {
-    throw {
-      httpStatus: 500, // Internal server error
-      code: "SEND_EMAIL_FAILED",
-      message: "Error al enviar email",
-    };
-  };
+	throw {
+		httpStatus: 500, // Internal server error
+		code: "SEND_EMAIL_FAILED",
+		message: "Error al enviar email",
+	};
+};
 
-  export const emailALreadyRegisterError = () => {
-    throw {
-      httpStatus: 409, // conflicto
-      code: "EMAIL_ALREADY_REGISTERED",
-      message: "El email ya está registrado, intenta con otro!",
-    };
-  };
-  
-  export const usernamelALreadyRegisterError = () => {
-    throw {
-      httpStatus: 409, // conflicto
-      code: "USERNAME_ALREADY_REGISTERED",
-      message: "El username ya está registrado, intenta con otro!",
-    };
-  };
+export const emailALreadyRegisterError = () => {
+	throw {
+		httpStatus: 409, // conflicto
+		code: "EMAIL_ALREADY_REGISTERED",
+		message: "El email ya está registrado, intenta con otro!",
+	};
+};
+
+export const usernamelALreadyRegisterError = () => {
+	throw {
+		httpStatus: 409, // conflicto
+		code: "USERNAME_ALREADY_REGISTERED",
+		message: "El username ya está registrado, intenta con otro!",
+	};
+};
+
+export const notAuthenticatedError = () => {
+	throw {
+		httpStatus: 401, // Unauthorized
+		code: "NOT_AUTHENTICATED",
+		message: `Debes enviar un token en el header 'Authorization'`,
+	};
+};
+
+export const invalidTokenError = () => {
+	throw {
+		httpStatus: 401, // Unauthorized
+		code: "INVALID_TOKEN",
+		message: "Token inválido",
+	};
+};
