@@ -14,13 +14,7 @@ const getPool = async () => {
 				database: DB_NAME,
 			});
 		}
-		// Crear el pool final conectando a la base de datos recién creada.
-		pool = mysql.createPool({
-			host: DB_HOST,
-			user: DB_USER,
-			password: DB_PASSWORD,
-			database: DB_NAME,
-		});
+		
 
 		return pool;
 	} catch (err) {

@@ -1,4 +1,4 @@
-const createGuildController = async (req, res, next) => {
+/* const createGuildController = async (req, res, next) => {
     try {
         //validamos los datos con joi
         //await validateSchema(newGuilSchema, req.body)
@@ -7,4 +7,4 @@ const createGuildController = async (req, res, next) => {
     } catch (err) {
         
     }
-}
+} */

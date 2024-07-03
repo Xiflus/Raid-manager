@@ -1,5 +1,5 @@
-import { totalGuildCountModel } from "../../models/guilds/totalGuildCountModel.js";
-import { selectAllGuildsModel } from "../../models/guilds/selectAllGuildsModel.js";
+import  totalGuildCountModel  from "../../models/guilds/totalGuildCountModel.js";
+import  selectAllGuildsModel  from "../../models/guilds/selectAllGuildsModel.js";
 
 const guildListController = async (req, res, next) => {
 	try {
