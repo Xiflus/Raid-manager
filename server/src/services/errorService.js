@@ -54,6 +54,23 @@ export const deleteFileError = () => {
 	};
 };
 
+
+export const characterNotFoundError = (resource) => {
+	throw {
+		httpStatus: 404, // Not Found
+		code: "CHARACTER_NOT_FOUND",
+		message: `El personaje '${resource}' no existe`,
+	};
+};
+
+export const guildNotFoundError = (resource) => {
+	throw {
+		httpStatus: 404, // Not Found
+		code: "GUILD_NOT_FOUND",
+		message: `La hermandad '${resource}' no existe`,
+	};
+};
+
 export const sendEmailError = () => {
     throw {
       httpStatus: 500, // Internal server error
@@ -61,3 +78,4 @@ export const sendEmailError = () => {
       message: "Error al enviar email",
     };
   };
+
