@@ -1,17 +1,12 @@
 import getPool from "../../db/getPool.js";
 
 const selectGuildByIdModel = async (guildName) => {
-  const pool = getPool();
-  const [guild] = await pool.query(
-    "SELECT * FROM guild WHERE name = ?",
-    [guildName]
-  );
-  if (guild.length === 0) {
-
-    notFoundError(guildName);
-  }
-  return guild[0];
-
+	const pool = await getPool();
+	const [guilds] = await pool.query("SELECT * FROM guilds WHERE name = ?", [guildName]);
+	if (guilds.length === 0) {
+		notFoundError(guildName);
+	}
+	return guilds;
 };
 
 export default selectGuildByIdModel;
