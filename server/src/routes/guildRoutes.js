@@ -1,9 +1,5 @@
 import express from "express";
-import {
-  guildListController,
-  joinGuildController,
-  createGuildController,
-} from "../controllers/guilds/index.js";
+import { guildListController, joinGuildController, createGuildController } from "../controllers/guilds/index.js";
 
 const router = express.Router();
 
@@ -13,6 +9,6 @@ router.get("/api/guilds", guildListController);
 
 router.post("/api/guilds/join", joinGuildController);
 
-// router.post("/api/guilds/posts", createPostController);
+router.post("/api/guilds/posts", newPostController);
 
 export default router;
