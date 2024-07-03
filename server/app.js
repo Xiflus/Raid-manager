@@ -28,6 +28,8 @@ app.use(morgan("dev"));
 
 app.use(routes);
 
+app.use(notFoundController);
+
 app.use(errorController);
 
 app.listen(PORT, () => {
