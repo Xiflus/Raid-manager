@@ -79,3 +79,18 @@ export const sendEmailError = () => {
     };
   };
 
+  export const emailALreadyRegisterError = () => {
+    throw {
+      httpStatus: 409, // conflicto
+      code: "EMAIL_ALREADY_REGISTERED",
+      message: "El email ya está registrado, intenta con otro!",
+    };
+  };
+  
+  export const usernamelALreadyRegisterError = () => {
+    throw {
+      httpStatus: 409, // conflicto
+      code: "USERNAME_ALREADY_REGISTERED",
+      message: "El username ya está registrado, intenta con otro!",
+    };
+  };
