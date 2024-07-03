@@ -23,6 +23,7 @@
 		"morgan": "^1.10.0",
 		"mysql2": "^3.10.2",
 		"nodemailer": "^6.9.14",
+		"sharp": "^0.33.4",
 		"uuid4": "^2.0.3"
 	},
 	"devDependencies": {
