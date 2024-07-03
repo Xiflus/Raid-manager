@@ -54,6 +54,7 @@ export const deleteFileError = () => {
 	};
 };
 
+
 export const characterNotFoundError = (resource) => {
 	throw {
 		httpStatus: 404, // Not Found
@@ -69,3 +70,12 @@ export const guildNotFoundError = (resource) => {
 		message: `La hermandad '${resource}' no existe`,
 	};
 };
+
+export const sendEmailError = () => {
+    throw {
+      httpStatus: 500, // Internal server error
+      code: "SEND_EMAIL_FAILED",
+      message: "Error al enviar email",
+    };
+  };
+
