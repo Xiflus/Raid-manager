@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "0b0ff295-0006-4432-b65a-dec2bc8e6ca7",
+		"name": "Raid Share",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24926825"
+	},
+	"item": [
+		{
+			"name": "User Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"\",\r\n    \"email\" : \"\",\r\n    \"password\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"Moochawa\",\r\n    \"password\" : \"_Montana13\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User activation",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/users/validate/VBcYs6ILxpSL2sonlpjwWwX9ycIRt5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users",
+						"validate",
+						"VBcYs6ILxpSL2sonlpjwWwX9ycIRt5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Password recover",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"tomasguijarroferrandiz@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/users/password/recover",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users",
+						"password",
+						"recover"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guild creation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4ZWUxNjkyLTBiMDMtNGJhNC1iOTg2LWQ3Y2Q0MWFmYzcwNiIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE3MjAwNTE1MzcsImV4cCI6MTcyMDY1NjMzN30.stfJ5q7Gv70K6bGKA29zVauy3e9fKMC13VHCQwEqC7g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"\",\r\n    \"avatar\" : \"\",\r\n    \"description\" : \"\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/guilds",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"guilds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guild Join Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"guildName\" : \"\",\r\n    \"characterName\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/guilds/join",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"guilds",
+						"join"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All guilds",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4ZWUxNjkyLTBiMDMtNGJhNC1iOTg2LWQ3Y2Q0MWFmYzcwNiIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE3MjAwNTE1MzcsImV4cCI6MTcyMDY1NjMzN30.stfJ5q7Gv70K6bGKA29zVauy3e9fKMC13VHCQwEqC7g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "ICC",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Nos aventuramos en las profundidades de la ciudadela de hielo",
+							"type": "text"
+						},
+						{
+							"key": "fileName",
+							"type": "file",
+							"src": "/C:/Users/X-tom/Downloads/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg"
+						},
+						{
+							"key": "characterId",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/guilds/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"guilds",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guild detail",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4ZWUxNjkyLTBiMDMtNGJhNC1iOTg2LWQ3Y2Q0MWFmYzcwNiIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE3MjAwNTE1MzcsImV4cCI6MTcyMDY1NjMzN30.stfJ5q7Gv70K6bGKA29zVauy3e9fKMC13VHCQwEqC7g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/guilds/acbcda5c-39dd-4bc1-8910-389a0b19507b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"guilds",
+						"acbcda5c-39dd-4bc1-8910-389a0b19507b"
+					],
+					"query": [
+						{
+							"key": "guildId",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
