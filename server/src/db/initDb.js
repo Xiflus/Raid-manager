@@ -41,6 +41,7 @@ const createTables = async () => {
                 role ENUM('admin', 'normal') DEFAULT 'normal',
                 registrationCode CHAR(30),
                 active BOOLEAN DEFAULT false,
+                recoverPassCode CHAR(10),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
             )	
@@ -74,7 +75,7 @@ const createTables = async () => {
                 FOREIGN KEY (user_id) REFERENCES users(id)
             )	
         `);
-        await pool.query(`
+		await pool.query(`
             CREATE TABLE IF NOT EXISTS join_requests (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 character_id CHAR(36) NOT NULL,
@@ -84,8 +85,7 @@ const createTables = async () => {
                 FOREIGN KEY (character_id) REFERENCES characters(id),
                 FOREIGN KEY (guild_id) REFERENCES guilds(id)
                 )
-       ` );
-
+       `);
 
 		// Creamos la tabla de raids.
 		await pool.query(`
