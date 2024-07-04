@@ -2,7 +2,7 @@ import getPool from "../../db/getPool.js";
 
 const selectGuildByIdModel = async (guildId) => {
 	const pool = await getPool();
-	const [guild] = await pool.query(
+	const guild = await pool.query(
 		`
 		SELECT
 		g.id,
