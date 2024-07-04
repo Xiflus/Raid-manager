@@ -1,9 +1,10 @@
 import getPool from "../../db/getPool.js";
 import bcrypt from "bcrypt";
+import { selectUserByEmailModel } from "./index.js";
 
 const resetPasswordModel = async (email, recoverPassCode, newPassword) => {
 	const pool = await getPool();
-	const user = await selectUserModel(email);
+	const user = await selectUserByEmailModel(email);
 
 	if (!user || user.recoverPassCode !== recoverPassCode) {
 		recoveryCodeError();
