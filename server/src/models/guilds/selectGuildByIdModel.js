@@ -25,7 +25,7 @@ const selectGuildByIdModel = async (guildId) => {
 		[guildId]
 	);
 
-	return guild;
+	return guild[0];
 };
 
 export default selectGuildByIdModel;
