@@ -2,7 +2,7 @@ import randomstring from "randomstring";
 import validateSchema from "../../utils/validateSchema.js";
 import newUserSchema from "../../schemas/users/newUserSchema.js";
 import sendMailUtil from "../../utils/sendEmailUtil.js";
-import {insertUserModel} from "../../models/users/index.js";
+import { insertUserModel } from "../../models/users/index.js";
 
 //? diarodeviajes.com/api/users/register
 const newUserController = async (req, res, next) => {
@@ -33,7 +33,9 @@ const newUserController = async (req, res, next) => {
     // ya guardado el user en base de datos, enviamos correo con el registtrationCode
     await sendMailUtil(email, emailSubject, emailBody);
 
-    // una vez enviado el correo con el codigo de registro mandamos respuesta al cliente 
+    const registratioCode = crypto.randomBytes(20).toString("hex");
+
+    // una vez enviado el correo con el codigo de registro mandamos respuesta al cliente
     res.send({
       status: "ok",
       message: "Usuario creado correctamente, por favor revisa tu correo ...",
