@@ -8,6 +8,8 @@ const joiErrorMessages = {
   "any.only": "Solo se permiten fotos jpeg o png",
   "string.email":
     'Debe proporcionar un correo electrónico válido para "{#key}"',
+  "string.username":
+    'Debe proporcionar un username válido para "{#key}"',
   "string.pattern.base":
     'La contraseña debe contener al menos una mayúscula, una minúscula, un número y un símbolo de puntuación para "{#key}"',
   "string.min": 'El campo "{#key}" debe tener al menos {#limit} caracteres',

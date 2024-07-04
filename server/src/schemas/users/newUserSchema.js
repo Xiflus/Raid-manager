@@ -6,7 +6,7 @@ import joiErrorMessages from "../joiErrorMessages.js";
 
 // Creamos el esquema de Joi donde comprobamos todas las propiedades necesarias.
 const newUserSchema = joi.object({
-  username: joi.string().required().messages(joiErrorMessages),
+  username: joi.string().min(5).max(30).required().messages(joiErrorMessages),
   password: joi
     .string()
     .pattern(

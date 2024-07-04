@@ -1,6 +1,6 @@
 import randomstring from "randomstring";
 import validateSchema from "../../utils/validateSchema.js";
-import newUserSchema from "../../schemas/users/newUserSchema.js";
+import {newUserSchema} from "../../schemas/users/index.js";
 import sendMailUtil from "../../utils/sendEmailUtil.js";
 import { insertUserModel } from "../../models/users/index.js";
 
