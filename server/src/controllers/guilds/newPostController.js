@@ -1,3 +1,4 @@
+import uuid4 from "uuid4";
 import { insertFileModel, insertPostModel } from "../../models/guilds/index.js";
 import { saveFile } from "../../services/fileServices.js";
 import validateSchema from "../../schemas/utilities/validateSchema.js";
@@ -6,15 +7,16 @@ import newPostSchema from "../../schemas/posts/newPostSchema.js";
 //funcion controladora que añade entrada
 const newPostController = async (req, res, next) => {
 	try {
-		await validateSchema(newPostSchema, object.assign(req.body, req.file));
+		// await validateSchema(newPostSchema, object.assign(req.body, req.file));
 		//obtenemos body
-		const { title, content } = req.body;
+		const { title, content, characterId } = req.body;
+		const entryId = uuid4();
 
 		//insertamos el post y obtenemos el ID del post
-		const postId = await insertPostModel(content, req.user.id);
+		const postId = await insertPostModel(entryId, title, content, req.character?.id || characterId);
 
 		//preparamos para posible multimedia
-		const file = [];
+		let files = [];
 
 		//sireq.files existe, hay archivos
 		if (req.files) {
@@ -36,10 +38,10 @@ const newPostController = async (req, res, next) => {
 			data: {
 				entry: {
 					id: postId,
+					title,
 					content,
 					files,
-					characterId: req.character.id,
-					createdAt: new Date(),
+					characterId: req.character?.id,
 				},
 			},
 		});
