@@ -7,3 +7,4 @@ const validateSchema = async (schema, data) => {
 };
 
 export default validateSchema;
+// verificar si sirve 

@@ -1,5 +1,5 @@
 import joi from "joi";
-import joiErrorMessages from "./joiErrorMessages.js";
+import joiErrorMessages from "../joiErrorMessages.js";
 
 const imgSchema = joi
   .object({

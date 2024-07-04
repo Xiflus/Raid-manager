@@ -1,18 +1,20 @@
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import {generateToken} from "../../utils/jwtHandler.js"
 import { invalidCredentialsError, pendingActivationError } from "../../services/errorService.js";
 
 //Modelos
 import selectUserModel from "../../models/users/selectUserModel.js";
+import validateSchema from '../../schemas/utilities/validateSchema.js';
+import loginUserSchema from "../../schemas/users/loginUserSchema.js";
 
 //FALTA schema de validación
 //schema de joi
 
-import { SECRET } from "../../../env.js";
 
 const loginUserController = async (req, res, next) => {
 	try {
-		//FALTA SCHEMA VALIDATE
+		// Validamos los datos con Joi.
+        await validateSchema(loginUserSchema, req.body)
 
 		const { username, password } = req.body;
 
@@ -37,7 +39,7 @@ const loginUserController = async (req, res, next) => {
 			role: user.role,
 		};
 
-		const token = jwt.sign(tokenInfo, SECRET, { expiresIn: "7d" });
+		const token = generateToken(user);
 
 		res.status(201).send({
 			status: "ok",
