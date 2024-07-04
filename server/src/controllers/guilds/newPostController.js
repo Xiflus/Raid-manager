@@ -1,12 +1,6 @@
-import insertFileModel from "../../models/guilds/insertFileModel.js";
-import insertPostModel from "../../models/guilds/insertPostModel.js";
-
+import { insertFileModel, insertPostModel } from "../../models/guilds/index.js";
 import { saveFile } from "../../services/fileServices.js";
-
-// VALIDATE SCHEMA!
 import validateSchema from "../../schemas/utilities/validateSchema.js";
-
-//JOI SCHEMA!
 import newPostSchema from "../../schemas/posts/newPostSchema.js";
 
 //funcion controladora que añade entrada
