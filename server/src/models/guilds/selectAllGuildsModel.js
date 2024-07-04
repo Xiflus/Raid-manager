@@ -10,12 +10,12 @@ const selectAllGuildsModel = async (guildName = "", avatar = "", description = "
 		g.avatar,
 		g.description,
 		g.createdAt,
-		COUNT(gm.id) AS members,
+		COUNT(c.id) AS members,
 		COUNT(rp.id) AS progress
 		FROM
 		guilds g
 		LEFT JOIN
-		guild_members gm ON g.id = gm.guild_id
+		characters c ON g.id = c.guild_id
 		LEFT JOIN
 		raid_progress rp ON g.id = rp.guild_id
 		WHERE 

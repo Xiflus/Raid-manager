@@ -5,6 +5,7 @@ import {
 	createGuildController,
 	unsubscribeFromGuildController,
 	newPostController,
+	getGuildController,
 } from "../controllers/guilds/index.js";
 import { authUserController } from "../middlewares/index.js";
 
@@ -14,10 +15,12 @@ router.post("/api/guilds", authUserController, createGuildController);
 
 router.get("/api/guilds", authUserController, guildListController);
 
+router.get("/api/guilds/:guildId", authUserController, getGuildController);
+
 router.post("/api/guilds/join", authUserController, joinGuildController);
 
 router.post("/api/guilds/posts", authUserController, newPostController);
 
-router.delete("/api/guilds/:characterId", authUserController, unsubscribeFromGuildController);
+router.delete("/api/guilds/:guildId", authUserController, unsubscribeFromGuildController);
 
 export default router;

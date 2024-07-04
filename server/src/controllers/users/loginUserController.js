@@ -13,13 +13,13 @@ import { SECRET } from "../../../env.js";
 const loginUserController = async (req, res, next) => {
 	try {
 		//FALTA SCHEMA VALIDATE
-		const { email, userName, password } = req.body;
-		if (!email) {
-			const user = await selectUserModel(userName);
-		}
-		const user = await selectUserModel(email);
+
+		const { username, password } = req.body;
+
+		const user = await selectUserModel(username);
 
 		let validpass;
+
 		if (user) {
 			validpass = await bcrypt.compare(password, user.password);
 		}
