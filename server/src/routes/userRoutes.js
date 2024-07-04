@@ -3,6 +3,7 @@ import {
   loginUserController,
   newUserController,
   validateUserController,
+  resetPasswordController,
 } from "../controllers/users/index.js";
 // import { authUserController } from "../middlewares/index.js";
 
@@ -16,5 +17,7 @@ router.post("/api/users/register", newUserController);
 /* router.post("/api/users/characters", authUserController, characterController); */
 
 router.put("/api/users/validate/:registrationCode", validateUserController);
+
+router.put("/api/users/password/reset", resetPasswordController);
 
 export default router;
