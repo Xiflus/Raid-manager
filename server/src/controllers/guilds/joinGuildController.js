@@ -1,6 +1,6 @@
 import uuid4 from "uuid4";
 import { selectCharacterByIdModel, selectGuildByIdModel, joinRequestModel } from "../../models/guilds/index.js";
-import { requiredFieldsError, characterNotFoundError,guildNotFoundError } from "../../services/errorService.js";
+import { requiredFieldsError, characterNotFoundError, guildNotFoundError } from "../../services/errorService.js";
 
 const joinGuildController = async (req, res, next) => {
 	const { guildId, characterName } = req.body;
@@ -11,14 +11,12 @@ const joinGuildController = async (req, res, next) => {
 		const characters = await selectCharacterByIdModel(characterName);
 		const guilds = await selectGuildByIdModel(guildId);
 
-
-
 		if (!characters || characters.length === 0) {
 			characterNotFoundError(characterName);
 		}
 
 		if (!guilds || guilds.length === 0) {
-			guildNotFoundError(guildName);
+			guildNotFoundError(guildId);
 		}
 
 		const character = characters[0];

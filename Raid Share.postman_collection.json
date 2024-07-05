@@ -23,15 +23,9 @@
 				"url": {
 					"raw": "http://localhost:3001/api/users/register",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3001",
-					"path": [
-						"api",
-						"users",
-						"register"
-					]
+					"path": ["api", "users", "register"]
 				}
 			},
 			"response": []
@@ -43,7 +37,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\" : \"Moochawa\",\r\n    \"password\" : \"_Montana13\"\r\n\r\n}",
+					"raw": "{\r\n    \"username\" : \"\",\r\n    \"password\" : \"\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -53,15 +47,9 @@
 				"url": {
 					"raw": "http://localhost:3001/api/users/login",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3001",
-					"path": [
-						"api",
-						"users",
-						"login"
-					]
+					"path": ["api", "users", "login"]
 				}
 			},
 			"response": []
@@ -72,18 +60,11 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3001/api/users/validate/VBcYs6ILxpSL2sonlpjwWwX9ycIRt5",
+					"raw": "http://localhost:3001/api/users/validate/:registrationCode",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3001",
-					"path": [
-						"api",
-						"users",
-						"validate",
-						"VBcYs6ILxpSL2sonlpjwWwX9ycIRt5"
-					]
+					"path": ["api", "users", "validate", ":registrationCode"]
 				}
 			},
 			"response": []
@@ -95,7 +76,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\" : \"tomasguijarroferrandiz@gmail.com\"\r\n}",
+					"raw": "{\r\n    \"email\" : \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -105,16 +86,9 @@
 				"url": {
 					"raw": "http://localhost:3001/api/users/password/recover",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3001",
-					"path": [
-						"api",
-						"users",
-						"password",
-						"recover"
-					]
+					"path": ["api", "users", "password", "recover"]
 				}
 			},
 			"response": []
@@ -126,7 +100,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4ZWUxNjkyLTBiMDMtNGJhNC1iOTg2LWQ3Y2Q0MWFmYzcwNiIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE3MjAwNTE1MzcsImV4cCI6MTcyMDY1NjMzN30.stfJ5q7Gv70K6bGKA29zVauy3e9fKMC13VHCQwEqC7g",
+						"value": "<token>",
 						"type": "text"
 					}
 				],
@@ -142,14 +116,9 @@
 				"url": {
 					"raw": "http://localhost:3001/api/guilds",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3001",
-					"path": [
-						"api",
-						"guilds"
-					]
+					"path": ["api", "guilds"]
 				}
 			},
 			"response": []
@@ -171,15 +140,9 @@
 				"url": {
 					"raw": "http://localhost:3001/api/guilds/join",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3001",
-					"path": [
-						"api",
-						"guilds",
-						"join"
-					]
+					"path": ["api", "guilds", "join"]
 				}
 			},
 			"response": []
@@ -191,7 +154,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4ZWUxNjkyLTBiMDMtNGJhNC1iOTg2LWQ3Y2Q0MWFmYzcwNiIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE3MjAwNTE1MzcsImV4cCI6MTcyMDY1NjMzN30.stfJ5q7Gv70K6bGKA29zVauy3e9fKMC13VHCQwEqC7g",
+						"value": "<token>",
 						"type": "text"
 					}
 				],
@@ -211,7 +174,7 @@
 						{
 							"key": "fileName",
 							"type": "file",
-							"src": "/C:/Users/X-tom/Downloads/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg"
+							"src": ""
 						},
 						{
 							"key": "characterId",
@@ -224,15 +187,9 @@
 				"url": {
 					"raw": "http://localhost:3001/api/guilds/posts",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3001",
-					"path": [
-						"api",
-						"guilds",
-						"posts"
-					]
+					"path": ["api", "guilds", "posts"]
 				}
 			},
 			"response": []
@@ -247,7 +204,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4ZWUxNjkyLTBiMDMtNGJhNC1iOTg2LWQ3Y2Q0MWFmYzcwNiIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE3MjAwNTE1MzcsImV4cCI6MTcyMDY1NjMzN30.stfJ5q7Gv70K6bGKA29zVauy3e9fKMC13VHCQwEqC7g",
+						"value": "<token>",
 						"type": "text"
 					}
 				],
@@ -263,15 +220,9 @@
 				"url": {
 					"raw": "http://localhost:3001/api/guilds/acbcda5c-39dd-4bc1-8910-389a0b19507b",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3001",
-					"path": [
-						"api",
-						"guilds",
-						"acbcda5c-39dd-4bc1-8910-389a0b19507b"
-					],
+					"path": ["api", "guilds", "acbcda5c-39dd-4bc1-8910-389a0b19507b"],
 					"query": [
 						{
 							"key": "guildId",
