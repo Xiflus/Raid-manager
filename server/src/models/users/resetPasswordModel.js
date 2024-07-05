@@ -10,7 +10,7 @@ const resetPasswordModel = async (email, recoverPassCode, newPassword) => {
 		recoveryCodeError();
 	}
 
-	const hashedPass = await bcrypt.hash(newPassword, 10);
+	const hashedPass = await bcrypt.hash(newPassword, 12);
 
 	await pool.query(`UPDATE users SET password = ?, recoverPassCode = null WHERE recoverPassCode = ?`, [hashedPass, recoverPassCode]);
 };
