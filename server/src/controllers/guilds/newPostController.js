@@ -7,7 +7,7 @@ import newPostSchema from "../../schemas/posts/newPostSchema.js";
 //funcion controladora que añade entrada
 const newPostController = async (req, res, next) => {
 	try {
-		// await validateSchema(newPostSchema, object.assign(req.body, req.file));
+		await validateSchema(newPostSchema, object.assign(req.body, req.file));
 		//obtenemos body
 		const { title, content, characterId } = req.body;
 		const entryId = uuid4();
