@@ -23,33 +23,15 @@
 				"url": {
 					"raw": "http://localhost:3001/api/users/register",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3001",
-					"path": ["api", "users", "register"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "User Login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\" : \"\",\r\n    \"password\" : \"\"\r\n\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3001/api/users/login",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "3001",
-					"path": ["api", "users", "login"]
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
 				}
 			},
 			"response": []
@@ -62,9 +44,52 @@
 				"url": {
 					"raw": "http://localhost:3001/api/users/validate/:registrationCode",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3001",
-					"path": ["api", "users", "validate", ":registrationCode"]
+					"path": [
+						"api",
+						"users",
+						"validate",
+						":registrationCode"
+					],
+					"variable": [
+						{
+							"key": "registrationCode",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"Moochawa\",\r\n    \"password\" : \"_Montana13\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
 				}
 			},
 			"response": []
@@ -86,21 +111,59 @@
 				"url": {
 					"raw": "http://localhost:3001/api/users/password/recover",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3001",
-					"path": ["api", "users", "password", "recover"]
+					"path": [
+						"api",
+						"users",
+						"password",
+						"recover"
+					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Guild creation",
+			"name": "User Password reset",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"\",\r\n    \"recoverPassCode\" : \"\",\r\n    \"newPassword\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/users/password/reset",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users",
+						"password",
+						"reset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guild creation (Req token)",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "<token>",
+						"value": "<Insert token>",
 						"type": "text"
 					}
 				],
@@ -116,21 +179,32 @@
 				"url": {
 					"raw": "http://localhost:3001/api/guilds",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3001",
-					"path": ["api", "guilds"]
+					"path": [
+						"api",
+						"guilds"
+					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Guild Join Request",
+			"name": "Guild Join Request (Req token)",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "<Insert token>",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"guildName\" : \"\",\r\n    \"characterName\" : \"\"\r\n}",
+					"raw": "{\r\n    \"guildId\" : \"\",\r\n    \"characterName\" : \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -140,21 +214,27 @@
 				"url": {
 					"raw": "http://localhost:3001/api/guilds/join",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3001",
-					"path": ["api", "guilds", "join"]
+					"path": [
+						"api",
+						"guilds",
+						"join"
+					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "All guilds",
+			"name": "All guilds (Req token)",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "<token>",
+						"value": "<Insert token>",
 						"type": "text"
 					}
 				],
@@ -163,18 +243,18 @@
 					"formdata": [
 						{
 							"key": "title",
-							"value": "ICC",
+							"value": "IC",
 							"type": "text"
 						},
 						{
 							"key": "content",
-							"value": "Nos aventuramos en las profundidades de la ciudadela de hielo",
+							"value": "Nos adentramos en las profundidades",
 							"type": "text"
 						},
 						{
 							"key": "fileName",
 							"type": "file",
-							"src": ""
+							"src": "/C:/Users/X-tom/Downloads/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg"
 						},
 						{
 							"key": "characterId",
@@ -187,15 +267,21 @@
 				"url": {
 					"raw": "http://localhost:3001/api/guilds/posts",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3001",
-					"path": ["api", "guilds", "posts"]
+					"path": [
+						"api",
+						"guilds",
+						"posts"
+					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Guild detail",
+			"name": "Guild detail (Req token)",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -204,7 +290,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "<token>",
+						"value": "<Insert token>",
 						"type": "text"
 					}
 				],
@@ -218,17 +304,55 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/guilds/acbcda5c-39dd-4bc1-8910-389a0b19507b",
+					"raw": "http://localhost:3001/api/guilds/:guildId",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "3001",
-					"path": ["api", "guilds", "acbcda5c-39dd-4bc1-8910-389a0b19507b"],
+					"path": [
+						"api",
+						"guilds",
+						":guildId"
+					],
 					"query": [
 						{
 							"key": "guildId",
 							"value": "",
 							"disabled": true
 						}
+					],
+					"variable": [
+						{
+							"key": "guildId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All guilds (Req token)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "<Insertar token>",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3001/api/guilds",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"guilds"
 					]
 				}
 			},

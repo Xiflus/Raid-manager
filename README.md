@@ -8,57 +8,13 @@ Se trata de una aplicación externa para Wolrd of Warcraft, orientada en la gest
 
 2. Guardar el archivo `.env.example` como `.env` y cubrir los datos necesarios.
 
-3. Ejecutar `npm run initDb` para crear la base de datos, tablas y un usuario admin.
+3. Ejecutar `npm run initDb` para crear la base de datos, tablas, un usuario admin.
 
 4. Ejecutar `npm run dev` para lanzar el servidor.
 
+5. Endpoints postman preparados con la autorización vacía, se indica en los headers cual requiere token de autorización.
+
 ## Base de datos
-
-### users ❗❗❗❗
-
-| Campo            | Tipo             | Descripción                            |
-| ---------------- | ---------------- | -------------------------------------- |
-| id               | INTEGER UNSIGNED | Identificador único del usuario        |
-| email            | VARCHAR(100)     | Correo electrónico del usuario         |
-| password         | VARCHAR(100)     | Contraseña del usuario (hash)          |
-| username         | VARCHAR(30)      | Nombre de usuario del usuario          |
-| avatar           | VARCHAR(100)     | URL del avatar del usuario             |
-| role             | ENUM             | Rol del usuario ("admin" o "normal")   |
-| active           | BOOLEAN          | Indica si el usuario está activo o no  |
-| registrationCode | VARCHAR(36)      | Código de registro del usuario         |
-| recoverPassCode  | VARCHAR(36)      | Código de recuperación de contraseña   |
-| createdAt        | DATETIME         | Fecha y hora de creación del usuario   |
-| modifiedAt       | DATETIME         | Fecha y hora de la última modificación |
-
-### entries ❗❗❗❗
-
-| Campo       | Tipo             | Descripción                            |
-| ----------- | ---------------- | -------------------------------------- |
-| id          | INTEGER UNSIGNED | Identificador único de la entrada      |
-| title       | VARCHAR(100)     | Título de la entrada                   |
-| place       | VARCHAR(50)      | Lugar donde ocurrieron los sucesos     |
-| description | TEXT             | Descripción de los sucesos             |
-| idUser      | INTEGER UNSIGNED | Identificador del usuario creador      |
-| createdAt   | DATETIME         | Fecha y hora de creación de la entrada |
-
-### entryPhotos ❗❗❗❗
-
-| Campo     | Tipo             | Descripción                                            |
-| --------- | ---------------- | ------------------------------------------------------ |
-| id        | INTEGER UNSIGNED | Identificador único de la foto                         |
-| name      | VARCHAR(100)     | Nombre de la foto                                      |
-| idEntry   | INTEGER UNSIGNED | Identificador de la entrada a la que pertenece la foto |
-| createdAt | DATETIME         | Fecha y hora de creación de la foto                    |
-
-### entryVotes ❗❗❗❗
-
-| Campo     | Tipo             | Descripción                        |
-| --------- | ---------------- | ---------------------------------- |
-| id        | INTEGER UNSIGNED | Identificador único del voto       |
-| value     | TINYINT          | Valor del voto (del 1 al 5)        |
-| idEntry   | INTEGER UNSIGNED | Identificador de la entrada votada |
-| idUser    | INTEGER UNSIGNED | Identificador del usuario que votó |
-| createdAt | DATETIME         | Fecha y hora de creación del voto  |
 
 ## Endpoints del usuario ❗❗❗❗
 
@@ -75,7 +31,7 @@ Se trata de una aplicación externa para Wolrd of Warcraft, orientada en la gest
 - **POST** - `/guild/create` - Crea una nueva hermandad✅
 - **PUT** - `/guild/manage` - Editar información o detalles de la guild✅
 
-## Endpoints del diario ❗❗❗❗
+## Endpoints ❗❗❗❗
 
 - **POST** - `/entries` - Crea una entrada.
 - **GET** - `/entries` - Retorna el listado de entradas.
