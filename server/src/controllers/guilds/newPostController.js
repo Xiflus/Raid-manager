@@ -28,7 +28,7 @@ const newPostController = async (req, res, next) => {
 				const fileId = await insertFileModel(fileName, entryId);
 
 				//pusheamos los archivos
-				file.push({ id: fileId, name: fileName });
+				files.push({ id: fileId, name: fileName });
 			}
 		}
 
