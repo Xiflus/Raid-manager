@@ -19,11 +19,11 @@ Se trata de una aplicación externa para Wolrd of Warcraft, orientada en la gest
 ## Endpoints del usuario ❗❗❗❗
 
 - **POST** - `/users/register` - Crea un nuevo usuario pendiente de activar.
-- **PUT** - `/users/validate/:registrationCode` - Valida a un usuario recién registrado.
 - **POST** - `/users/login` - Logea a un usuario retornando un token. ✅
-- **GET** - `/users/:userId` - Retorna información pública de un usuario (ver el perfil).
-- **GET** - `/users` - Retorna información privada del usuario con el id del token. ✅
-- **PUT** - `/users/avatar` - Permite actualizar el avatar del usuario.
+- **POST** - `/users/password/recover` - Recuperación de contraseña
+
+- **PUT** - `/users/validate/:registrationCode` - Valida a un usuario recién registrado.
+- **PUT** - `/users/password/reset` - Permite actualizar la contraseña.
 
 ## Endpoints Hermandad
 
