@@ -3,7 +3,8 @@ import uuid4 from "uuid4";
 
 const insertFileModel = async (fileName, entryId) => {
 	const pool = await getPool();
-	const [file] = await pool.query(`INSERT INTO postfiles (id, filename, postid) VALUES (?, ?, ?)`, [uuid4(), fileName, entryId]);
+	const fileId = uuid4();
+	const [file] = await pool.query(`INSERT INTO postsfiles (id, filename, postsId) VALUES (?, ?, ?)`, [fileId, fileName, entryId]);
 
 	return file;
 };

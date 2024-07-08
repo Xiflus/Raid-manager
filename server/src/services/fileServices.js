@@ -33,7 +33,7 @@ export const saveFile = async (file, width) => {
 		const filePath = path.join(uploadsDir, fileName);
 
 		//guardamos en carpeta de subida
-		await sharpImg.toFile(filePath);
+		await sharpFile.toFile(filePath);
 
 		//return nombre del archivo
 		return fileName;
