@@ -4,4 +4,15 @@ import joinGuildController from "./joinGuildController.js";
 import unsubscribeFromGuildController from "./unsubscribeFromGuildController.js";
 import newPostController from "./newPostController.js";
 import getGuildController from "./getGuildController.js";
-export { guildListController, joinGuildController, createGuildController, unsubscribeFromGuildController, newPostController, getGuildController };
+import getPostController from "./getPostController.js";
+import postsListController from "./postsListController.js";
+export {
+	guildListController,
+	joinGuildController,
+	createGuildController,
+	unsubscribeFromGuildController,
+	newPostController,
+	getGuildController,
+	getPostController,
+	postsListController,
+};
