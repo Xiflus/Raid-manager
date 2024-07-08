@@ -7,7 +7,7 @@ import newPostSchema from "../../schemas/posts/newPostSchema.js";
 //funcion controladora que añade entrada
 const newPostController = async (req, res, next) => {
 	try {
-		await validateSchema(newPostSchema, object.assign(req.body, req.file));
+		await validateSchema(newPostSchema, Object.assign(req.body, req.file));
 		//obtenemos body
 		const { title, content, characterId } = req.body;
 		const entryId = uuid4();
@@ -25,7 +25,7 @@ const newPostController = async (req, res, next) => {
 			for (const file of filesArray) {
 				const fileName = await saveFile(file);
 
-				const fileId = await insertFileModel(fileName, postId);
+				const fileId = await insertFileModel(fileName, entryId);
 
 				//pusheamos los archivos
 				file.push({ id: fileId, name: fileName });
