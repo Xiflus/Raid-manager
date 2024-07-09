@@ -29,4 +29,6 @@ router.get("/api/guilds/:guildId/posts", authUserController, postsListController
 
 router.get("/api/guilds/:guildId/posts/:postId", authUserController, getPostController);
 
+router.put("/api/guilds/:joinReqId", )
+
 export default router;
