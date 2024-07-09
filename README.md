@@ -19,24 +19,19 @@ Se trata de una aplicación externa para Wolrd of Warcraft, orientada en la gest
 ## Endpoints del usuario ❗❗❗❗
 
 - **POST** - `/users/register` - Crea un nuevo usuario pendiente de activar.
-- **PUT** - `/users/validate/:registrationCode` - Valida a un usuario recién registrado.
 - **POST** - `/users/login` - Logea a un usuario retornando un token. ✅
-- **GET** - `/users/:userId` - Retorna información pública de un usuario (ver el perfil).
-- **GET** - `/users` - Retorna información privada del usuario con el id del token. ✅
-- **PUT** - `/users/avatar` - Permite actualizar el avatar del usuario.
+- **POST** - `/users/password/recover` - Recuperación de contraseña
+
+- **PUT** - `/users/validate/:registrationCode` - Valida a un usuario recién registrado.
+- **PUT** - `/users/password/reset` - Permite actualizar la contraseña.
 
 ## Endpoints Hermandad
 
-- **GET** - `/guild` - Retorna información pública de las hermandades✅
-- **POST** - `/guild/create` - Crea una nueva hermandad✅
-- **PUT** - `/guild/manage` - Editar información o detalles de la guild✅
-
-## Endpoints ❗❗❗❗
-
-- **POST** - `/entries` - Crea una entrada.
-- **GET** - `/entries` - Retorna el listado de entradas.
-- **GET** - `/entries/:entryId` - Retorna una entrada en concreto.
-- **POST** - `/entries/:entryId/photos` - Agregar una foto a una entrada.
-- **DELETE** - `/entries/:entryId/photos/:photoId` - Eliminar una foto de una entrada.
-- **POST** - `/entries/:entryId/votes` - Vota una entrada (entre 1 y 5).
-- **DELETE** - `/entries/:entryId` - Eliminar una entrada.
+- **GET** - `/guilds` - Retorna información pública de las hermandades✅
+- **GET** - `/guilds/:guildId` -Retorna hermandad por Id
+- **GET** - `/guilds/:guildId/posts`- Retorna todos los posts de una hermandad
+- **GET** - `/guilds/:guildId/posts/:postId`-Retorna un post por Id
+- **POST** - `/guilds` - Crea una nueva hermandad✅
+- **POST** - `/guilds/join` - Manda solicitud de union a hermandad
+- **POST** - `/guilds/posts` - Crea nuevo post dentro de hermandad
+- **DELETE** - `/guilds/:guildId` - Editar información o detalles de la guild✅
