@@ -32,8 +32,6 @@ const newUserController = async (req, res, next) => {
 		// ya guardado el user en base de datos, enviamos correo con el registtrationCode
 		await sendMailUtil(email, emailSubject, emailBody);
 
-		const registratioCode = await crypto.randomBytes(20).toString("hex");
-
 		// una vez enviado el correo con el codigo de registro mandamos respuesta al cliente
 		res.send({
 			status: "ok",
@@ -41,7 +39,7 @@ const newUserController = async (req, res, next) => {
 			data: {
 				username,
 				email,
-				registratioCode,
+				registrationCode,
 			},
 		});
 	} catch (err) {
