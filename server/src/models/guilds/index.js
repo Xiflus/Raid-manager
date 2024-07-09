@@ -8,6 +8,8 @@ import selectAllGuildsModel from "./selectAllGuildsModel.js";
 import selectCharacterByIdModel from "./selectCharacterByIdModel.js";
 import selectGuildByIdModel from "./selectGuildByIdModel.js";
 import totalGuildCountModel from "./totalGuildCountModel.js";
+import selectJoinReqByIdModel from "./selectJoinReqByIdModel.js";
+import insertMemberModel from "./insertMemberModel.js";
 
 export {
 	deleteFromGuildModel,
@@ -19,4 +21,6 @@ export {
 	selectCharacterByIdModel,
 	selectGuildByIdModel,
 	totalGuildCountModel,
+	selectJoinReqByIdModel,
+	insertMemberModel,
 };

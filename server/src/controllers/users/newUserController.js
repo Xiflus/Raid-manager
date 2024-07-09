@@ -4,7 +4,6 @@ import { newUserSchema } from "../../schemas/users/index.js";
 import sendMailUtil from "../../utils/sendEmailUtil.js";
 import { insertUserModel } from "../../models/users/index.js";
 
-//? diarodeviajes.com/api/users/register
 const newUserController = async (req, res, next) => {
 	try {
 		await validateSchema(newUserSchema, req.body);

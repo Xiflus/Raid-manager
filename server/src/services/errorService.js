@@ -109,3 +109,17 @@ export const invalidTokenError = () => {
 		message: "Token inválido",
 	};
 };
+export const characterAlreadyAtGuildError = () => {
+	throw {
+		httpStatus: 409, // conflict
+		code: "CHARACTER_ALREADY_AT_GUILD",
+		message: "El personaje ya pertenece a una Hermandad",
+	};
+};
+export const characterIsNotMemberError = () => {
+	throw {
+		httpStatus: 409, // conflict
+		code: "CHARACTER_IS_NOT_MEMBER_AT_GUILD",
+		message: "El personaje no pertenece a esta Hermandad",
+	};
+};

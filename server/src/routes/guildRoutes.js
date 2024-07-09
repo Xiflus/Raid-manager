@@ -23,4 +23,6 @@ router.post("/api/guilds/posts", authUserController, newPostController);
 
 router.delete("/api/guilds/:guildId", authUserController, unsubscribeFromGuildController);
 
+router.put("/api/guilds/:joinReqId", )
+
 export default router;
