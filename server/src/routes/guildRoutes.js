@@ -9,7 +9,7 @@ import {
 	postsListController,
 	getPostController,
 	validateMembersController,
-	editGuildController
+	editGuildController,
 } from "../controllers/guilds/index.js";
 import { authUserController } from "../middlewares/index.js";
 

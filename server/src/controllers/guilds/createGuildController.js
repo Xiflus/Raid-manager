@@ -3,8 +3,14 @@ import validateSchema from "../../utils/validateSchema.js";
 import { newGuildSchema } from "../../schemas/guilds/index.js";
 const createGuildController = async (req, res, next) => {
 	try {
-		//validamos los datos con joi
 		await validateSchema(newGuildSchema, req.body);
+import validateSchema from "../../schemas/utilities/validateSchema.js";
+import newGuildSchema from "../../schemas/guilds/newGuildsSchema.js"
+
+const createGuildController = async (req, res, next) => {
+	try {
+		//validamos los datos con joi
+		await validateSchema(newGuildSchema);
 		const { name, description } = req.body;
 		const avatar = req.files?.avatar;
 		const userId = req.user?.id;
