@@ -1,19 +1,20 @@
 import { insertGuildModel } from "../../models/guilds/index.js";
-import validateSchema from "../../utils/validateSchema.js";
-import { newGuildSchema } from "../../schemas/guilds/index.js";
-const createGuildController = async (req, res, next) => {
-	try {
-		await validateSchema(newGuildSchema, req.body);
 import validateSchema from "../../schemas/utilities/validateSchema.js";
-import newGuildSchema from "../../schemas/guilds/newGuildsSchema.js"
+import { guildSchema } from "../../schemas/guilds/index.js";
+import { saveFile } from "../../services/fileServices.js";
 
 const createGuildController = async (req, res, next) => {
 	try {
 		//validamos los datos con joi
-		await validateSchema(newGuildSchema);
-		const { name, description } = req.body;
-		const avatar = req.files?.avatar;
+		await validateSchema(guildSchema, req.body, req.files);
+		let { name, description } = req.body;
 		const userId = req.user?.id;
+
+		let avatar;
+		if (req.files) {
+			const file = req.files.avatar;
+			avatar = await saveFile(file, 150);
+		}
 
 		await insertGuildModel(name, avatar, description, userId);
 		res.status(201).send({
@@ -21,6 +22,7 @@ const createGuildController = async (req, res, next) => {
 			data: { message: "Hermandad creada correctamente" },
 		});
 	} catch (err) {
+		console.log(err);
 		next(err);
 	}
 };

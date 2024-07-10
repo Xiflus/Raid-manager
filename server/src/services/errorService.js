@@ -126,8 +126,8 @@ export const characterIsNotMemberError = () => {
 
 export const notAuthorizedError = () => {
 	throw {
-		httpStatus : 401,
-		code : "CHARACTER_IS_NOT_OWNER",
-		message : "El personaje no es el Guild Master"
-	}
-}
+		httpStatus: 401,
+		code: "CHARACTER_IS_NOT_OWNER",
+		message: "El personaje no es el Guild Master",
+	};
+};
