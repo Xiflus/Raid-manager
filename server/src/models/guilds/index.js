@@ -1,7 +1,6 @@
 import deleteFromGuildModel from "./deleteFromGuildModel.js";
 import insertFileModel from "./insertFileModel.js";
 import insertGuildModel from "./insertGuildModel.js";
-import insertJoinRequestModel from "./insertJoinRequestModel.js";
 import insertPostModel from "./insertPostModel.js";
 import joinRequestModel from "./joinRequestModel.js";
 import selectAllGuildsModel from "./selectAllGuildsModel.js";
@@ -14,7 +13,6 @@ import totalPostCountModel from "./totalPostCountModel.js";
 import selectJoinReqByIdModel from "./selectJoinReqByIdModel.js";
 import insertMemberModel from "./insertMemberModel.js";
 import editGuildModel from "./editGuildModel.js";
-
 
 export {
 	deleteFromGuildModel,
@@ -31,6 +29,6 @@ export {
 	totalPostCountModel,
 	selectJoinReqByIdModel,
 	insertMemberModel,
-   insertJoinRequestModel,
-   editGuildModel
+  editGuildModel
  };
+
