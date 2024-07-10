@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\" : \"Moochawa\",\r\n    \"password\" : \"_Montana13\"\r\n}",
+					"raw": "{\r\n    \"username\" : \"\",\r\n    \"password\" : \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -163,18 +163,29 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "<Insert token>",
+						"value": "Insert token",
 						"type": "text"
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"\",\r\n    \"avatar\" : \"\",\r\n    \"description\" : \"\"\r\n\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": ""
 						}
-					}
+					]
 				},
 				"url": {
 					"raw": "http://localhost:3001/api/guilds",
@@ -243,18 +254,18 @@
 					"formdata": [
 						{
 							"key": "title",
-							"value": "IC",
+							"value": "",
 							"type": "text"
 						},
 						{
 							"key": "content",
-							"value": "Nos adentramos en las profundidades",
+							"value": "",
 							"type": "text"
 						},
 						{
 							"key": "fileName",
 							"type": "file",
-							"src": "/C:/Users/X-tom/Downloads/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg"
+							"src": ""
 						},
 						{
 							"key": "characterId",
@@ -353,6 +364,243 @@
 					"path": [
 						"api",
 						"guilds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new post (Req Token)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Insert token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "photo1",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "characterId",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/guilds/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"guilds",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User password change (Req token)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Insert token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"currentPassword\" : \"\",\r\n    \"newPassword\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/users/password/change",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users",
+						"password",
+						"change"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guild update (Req token)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Insert Token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/guilds/:guildId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"guilds",
+						":guildId"
+					],
+					"variable": [
+						{
+							"key": "guildId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join guild (Req token & character)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Insert token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "characterName",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/guilds/:guildId/join",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"guilds",
+						":guildId",
+						"join"
+					],
+					"variable": [
+						{
+							"key": "guildId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guild accept or reject guild member (sin finalizar) (Req token & character)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Insert token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "status",
+							"value": "accepted",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/guilds/:guildId/:joinReqId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"guilds",
+						":guildId",
+						":joinReqId"
+					],
+					"variable": [
+						{
+							"key": "guildId",
+							"value": ""
+						},
+						{
+							"key": "joinReqId",
+							"value": ""
+						}
 					]
 				}
 			},
