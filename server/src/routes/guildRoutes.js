@@ -8,6 +8,7 @@ import {
 	getGuildController,
 	postsListController,
 	getPostController,
+	validateMembersController,
 } from "../controllers/guilds/index.js";
 import { authUserController } from "../middlewares/index.js";
 
@@ -29,6 +30,6 @@ router.get("/api/guilds/:guildId/posts", authUserController, postsListController
 
 router.get("/api/guilds/:guildId/posts/:postId", authUserController, getPostController);
 
-router.put("/api/guilds/:joinReqId", )
+router.put("/api/guilds/:joinReqId", authUserController, validateMembersController);
 
 export default router;

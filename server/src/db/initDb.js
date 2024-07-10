@@ -155,7 +155,7 @@ const createTables = async () => {
 		// Creamos la tabla de files
 		await pool.query(`
             CREATE TABLE IF NOT EXISTS postsFiles (
-                id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+                id CHAR(36) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                 fileName VARCHAR(100) NOT NULL,
                 postsId CHAR(36) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
