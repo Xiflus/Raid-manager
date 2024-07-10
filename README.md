@@ -23,7 +23,8 @@ Se trata de una aplicación externa para Wolrd of Warcraft, orientada en la gest
 - **POST** - `/users/password/recover` - Recuperación de contraseña
 
 - **PUT** - `/users/validate/:registrationCode` - Valida a un usuario recién registrado.
-- **PUT** - `/users/password/reset` - Permite actualizar la contraseña.
+- **PUT** - `/users/password/reset` - Permite actualizar la contraseña despues de recuperarla.
+- **PUT** - `/users/password/change` - Permite cambiar la contraseña.
 
 ## Endpoints Hermandad
 
@@ -32,6 +33,7 @@ Se trata de una aplicación externa para Wolrd of Warcraft, orientada en la gest
 - **GET** - `/guilds/:guildId/posts`- Retorna todos los posts de una hermandad
 - **GET** - `/guilds/:guildId/posts/:postId`-Retorna un post por Id
 - **POST** - `/guilds` - Crea una nueva hermandad✅
-- **POST** - `/guilds/join` - Manda solicitud de union a hermandad
+- **POST** - `/guilds/:guildId/join` - Manda solicitud de union a hermandad
 - **POST** - `/guilds/posts` - Crea nuevo post dentro de hermandad
-- **DELETE** - `/guilds/:guildId` - Editar información o detalles de la guild✅
+- **PUT** - `/guilds/:guildId` - Editar información o detalles de la guild✅
+- **PUT** - `/guilds/:guildId/:joinReqId` - Acepta o rechaza union a hermandad
