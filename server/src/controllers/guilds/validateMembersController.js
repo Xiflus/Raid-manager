@@ -3,24 +3,36 @@ import { selectJoinReqByIdModel, insertMemberModel } from "../../models/guilds/i
 
 const validateMembersController = async (req, res, next) => {
 	try {
+		const status = req.body.status;
 		const joinReqId = req.params.joinReqId;
 
-		const request = await selectJoinReqByIdModel(joinReqId);
+		const requestArray = await selectJoinReqByIdModel(joinReqId);
+		const request = requestArray[0];
 
 		const characterId = request.character_id;
-		const guildId = request.guild_id;
 
-		const { characterName, guildName, userMail, reqStatus } = await insertMemberModel(characterId, guildId);
+		const guildId = req.params.guildId;
 
+		const { characterName, guildName, userMail, reqStatus } = await insertMemberModel(characterId, guildId, status);
 		const emailSubject = "Solicitud de union a la hermandad";
-		const emailBody = `
+		let emailBody = "";
+		status === "accepted"
+			? (emailBody = `
     ¡Estimad@ ${characterName}!
 
-    Su solicitud de union para la hermandad ${guildName} ha sido ${reqStatus} 
+    Su solicitud de union para la hermandad ${guildName} ha sido aceptada. 
     
     Si necesitas mas informacion puedes contactar con el admistrador de la hermandad.
 
-   `;
+   `)
+			: (emailBody = `
+    ¡Estimad@ ${characterName}!
+
+    Su solicitud de union para la hermandad ${guildName} ha sido rechazada. 
+    
+    Si necesitas mas informacion puedes contactar con el admistrador de la hermandad.
+
+   `);
 
 		// ya guardado el user en base de datos, enviamos correo con el registtrationCode
 		await sendMailUtil(userMail, emailSubject, emailBody);

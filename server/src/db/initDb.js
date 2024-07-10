@@ -67,7 +67,7 @@ const createTables = async () => {
                 character_avatar VARCHAR(100),
                 character_class VARCHAR(100),
                 role ENUM('staff', 'raider', 'normal') DEFAULT 'normal',
-                guild_id CHAR(36) NOT NULL,
+                guild_id CHAR(36),
                 user_id CHAR(36) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,

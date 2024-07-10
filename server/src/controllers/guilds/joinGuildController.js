@@ -3,7 +3,8 @@ import { selectCharacterByIdModel, selectGuildByIdModel, joinRequestModel } from
 import { requiredFieldsError, characterNotFoundError, guildNotFoundError } from "../../services/errorService.js";
 
 const joinGuildController = async (req, res, next) => {
-	const { guildId, characterName } = req.body;
+	const { characterName } = req.body;
+	const guildId = req.params.guildId;
 	if (!characterName || !guildId) {
 		return requiredFieldsError();
 	}
