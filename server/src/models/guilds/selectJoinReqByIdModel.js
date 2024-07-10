@@ -14,7 +14,7 @@ const selectJoinReqByIdModel = async (joinReqId) => {
 		[joinReqId]
 	);
 
-	return request;
+	return request[0];
 };
 
 export default selectJoinReqByIdModel;
