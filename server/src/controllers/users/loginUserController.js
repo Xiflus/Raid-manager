@@ -1,20 +1,19 @@
 import bcrypt from "bcrypt";
-import {generateToken} from "../../utils/jwtHandler.js"
+import { generateToken } from "../../utils/jwtHandler.js";
 import { invalidCredentialsError, pendingActivationError } from "../../services/errorService.js";
 
 //Modelos
 import selectUserModel from "../../models/users/selectUserModel.js";
-import validateSchema from '../../schemas/utilities/validateSchema.js';
+import validateSchema from "../../schemas/utilities/validateSchema.js";
 import loginUserSchema from "../../schemas/users/loginUserSchema.js";
 
 //FALTA schema de validación
 //schema de joi
 
-
 const loginUserController = async (req, res, next) => {
 	try {
 		// Validamos los datos con Joi.
-        await validateSchema(loginUserSchema, req.body)
+		await validateSchema(loginUserSchema, req.body);
 
 		const { username, password } = req.body;
 
@@ -39,7 +38,7 @@ const loginUserController = async (req, res, next) => {
 			role: user.role,
 		};
 
-		const token = generateToken(user);
+		const token = generateToken(tokenInfo);
 
 		res.status(201).send({
 			status: "ok",
