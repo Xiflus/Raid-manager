@@ -12,6 +12,7 @@ import selectPostByIdModel from "./selectPostByIdModel.js";
 import totalPostCountModel from "./totalPostCountModel.js";
 import selectJoinReqByIdModel from "./selectJoinReqByIdModel.js";
 import insertMemberModel from "./insertMemberModel.js";
+import editGuildModel from "./editGuildModel.js";
 
 export {
 	deleteFromGuildModel,
@@ -28,4 +29,6 @@ export {
 	totalPostCountModel,
 	selectJoinReqByIdModel,
 	insertMemberModel,
-};
+  editGuildModel
+ };
+

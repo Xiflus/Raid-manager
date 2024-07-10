@@ -7,6 +7,8 @@ import getGuildController from "./getGuildController.js";
 import getPostController from "./getPostController.js";
 import postsListController from "./postsListController.js";
 import validateMembersController from "./validateMembersController.js";
+import editGuildController from "./editGuildController.js";
+
 export {
 	guildListController,
 	joinGuildController,
@@ -17,4 +19,5 @@ export {
 	getPostController,
 	postsListController,
 	validateMembersController,
+	editGuildController
 };
