@@ -23,7 +23,7 @@ const newPostController = async (req, res, next) => {
 			const filesArray = Object.values(req.files).slice(0, 3);
 
 			for (const file of filesArray) {
-				const fileName = await saveFile(file);
+				const fileName = await saveFile(file, 150);
 
 				const fileId = await insertFileModel(fileName, entryId);
 
