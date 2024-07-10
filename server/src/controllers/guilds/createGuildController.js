@@ -1,8 +1,11 @@
 import { insertGuildModel } from "../../models/guilds/index.js";
+import validateSchema from "../../schemas/utilities/validateSchema.js";
+import newGuildSchema from "../../schemas/guilds/newGuildsSchema.js"
+
 const createGuildController = async (req, res, next) => {
 	try {
 		//validamos los datos con joi
-		await validateSchema(newGuilSchema);
+		await validateSchema(newGuildSchema);
 		const { name, description } = req.body;
 		const avatar = req.files?.avatar;
 		const userId = req.user?.id;
