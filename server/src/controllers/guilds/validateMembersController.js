@@ -1,5 +1,5 @@
 import sendMailUtil from "../../utils/sendEmailUtil.js";
-import { selectJoinReqByIdModel, insertMemberModel } from "../../models/guilds/index.js";
+import { selectJoinReqByIdModel, manageGuildRequest, addMemberToGuildModel } from "../../models/guilds/index.js";
 
 const validateMembersController = async (req, res, next) => {
 	try {
@@ -13,10 +13,10 @@ const validateMembersController = async (req, res, next) => {
 
 		const guildId = req.params.guildId;
 
-		const { characterName, guildName, userMail, reqStatus } = await insertMemberModel(characterId, guildId, status);
+		const { characterName, guildName, userMail, reqStatus } = await manageGuildRequest(characterId, guildId, status, joinReqId);
 		const emailSubject = "Solicitud de union a la hermandad";
 		let emailBody = "";
-		status === "accepted"
+		status === "approved"
 			? (emailBody = `
     ¡Estimad@ ${characterName}!
 
@@ -34,14 +34,13 @@ const validateMembersController = async (req, res, next) => {
 
    `);
 
-		// ya guardado el user en base de datos, enviamos correo con el registtrationCode
+		await addMemberToGuildModel(characterId, guildId);
 		await sendMailUtil(userMail, emailSubject, emailBody);
 
-		// una vez enviado el correo con el codigo de registro mandamos respuesta al cliente
 		res.send({
 			status: "ok",
 			message: "Usuario creado correctamente, por favor revisa tu correo ...",
-			data: { characterName, guildName, user, reqStatus },
+			data: { characterName, guildName, userMail, reqStatus },
 		});
 	} catch (err) {
 		console.log(err);

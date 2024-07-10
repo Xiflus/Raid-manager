@@ -11,8 +11,9 @@ import selectAllPostsModel from "./selectAllPostsModel.js";
 import selectPostByIdModel from "./selectPostByIdModel.js";
 import totalPostCountModel from "./totalPostCountModel.js";
 import selectJoinReqByIdModel from "./selectJoinReqByIdModel.js";
-import insertMemberModel from "./insertMemberModel.js";
+import manageGuildRequest from "./manageGuildRequest.js";
 import editGuildModel from "./editGuildModel.js";
+import addMemberToGuildModel from "./addMemberToGuildModel.js";
 
 export {
 	deleteFromGuildModel,
@@ -28,7 +29,7 @@ export {
 	selectPostByIdModel,
 	totalPostCountModel,
 	selectJoinReqByIdModel,
-	insertMemberModel,
-  editGuildModel
- };
-
+	manageGuildRequest,
+	editGuildModel,
+	addMemberToGuildModel,
+};
