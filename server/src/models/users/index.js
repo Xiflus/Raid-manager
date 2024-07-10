@@ -4,5 +4,16 @@ import updateActiveUserModel from "./updateActiveUserModel.js";
 import recoverPasswordModel from "./recoverPasswordModel.js";
 import resetPasswordModel from "./resetPasswordModel.js";
 import selectUserByEmailModel from "./selectUserByEmailModel.js";
+import updatePasswordModel from "./updatePasswordModel.js";
+import selectUserbyIdModel from "./selectUserbyIdModel.js";
 
-export { selectUserModel, insertUserModel, updateActiveUserModel, recoverPasswordModel, resetPasswordModel, selectUserByEmailModel };
+export {
+	selectUserModel,
+	insertUserModel,
+	updateActiveUserModel,
+	recoverPasswordModel,
+	resetPasswordModel,
+	selectUserByEmailModel,
+	updatePasswordModel,
+	selectUserbyIdModel,
+};

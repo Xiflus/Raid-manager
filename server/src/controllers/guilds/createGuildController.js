@@ -1,4 +1,9 @@
 import { insertGuildModel } from "../../models/guilds/index.js";
+import validateSchema from "../../utils/validateSchema.js";
+import { newGuildSchema } from "../../schemas/guilds/index.js";
+const createGuildController = async (req, res, next) => {
+	try {
+		await validateSchema(newGuildSchema, req.body);
 import validateSchema from "../../schemas/utilities/validateSchema.js";
 import newGuildSchema from "../../schemas/guilds/newGuildsSchema.js"
 
