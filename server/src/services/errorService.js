@@ -131,3 +131,11 @@ export const notAuthorizedError = () => {
 		message: "El personaje no es el Guild Master",
 	};
 };
+
+export const characterlAlreadyRegisterError = (resource) => {
+	throw {
+		httpStatus: 409, // Not Created
+		code: "CHARACTER_ALREADY_CREATED",
+		message: `El nombre '${resource}' ya está existe.`,
+	};
+};
