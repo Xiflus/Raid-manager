@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import ValidateUserPage from "./pages/ValidteUserPage";
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 				<Route path="*" element={<NotFoundPage />} />
 				<Route path="/" element={<HomePage />} />
 				<Route path="/login" element={<LoginPage />} />
+				<Route path="/auth/activate/:registrationCode" element={<ValidateUserPage />} />
 			</Routes>
 		</>
 	);
