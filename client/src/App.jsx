@@ -3,7 +3,7 @@ import { Toaster } from "react-hot-toast";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import ValidateUserPage from "./pages/ValidteUserPage";
+import ValidateUserPage from "./pages/ValidateUserPage";
 
 function App() {
 	return (

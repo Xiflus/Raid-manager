@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 //context
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "../context/AuthContext";
 
 //toast
 import { toast } from "react-hot-toast";
