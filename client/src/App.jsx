@@ -1,13 +1,20 @@
-/* import { useState } from 'react' */
 import { Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-    </Routes>
-  );
+	return (
+		<>
+			<Toaster position="top-center" toastOption={{ duration: 6000 }} />
+			<Routes>
+				<Route path="*" element={<NotFoundPage />} />
+				<Route path="/" element={<HomePage />} />
+				<Route path="/login" element={<LoginPage />} />
+			</Routes>
+		</>
+	);
 }
 
 export default App;
