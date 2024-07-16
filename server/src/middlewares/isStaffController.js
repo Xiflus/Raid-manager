@@ -1,17 +1,19 @@
 import getUserCharacterListModel from "../models/characters/getUserCharacterListModel.js";
 import { notStaffError } from "../services/errorService.js";
 
-const isStaff = async (req, res, next) => {
+const isStaffController = async (req, res, next) => {
 	const userId = req.user.id;
 	const guildId = req.params.guildId;
 	try {
 		const characters = await getUserCharacterListModel(userId);
-		console.log(characters);
+		const character = characters.find((char) => char.guild_id === guildId);
+		if (!character || character.role !== "staff") {
+			return notStaffError();
+		}
+		next();
 	} catch (err) {
 		next(err);
 	}
-
-	notStaffError();
 };
 
-export default isStaff;
+export default isStaffController;

@@ -1,4 +1,4 @@
 import authUserController from "./authUserController.js";
-import isStaff from "./isStaff.js";
+import isStaffController from "./isStaffController.js";
 
-export { authUserController, isStaff };
+export { authUserController, isStaffController };

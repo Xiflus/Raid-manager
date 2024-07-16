@@ -3,11 +3,11 @@ import { notAuthorizedError } from "../../services/errorService.js";
 import { editGuildModel } from "../../models/guilds/index.js";
 import { deleteFile, saveFile } from "../../services/fileServices.js";
 import validateSchema from "../../schemas/utilities/validateSchema.js";
-import { guildSchema } from "../../schemas/guilds/index.js";
+import { editGuildSchema } from "../../schemas/guilds/index.js";
 
 const editGuildController = async (req, res, next) => {
 	try {
-		await validateSchema(guildSchema, req.body, req.files);
+		await validateSchema(editGuildSchema, req.body, req.files);
 		let { name, description } = req.body;
 		const userId = req.user.id;
 		const guildId = req.params.guildId;
