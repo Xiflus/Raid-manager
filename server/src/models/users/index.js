@@ -6,14 +6,16 @@ import resetPasswordModel from "./resetPasswordModel.js";
 import selectUserByEmailModel from "./selectUserByEmailModel.js";
 import updatePasswordModel from "./updatePasswordModel.js";
 import selectUserbyIdModel from "./selectUserbyIdModel.js";
+import updateUserModel from "./updateUserModel.js";
 
 export {
-	selectUserModel,
-	insertUserModel,
-	updateActiveUserModel,
-	recoverPasswordModel,
-	resetPasswordModel,
-	selectUserByEmailModel,
-	updatePasswordModel,
-	selectUserbyIdModel,
+  selectUserModel,
+  insertUserModel,
+  updateActiveUserModel,
+  recoverPasswordModel,
+  resetPasswordModel,
+  selectUserByEmailModel,
+  updatePasswordModel,
+  selectUserbyIdModel,
+  updateUserModel,
 };
