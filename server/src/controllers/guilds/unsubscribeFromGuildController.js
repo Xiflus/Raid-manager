@@ -2,6 +2,7 @@ import { selectCharacterByIdModel, selectGuildByIdModel, deleteFromGuildModel } 
 import { requiredFieldsError, characterNotFoundError, guildNotFoundError } from "../../services/errorService.js";
 
 const unsubscribeFromGuildController = async (req, res, next) => {
+	// falta validar con joi
 	const { guildName, characterName } = req.body;
 	if (!guildName || !characterName) {
 		return requiredFieldsError();

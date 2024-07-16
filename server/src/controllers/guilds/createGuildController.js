@@ -6,7 +6,6 @@ import { getUserCharacterListModel } from "../../models/characters/index.js";
 
 const createGuildController = async (req, res, next) => {
 	try {
-		//validamos los datos con joi
 		await validateSchema(guildSchema, req.body, req.files);
 		let { name, description, characterName } = req.body;
 		const userId = req.user.id;

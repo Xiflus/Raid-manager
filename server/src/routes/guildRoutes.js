@@ -24,7 +24,7 @@ router.put("/api/guilds/:guildId", authUserController, isStaffController, editGu
 
 router.get("/api/guilds/:guildId", authUserController, getGuildController);
 
-router.delete("/api/guilds/:guildId", authUserController, unsubscribeFromGuildController);
+router.delete("/api/guilds/:guildId", authUserController, isStaffController, unsubscribeFromGuildController);
 
 router.post("/api/guilds/:guildId/join", authUserController, joinGuildController);
 
@@ -34,7 +34,7 @@ router.get("/api/guilds/:guildId/posts", authUserController, postsListController
 
 router.get("/api/guilds/:guildId/posts/:postId", authUserController, getPostController);
 
-router.put("/api/guilds/:guildId/:joinReqId", authUserController, validateMembersController);
+router.put("/api/guilds/:guildId/:joinReqId", authUserController, isStaffController, validateMembersController);
 
 router.get("/api/guilds/:guildId/join-req", authUserController, isStaffController, listGuildJoinReqController);
 
