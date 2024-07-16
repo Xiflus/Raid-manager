@@ -39,7 +39,6 @@ const newUserController = async (req, res, next) => {
 			data: {
 				username,
 				email,
-				registrationCode,
 			},
 		});
 	} catch (err) {

@@ -10,8 +10,9 @@ import {
 	getPostController,
 	validateMembersController,
 	editGuildController,
+	listGuildJoinReqController,
 } from "../controllers/guilds/index.js";
-import { authUserController } from "../middlewares/index.js";
+import { authUserController, isStaff } from "../middlewares/index.js";
 
 const router = express.Router();
 
@@ -34,5 +35,7 @@ router.get("/api/guilds/:guildId/posts", authUserController, postsListController
 router.get("/api/guilds/:guildId/posts/:postId", authUserController, getPostController);
 
 router.put("/api/guilds/:guildId/:joinReqId", authUserController, validateMembersController);
+
+router.get("/api/guilds/:guildId/join-req", authUserController, isStaff, listGuildJoinReqController);
 
 export default router;
