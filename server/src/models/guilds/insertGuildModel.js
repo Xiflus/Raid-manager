@@ -8,15 +8,17 @@ const insertGuildModel = async (name, avatar, description, userId) => {
 
 	if (guilds.length > 0) guildlALreadyRegisterError(name);
 
+	const guildId = uuid4();
+
 	// insertar el usario
 	const newGuild = await pool.query(`INSERT INTO guilds(id, name, avatar, description, userId) VALUES(?, ?, ?, ?, ?)`, [
-		uuid4(),
+		guildId,
 		name,
 		avatar,
 		description,
 		userId,
 	]);
-	return [newGuild];
+	return guildId;
 };
 
 export default insertGuildModel;

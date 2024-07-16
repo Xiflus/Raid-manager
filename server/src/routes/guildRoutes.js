@@ -12,7 +12,7 @@ import {
 	editGuildController,
 	listGuildJoinReqController,
 } from "../controllers/guilds/index.js";
-import { authUserController, isStaff } from "../middlewares/index.js";
+import { authUserController, isStaffController } from "../middlewares/index.js";
 
 const router = express.Router();
 
@@ -20,7 +20,7 @@ router.post("/api/guilds", authUserController, createGuildController);
 
 router.get("/api/guilds", authUserController, guildListController);
 
-router.put("/api/guilds/:guildId", authUserController, isStaff, editGuildController);
+router.put("/api/guilds/:guildId", authUserController, isStaffController, editGuildController);
 
 router.get("/api/guilds/:guildId", authUserController, getGuildController);
 
@@ -36,6 +36,6 @@ router.get("/api/guilds/:guildId/posts/:postId", authUserController, getPostCont
 
 router.put("/api/guilds/:guildId/:joinReqId", authUserController, validateMembersController);
 
-router.get("/api/guilds/:guildId/join-req", authUserController, isStaff, listGuildJoinReqController);
+router.get("/api/guilds/:guildId/join-req", authUserController, isStaffController, listGuildJoinReqController);
 
 export default router;

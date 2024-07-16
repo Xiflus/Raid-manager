@@ -1,4 +1,4 @@
-import { insertGuildModel } from "../../models/guilds/index.js";
+import { insertGuildModel, insertGuildMasterModel } from "../../models/guilds/index.js";
 import validateSchema from "../../schemas/utilities/validateSchema.js";
 import { guildSchema } from "../../schemas/guilds/index.js";
 import { saveFile } from "../../services/fileServices.js";
@@ -8,11 +8,19 @@ const createGuildController = async (req, res, next) => {
 	try {
 		//validamos los datos con joi
 		await validateSchema(guildSchema, req.body, req.files);
-		let { name, description } = req.body;
-		const userId = req.user?.id;
+		let { name, description, characterName } = req.body;
+		const userId = req.user.id;
 
 		const characters = await getUserCharacterListModel(userId);
-		console.log(characters);
+
+		const character = characters.find((char) => char.character_name === characterName);
+
+		if (!character) {
+			return res.status(404).send({
+				status: "error",
+				message: "El personaje proporcionado no existe",
+			});
+		}
 
 		let avatar;
 		if (req.files) {
@@ -20,13 +28,14 @@ const createGuildController = async (req, res, next) => {
 			avatar = await saveFile(file, 150);
 		}
 
-		await insertGuildModel(name, avatar, description, userId);
+		const guildId = await insertGuildModel(name, avatar, description, userId);
+
+		await insertGuildMasterModel(guildId, characterName, userId);
 		res.status(201).send({
 			status: "ok",
 			data: { message: "Hermandad creada correctamente" },
 		});
 	} catch (err) {
-		console.log(err);
 		next(err);
 	}
 };

@@ -15,6 +15,7 @@ import manageGuildRequest from "./manageGuildRequest.js";
 import editGuildModel from "./editGuildModel.js";
 import addMemberToGuildModel from "./addMemberToGuildModel.js";
 import selectAllJoinRequestsModel from "./selectAllJoinRequestsModel.js";
+import insertGuildMasterModel from "./insertGuildMasterModel.js";
 
 export {
 	deleteFromGuildModel,
@@ -34,4 +35,5 @@ export {
 	editGuildModel,
 	addMemberToGuildModel,
 	selectAllJoinRequestsModel,
+	insertGuildMasterModel,
 };

@@ -18,7 +18,7 @@ const getPool = async () => {
 		return pool;
 	} catch (err) {
 		console.error(err);
-		next(err);
+		throw new Error("Error al obtener el pool de conexiones");
 	}
 };
 
