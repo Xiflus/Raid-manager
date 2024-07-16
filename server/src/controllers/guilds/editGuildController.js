@@ -9,10 +9,7 @@ const editGuildController = async (req, res, next) => {
 	try {
 		await validateSchema(guildSchema, req.body, req.files);
 		let { name, description } = req.body;
-
-		console.log("Guild Name", name);
-		const userId = String(req.user?.id);
-		console.log("User ID:", userId);
+		const userId = req.user.id;
 		const guildId = req.params.guildId;
 		const guildArray = await selectGuildByIdModel(guildId);
 

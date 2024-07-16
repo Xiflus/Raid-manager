@@ -16,7 +16,7 @@ const newUserController = async (req, res, next) => {
 
     // generamos el correo y el cuerpo del correo
     const emailSubject = "Activa tu cuenta de Raid Manager 📝";
-    const emailBody = `
+    const emailBody = 
     ¡Bienvenid@ ${username}!
 
     Gracias por registrarte en Raid Manager!
@@ -24,7 +24,7 @@ const newUserController = async (req, res, next) => {
     Para activar tu cuenta, haz clic en el siguiente enlace:
 
     <a href="http://localhost:3000/auth/activate/${registrationCode}">Activar mi cuenta</a>
-   `;
+   ;
     await sendMailUtil(email, emailSubject, emailBody);
     // ya validada, llamamos al modelo para que realice la consulta a la base de datos
     await insertUserModel(username, email, password, registrationCode);

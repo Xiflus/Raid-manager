@@ -140,3 +140,21 @@ export const characterlAlreadyRegisterError = (resource) => {
     message: `El nombre '${resource}' ya está existe.`,
   };
 };
+
+export const userCharactersNotFoundError = () => {
+	throw {
+		httpStatus: 404, // Not Found
+		code: "USER_CHARACTERS_NOT_FOUND",
+		message: "No tienes ningún personaje creado, crea uno para continuar",
+	};
+};
+
+export const notStaffError = () => {
+	throw {
+		httpStatus: 403, // Forbidden
+		code: "NOT_STAFF",
+		message: "No eres oficial de la hermandad",
+	};
+};
+
+// Añadir error personalizado para recoverypassCode erroneo.
