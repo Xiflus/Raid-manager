@@ -20,7 +20,7 @@ router.post("/api/guilds", authUserController, createGuildController);
 
 router.get("/api/guilds", authUserController, guildListController);
 
-router.put("/api/guilds/:guildId", authUserController, editGuildController);
+router.put("/api/guilds/:guildId", authUserController, isStaff, editGuildController);
 
 router.get("/api/guilds/:guildId", authUserController, getGuildController);
 
