@@ -1,12 +1,10 @@
-import joi from 'joi';
+import joi from "joi";
+import imgSchema from "../imgSchema.js";
+import joiErrorMessages from "../joiErrorMessages.js";
 
-// Importamos los mensajes de error personalizados.
-import joiErrorMessages from '../joiErrorMessages.js';
-
-// Creamos el esquema de Joi.
 const editUserSchema = joi.object({
-    username: joi.string().min(5).max(30).optional().messages(joiErrorMessages),
-    email: joi.string().email().optional().messages(joiErrorMessages),
+  username: joi.string().min(5).max(30).optional().messages(joiErrorMessages),
+  photo1: imgSchema.optional(),
 });
 
 export default editUserSchema;
