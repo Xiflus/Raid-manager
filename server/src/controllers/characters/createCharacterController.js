@@ -5,7 +5,6 @@ import { saveFile } from "../../services/fileServices.js";
 
 const createCharacterController = async (req, res, next) => {
 	try {
-		//validamos los datos con joi
 		await validateSchema(characterSchema, req.body, req.files);
 		let { characterName, characterClass } = req.body;
 		const userId = req.user?.id;

@@ -5,14 +5,11 @@ import { invalidCredentialsError, pendingActivationError } from "../../services/
 //Modelos
 import selectUserModel from "../../models/users/selectUserModel.js";
 import validateSchema from "../../schemas/utilities/validateSchema.js";
-import loginUserSchema from "../../schemas/users/loginUserSchema.js";
+import {loginUserSchema} from "../../schemas/users/index.js";
 
-//FALTA schema de validación
-//schema de joi
 
 const loginUserController = async (req, res, next) => {
 	try {
-		// Validamos los datos con Joi.
 		await validateSchema(loginUserSchema, req.body);
 
 		const { username, password } = req.body;

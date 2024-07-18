@@ -1,8 +1,10 @@
 import { selectCharacterByIdModel, selectGuildByIdModel, deleteFromGuildModel } from "../../models/guilds/index.js";
 import { requiredFieldsError, characterNotFoundError, guildNotFoundError } from "../../services/errorService.js";
+import {unsubscribeFromGuildSchema} from "../../schemas/guilds/index.js"
+import validateSchema from "../../utils/validateSchema.js";
 
 const unsubscribeFromGuildController = async (req, res, next) => {
-	// falta validar con joi
+	await validateSchema(unsubscribeFromGuildSchema, req.body);
 	const { guildName, characterName } = req.body;
 	if (!guildName || !characterName) {
 		return requiredFieldsError();
