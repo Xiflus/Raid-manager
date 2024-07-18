@@ -7,6 +7,7 @@ import ValidateUserPage from "./pages/ValidateUserPage";
 import RegisterPage from "./pages/RegisterPage";
 import Header from "./components/Header";
 import CreateGuildPage from "./pages/CreateGuildPage";
+import EditGuildPage from "./pages/EditGuildPage";
 
 function App() {
     return (
@@ -23,6 +24,10 @@ function App() {
                     element={<ValidateUserPage />}
                 />
                 <Route path="/guild/create" element={<CreateGuildPage />} />
+                <Route
+                    path="/guild/:guildId/edit"
+                    element={<EditGuildPage />}
+                />
             </Routes>
         </>
     );
