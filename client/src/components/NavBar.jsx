@@ -48,6 +48,14 @@ const NavBar = () => {
                                         </Link>
                                     </li>
                                     <li>
+                                        <Link
+                                            className=""
+                                            to="/guild/:guildId/edit"
+                                        >
+                                            Editar hermandad
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <button
                                             className=""
                                             onClick={authLogout}

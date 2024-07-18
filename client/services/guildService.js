@@ -25,3 +25,18 @@ export const createGuildService = async (formData) => {
     }
     return body.data;
 };
+export const editGuildService = async ({ guildId, formData }) => {
+    console.log(formData);
+    const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId}`, {
+        method: "PUT",
+        headers: {
+            authorization: localStorage.getItem("authToken"),
+        },
+        body: formData,
+    });
+    const body = await res.json();
+    if (body.status === "error") {
+        throw new Error(body.message);
+    }
+    return body.data;
+};
