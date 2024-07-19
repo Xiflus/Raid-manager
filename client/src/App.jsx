@@ -8,7 +8,9 @@ import RegisterPage from "./pages/RegisterPage";
 import Header from "./components/Header";
 import CreateGuildPage from "./pages/CreateGuildPage";
 import EditGuildPage from "./pages/EditGuildPage";
+import RecoverPasswordPage from "./pages/RecoverPasswordPage";
 import CreateCharacterPage from "./pages/CreateCharacterPage";
+
 
 function App() {
     return (
@@ -20,6 +22,10 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route
+                    path="/recover-password"
+                    element={<RecoverPasswordPage />}
+                />
                 <Route
                     path="/auth/activate/:registrationCode"
                     element={<ValidateUserPage />}
