@@ -21,6 +21,11 @@ const NavBar = () => {
                                     Iniciar sesión
                                 </Link>
                             </li>
+                            <li>
+                                <Link className="" to="/recover-password">
+                                    Recuperar Contraseña
+                                </Link>
+                            </li>
                         </>
                     ) : (
                         <>
