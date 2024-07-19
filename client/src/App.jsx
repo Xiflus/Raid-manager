@@ -9,6 +9,8 @@ import Header from "./components/Header";
 import CreateGuildPage from "./pages/CreateGuildPage";
 import EditGuildPage from "./pages/EditGuildPage";
 import RecoverPasswordPage from "./pages/RecoverPasswordPage";
+import CreateCharacterPage from "./pages/CreateCharacterPage";
+
 
 function App() {
     return (
@@ -33,6 +35,7 @@ function App() {
                     path="/guild/:guildId/edit"
                     element={<EditGuildPage />}
                 />
+                <Route path="/api/characters" element={<CreateCharacterPage/>}/>
             </Routes>
         </>
     );
