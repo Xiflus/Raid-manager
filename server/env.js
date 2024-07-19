@@ -15,6 +15,7 @@ const {
 	SMTP_USER,
 	SMTP_APIKEY,
 	SECRET,
+	FRONTEND_URL,
 } = process.env;
 
 export {
@@ -32,4 +33,5 @@ export {
 	SMTP_USER,
 	SMTP_APIKEY,
 	SECRET,
+	FRONTEND_URL,
 };
