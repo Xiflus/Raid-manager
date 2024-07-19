@@ -4,7 +4,7 @@ import morgan from "morgan";
 import fileUpload from "express-fileupload";
 import session from "express-session";
 import routes from "./src/routes/index.js";
-import { PORT, UPLOADS_DIR, SECRET } from "./env.js";
+import { PORT, UPLOADS_DIR, SECRET, FRONTEND_URL } from "./env.js";
 import { errorController, notFoundController } from "./src/controllers/errors/index.js";
 
 const app = express();
@@ -16,7 +16,12 @@ app.use(
 		saveUninitialized: true,
 	})
 );
-
+app.use(
+	cors({
+		origin: FRONTEND_URL,
+		credentials: true,
+	})
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -31,8 +36,6 @@ app.use(
 );
 
 app.use(express.static(UPLOADS_DIR));
-
-app.use(cors());
 
 app.use(morgan("dev"));
 

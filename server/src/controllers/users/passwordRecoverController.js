@@ -1,7 +1,7 @@
 import randomstring from "randomstring";
 import { recoverPasswordModel } from "../../models/users/index.js";
 import sendEmailUtil from "../../utils/sendEmailUtil.js";
-import {recoverPasswordSchema} from "../../schemas/users/index.js";
+import { recoverPasswordSchema } from "../../schemas/users/index.js";
 import validateSchema from "../../utils/validateSchema.js";
 
 const passwordRecoverController = async (req, res, next) => {
