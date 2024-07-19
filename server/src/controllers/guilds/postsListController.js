@@ -2,15 +2,17 @@ import { totalPostCountModel, selectAllPostsModel } from "../../models/guilds/in
 
 const postsListController = async (req, res, next) => {
 	try {
-		let { title, content, file, page = 1 } = req.query;
+		let { title, content, page = 1 } = req.query;
 
 		page = Number(page);
-		const limit = 3;
+		const limit = 4;
 		const offset = (page - 1) * limit;
 		const totalPosts = await totalPostCountModel();
 		const totalPages = Math.ceil(totalPosts / limit);
+		const userId = req.user.id;
+		const characters = await getUserCharacterListModel(userId);
 
-		const posts = await selectAllPostsModel(title, content, author, req.character?.Id, limit, offset);
+		const posts = await selectAllPostsModel(title, content, req.character?.id, limit, offset);
 		res.send({
 			status: "ok",
 			data: {

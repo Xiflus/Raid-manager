@@ -11,9 +11,7 @@ const editPasswordController = async (req, res, next) => {
 		await validateSchema(updatePasswordSchema, req.body);
 
 		let { currentPassword, newPassword } = req.body;
-		const token = req.headers.authorization;
-		const decodedToken = verifyToken(token);
-		const userId = decodedToken.id;
+		const userId = req.user.id;
 		const user = await selectUserbyIdModel(userId);
 		let validPass;
 		if (user) {

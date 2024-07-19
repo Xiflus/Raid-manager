@@ -2,13 +2,23 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import fileUpload from "express-fileupload";
+import session from "express-session";
 import routes from "./src/routes/index.js";
-import { PORT, UPLOADS_DIR } from "./env.js";
+import { PORT, UPLOADS_DIR, SECRET } from "./env.js";
 import { errorController, notFoundController } from "./src/controllers/errors/index.js";
 
 const app = express();
 
+app.use(
+	session({
+		secret: SECRET,
+		resave: false,
+		saveUninitialized: true,
+	})
+);
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
 	fileUpload({

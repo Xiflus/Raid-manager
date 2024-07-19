@@ -1,6 +1,6 @@
 import getPool from "../../db/getPool.js";
 
-const selectAllPostsModel = async (title = "", content = "", author = "", characterId = "", limit, offset) => {
+const selectAllPostsModel = async (title = "", content = "", characterId = "", limit, offset) => {
 	const pool = await getPool();
 
 	const [posts] = await pool.query(
@@ -24,7 +24,7 @@ const selectAllPostsModel = async (title = "", content = "", author = "", charac
 		GROUP BY g.id
 		ORDER BY g.createdAt DESC
 		LIMIT ? OFFSET ?`,
-		[characterId, characterId, `%${title}%`, `%${content}%`, `%${author}%`, limit, offset]
+		[characterId, characterId, `%${title}%`, `%${content}%`, limit, offset]
 	);
 	for (const post of posts) {
 		// Obtenemos un array con todas las fotos de la entrada.

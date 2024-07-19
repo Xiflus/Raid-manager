@@ -1,6 +1,6 @@
 import { getUserCharacterListModel } from "../../models/characters/index.js";
 
-const getUserCharacterController = async (req, res, next) => {
+const getUserCharacterListController = async (req, res, next) => {
 	try {
 		const userId = req.user.id;
 		const characters = await getUserCharacterListModel(userId);
@@ -15,4 +15,4 @@ const getUserCharacterController = async (req, res, next) => {
 	}
 };
 
-export default getUserCharacterController;
+export default getUserCharacterListController;
