@@ -10,35 +10,27 @@ import CreateGuildPage from "./pages/CreateGuildPage";
 import EditGuildPage from "./pages/EditGuildPage";
 import RecoverPasswordPage from "./pages/RecoverPasswordPage";
 import CreateCharacterPage from "./pages/CreateCharacterPage";
-
+import NewPostPage from "./pages/NewPostPage";
 
 function App() {
-    return (
-        <>
-            <Header />
-            <Toaster position="top-center" toastOption={{ duration: 6000 }} />
-            <Routes>
-                <Route path="*" element={<NotFoundPage />} />
-                <Route path="/" element={<HomePage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route
-                    path="/recover-password"
-                    element={<RecoverPasswordPage />}
-                />
-                <Route
-                    path="/auth/activate/:registrationCode"
-                    element={<ValidateUserPage />}
-                />
-                <Route path="/guild/create" element={<CreateGuildPage />} />
-                <Route
-                    path="/guild/:guildId/edit"
-                    element={<EditGuildPage />}
-                />
-                <Route path="/api/characters" element={<CreateCharacterPage/>}/>
-            </Routes>
-        </>
-    );
+	return (
+		<>
+			<Header />
+			<Toaster position="top-center" toastOption={{ duration: 6000 }} />
+			<Routes>
+				<Route path="*" element={<NotFoundPage />} />
+				<Route path="/" element={<HomePage />} />
+				<Route path="/register" element={<RegisterPage />} />
+				<Route path="/login" element={<LoginPage />} />
+				<Route path="/recover-password" element={<RecoverPasswordPage />} />
+				<Route path="/auth/activate/:registrationCode" element={<ValidateUserPage />} />
+				<Route path="/guild/create" element={<CreateGuildPage />} />
+				<Route path="/guild/:guildId/edit" element={<EditGuildPage />} />
+				<Route path="/characters/create" element={<CreateCharacterPage />} />
+				<Route path="/posts/create" element={<NewPostPage />} />
+			</Routes>
+		</>
+	);
 }
 
 export default App;
