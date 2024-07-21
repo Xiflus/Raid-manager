@@ -41,7 +41,7 @@ export const editGuildService = async ({ guildId, formData }) => {
 	return body.data;
 };
 
-export const selectAllGuildsService = async (searchTerm = "") => {
+export const selectAllGuildsService = async () => {
 	const res = await fetch(`${VITE_API_URL}/api/guilds`, setHeaders());
 
 	const body = await res.json();
@@ -54,7 +54,7 @@ export const selectAllGuildsService = async (searchTerm = "") => {
 	return body.data;
 };
 
-export const selectGuildsPageService = async (page = 1, searchTerm = "") => {
+export const selectGuildsPageService = async (page = 1) => {
 	const res = await fetch(`${VITE_API_URL}/api/guilds?page=${page}`, setHeaders());
 
 	const body = await res.json();
