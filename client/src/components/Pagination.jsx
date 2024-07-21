@@ -1,8 +1,7 @@
-/* eslint-disable no-unused-vars */
-import React from "react";
 import PropTypes from "prop-types";
 
 const Pagination = ({ prevPage, nextPage, currentPage, totalGuilds, goToPage }) => {
+	console.log(prevPage, nextPage, currentPage, totalGuilds, goToPage);
 	const pageNumbers = [];
 	for (let i = 1; i <= totalGuilds; i++) {
 		pageNumbers.push(i);
@@ -30,9 +29,9 @@ const Pagination = ({ prevPage, nextPage, currentPage, totalGuilds, goToPage }) 
 Pagination.propTypes = {
 	prevPage: PropTypes.number,
 	nextPage: PropTypes.number,
-	currentPage: PropTypes.number.isRequired,
-	totalGuilds: PropTypes.number.isRequired,
-	goToPage: PropTypes.func.isRequired,
+	currentPage: PropTypes.number,
+	totalGuilds: PropTypes.number,
+	goToPage: PropTypes.func,
 };
 
 export default Pagination;
