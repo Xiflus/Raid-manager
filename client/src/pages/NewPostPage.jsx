@@ -1,0 +1,52 @@
+import { useRef } from "react";
+import toast from "react-hot-toast";
+import { createPostServices } from "../../services/postServices";
+
+const NewPostPage = () => {
+	const titleRef = useRef();
+	const contentRef = useRef();
+	const photoRef = useRef();
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const title = titleRef.current.value;
+		const content = contentRef.current.value;
+		const photo = photoRef.current.files[0];
+		//
+		const guildId = "2c1d4e19-9c4d-4918-ab1b-2dfaadf63a87";
+		const formData = new FormData();
+		formData.append("title", title);
+		formData.append("content", content);
+		formData.append("photo", photo);
+		try {
+			await createPostServices({ guildId, formData });
+			titleRef.current.value = "";
+			contentRef.current.value = "";
+			photoRef.current.value = "";
+			toast.success("Post created successfully");
+		} catch (error) {
+			toast.error(error.message);
+		}
+	};
+	return (
+		<main>
+			<form onSubmit={handleSubmit}>
+				<h2>Crear nuevo Post</h2>
+				<div>
+					<label htmlFor="title">Title</label>
+					<input type="text" id="title" ref={titleRef} />
+				</div>
+				<div>
+					<label htmlFor="content">Content</label>
+					<textarea id="content" ref={contentRef}></textarea>
+				</div>
+				<div>
+					<label htmlFor="photo">Photo</label>
+					<input type="file" id="photo" ref={photoRef} />
+				</div>
+				<button type="submit">Create Post</button>
+			</form>
+		</main>
+	);
+};
+
+export default NewPostPage;

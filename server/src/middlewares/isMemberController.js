@@ -1,4 +1,5 @@
 import { characterIsNotMemberError } from "../services/errorService.js";
+import { getUserCharacterListModel } from "../models/characters/index.js";
 
 const isMemberController = async (req, res, next) => {
 	const userId = req.user.id;
