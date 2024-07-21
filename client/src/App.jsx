@@ -10,6 +10,7 @@ import CreateGuildPage from "./pages/CreateGuildPage";
 import EditGuildPage from "./pages/EditGuildPage";
 import RecoverPasswordPage from "./pages/RecoverPasswordPage";
 import CreateCharacterPage from "./pages/CreateCharacterPage";
+import NewPostPage from "./pages/NewPostPage";
 import Footer from "./components/Footer";
 
 function App() {
@@ -26,9 +27,11 @@ function App() {
 				<Route path="/auth/activate/:registrationCode" element={<ValidateUserPage />} />
 				<Route path="/guild/create" element={<CreateGuildPage />} />
 				<Route path="/guild/:guildId/edit" element={<EditGuildPage />} />
-				<Route path="/api/characters" element={<CreateCharacterPage />} />
+				<Route path="/characters/create" element={<CreateCharacterPage />} />
+				<Route path="/posts/create" element={<NewPostPage />} />
 			</Routes>
 			<Footer />
+
 		</>
 	);
 }

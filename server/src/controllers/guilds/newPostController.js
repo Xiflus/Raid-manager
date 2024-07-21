@@ -3,22 +3,28 @@ import { insertFileModel, insertPostModel } from "../../models/guilds/index.js";
 import { saveFile } from "../../services/fileServices.js";
 import validateSchema from "../../schemas/utilities/validateSchema.js";
 import newPostSchema from "../../schemas/posts/newPostSchema.js";
+import { selectUserCharacterModel } from "../../models/characters/index.js";
 
 //funcion controladora que añade entrada
 const newPostController = async (req, res, next) => {
 	try {
 		await validateSchema(newPostSchema, Object.assign(req.body, req.file));
 		//obtenemos body
-		const { title, content, characterId } = req.body;
+		const { title, content } = req.body;
+		const characterId = req.session.characterId;
+		const userId = req.user.id;
 		const entryId = uuid4();
 
 		//insertamos el post y obtenemos el ID del post
-		const postId = await insertPostModel(entryId, title, content, req.character?.id || characterId);
+		const postId = await insertPostModel(entryId, title, content, characterId);
+		const character = await selectUserCharacterModel(userId, characterId);
+
+		console.log("Personaje", character);
 
 		//preparamos para posible multimedia
 		let files = [];
 
-		//sireq.files existe, hay archivos
+		//si req.files existe, hay archivos
 		if (req.files) {
 			const filesArray = Object.values(req.files).slice(0, 3);
 
@@ -36,12 +42,11 @@ const newPostController = async (req, res, next) => {
 			status: "ok",
 			message: "Post creado",
 			data: {
-				entry: {
+				post: {
 					id: postId,
 					title,
 					content,
 					files,
-					characterId: req.character?.id,
 				},
 			},
 		});
