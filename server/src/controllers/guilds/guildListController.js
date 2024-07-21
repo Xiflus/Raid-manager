@@ -2,7 +2,7 @@ import { totalGuildCountModel, selectAllGuildsModel } from "../../models/guilds/
 
 const guildListController = async (req, res, next) => {
 	try {
-		let { guildName, avatar, description, page = 1 } = req.query;
+		let { searchTerm = "", page = 1 } = req.query;
 
 		page = Number(page);
 		const limit = 3;
@@ -10,7 +10,7 @@ const guildListController = async (req, res, next) => {
 		const totalGuilds = await totalGuildCountModel();
 		const totalPages = Math.ceil(totalGuilds / limit);
 
-		const guilds = await selectAllGuildsModel(guildName, avatar, description, limit, offset);
+		const guilds = await selectAllGuildsModel(searchTerm, limit, offset);
 		res.send({
 			status: "ok",
 			data: {

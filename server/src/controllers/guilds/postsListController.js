@@ -10,7 +10,7 @@ const postsListController = async (req, res, next) => {
 		const totalPosts = await totalPostCountModel();
 		const totalPages = Math.ceil(totalPosts / limit);
 		const userId = req.user.id;
-		const characters = await getUserCharacterListModel(userId);
+		// const characters = await getUserCharacterListModel(userId);
 
 		const posts = await selectAllPostsModel(title, content, req.character?.id, limit, offset);
 		res.send({

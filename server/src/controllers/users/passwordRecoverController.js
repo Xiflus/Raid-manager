@@ -9,8 +9,8 @@ const passwordRecoverController = async (req, res, next) => {
 		await validateSchema(recoverPasswordSchema, req.body);
 		const { email } = req.body;
 		const recoverPassCode = randomstring.generate(10);
-		await recoverPasswordModel(email, recoverPassCode);
-		const emailSubject = "Recuperación de contraseña en Diario de Viajes :)";
+
+		const emailSubject = "Recuperación de contraseña en Raid manager :)";
 
 		const emailBody = `
     Se ha solicitado la recuperación de contraseña para este email en Raid manager. 
@@ -19,7 +19,10 @@ const passwordRecoverController = async (req, res, next) => {
 
     Si no has sido tú ignora este email.
   `;
+
 		await sendEmailUtil(email, emailSubject, emailBody);
+		await recoverPasswordModel(email, recoverPassCode);
+
 		res.send({ status: "ok", message: "Email de recuperación de contraseña enviado" });
 	} catch (err) {
 		next(err);
