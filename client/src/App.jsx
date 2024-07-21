@@ -11,6 +11,7 @@ import EditGuildPage from "./pages/EditGuildPage";
 import RecoverPasswordPage from "./pages/RecoverPasswordPage";
 import CreateCharacterPage from "./pages/CreateCharacterPage";
 import NewPostPage from "./pages/NewPostPage";
+import Footer from "./components/Footer";
 
 function App() {
 	return (
@@ -29,6 +30,8 @@ function App() {
 				<Route path="/characters/create" element={<CreateCharacterPage />} />
 				<Route path="/posts/create" element={<NewPostPage />} />
 			</Routes>
+			<Footer />
+
 		</>
 	);
 }

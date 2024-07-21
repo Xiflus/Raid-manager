@@ -1,9 +1,9 @@
 import getPool from "../../db/getPool.js";
 
-const selectAllGuildsModel = async (guildName = "", avatar = "", description = "", limit, offset) => {
+const selectAllGuildsModel = async (searchTerm = "", limit, offset) => {
 	const pool = await getPool();
 
-	const [guilds] = await pool.query(
+	const guilds = await pool.query(
 		`SELECT 
 		g.id,
 		g.name,
@@ -20,14 +20,12 @@ const selectAllGuildsModel = async (guildName = "", avatar = "", description = "
 		raid_progress rp ON g.id = rp.guild_id
 		WHERE 
 		g.name LIKE ? 
-		AND
-		g.avatar LIKE ?
-		AND
+		OR
 		g.description LIKE ?
 		GROUP BY g.id
 		ORDER BY g.createdAt DESC
 		LIMIT ? OFFSET ?`,
-		[`%${guildName}%`, `%${avatar}%`, `%${description}%`, limit, offset]
+		[`%${searchTerm}%`, `%${searchTerm}%`, limit, offset]
 	);
 
 	return guilds;
