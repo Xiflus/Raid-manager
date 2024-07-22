@@ -25,14 +25,7 @@ const NavBar = () => {
 								Iniciar sesión
 							</Link>
 						</li>
-						<li className="flex-1">
-							<Link
-								className="text-white font-bold hover:text-purple-500 block px-4 py-2 rounded-lg"
-								to="/recover-password"
-							>
-								Recuperar Contraseña
-							</Link>
-						</li>
+						
 					</>
 				) : (
 					<>
