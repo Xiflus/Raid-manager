@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 const Pagination = ({ prevPage, nextPage, currentPage, totalGuilds, goToPage }) => {
-	console.log(prevPage, nextPage, currentPage, totalGuilds, goToPage);
 	const pageNumbers = [];
 	for (let i = 1; i <= totalGuilds; i++) {
 		pageNumbers.push(i);

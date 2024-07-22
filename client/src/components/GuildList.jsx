@@ -1,33 +1,28 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
 import GuildListItem from "./GuildListItem";
+import { Link } from "react-router-dom";
 
 const GuildList = ({ guilds }) => {
-	console.log("GuildList GUILDS", guilds);
-	if (guilds.length < 0) {
-		return <h1>No guilds found</h1>;
+	console.log("HERMANDADES", guilds);
+	if (!guilds || guilds.length < 0) {
+		return (
+			<h1>
+				Todavía no hay hermandades creadas, crea una <Link to="/guild/create">aquí</Link>
+			</h1>
+		);
 	}
 	return (
 		<>
-			<div>
-				<h1>Guild List</h1>
-				<ul>
-					{guilds.map((guild) => {
-						return <GuildListItem guild={guild} key={guild.id} />;
-					})}
-				</ul>
-			</div>
+			<h1>Guild List</h1>
+			<ul>
+				{guilds[0].map((guild) => {
+					return <GuildListItem guild={guild} key={guild.id} />;
+				})}
+			</ul>
 		</>
 	);
-};
-GuildList.propTypes = {
-	guilds: PropTypes.arrayOf(
-		PropTypes.shape({
-			id: PropTypes.number.isRequired,
-			name: PropTypes.string.isRequired,
-			description: PropTypes.string.isRequired,
-			members: PropTypes.array.isRequired,
-		})
-	).isRequired,
 };
 
 export default GuildList;
