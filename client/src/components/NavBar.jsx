@@ -30,9 +30,6 @@ const NavBar = () => {
 					) : (
 						<>
 							<div className="">
-								<button className="" type="button">
-									<img className="" src="/menu.svg" alt="" />
-								</button>
 								<ul className="">
 									<li>
 										<Link className="" to="/users/profile">

@@ -12,7 +12,7 @@ const useGuilds = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(null);
 	const [totalGuilds, setTotalGuilds] = useState(null);
-	const fetchEntries = async (page) => {
+	const fetchGuilds = async (page) => {
 		try {
 			const { guilds, totalPages, totalGuilds } = await selectGuildsPageService(page);
 			setGuilds(guilds);
@@ -25,7 +25,7 @@ const useGuilds = () => {
 		}
 	};
 	useEffect(() => {
-		fetchEntries(currentPage);
+		fetchGuilds(currentPage);
 	}, [currentPage]);
 	const goToPage = (page) => {
 		setCurrentPage(page);
