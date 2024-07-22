@@ -17,7 +17,7 @@ const GuildList = ({ guilds }) => {
 		<>
 			<h1>Guild List</h1>
 			<ul>
-				{guilds[0].map((guild) => {
+				{guilds[0]?.map((guild) => {
 					return <GuildListItem guild={guild} key={guild.id} />;
 				})}
 			</ul>

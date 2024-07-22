@@ -15,7 +15,6 @@ const useGuilds = () => {
 	const fetchEntries = async (page) => {
 		try {
 			const { guilds, totalPages, totalGuilds } = await selectGuildsPageService(page);
-
 			setGuilds(guilds);
 			setPrevPage(currentPage - 1 < 1 ? null : currentPage - 1);
 			setNextPage(currentPage + 1 > totalPages ? null : currentPage + 1);
