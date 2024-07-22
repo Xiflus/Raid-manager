@@ -11,8 +11,8 @@ const NewPostPage = () => {
 		const title = titleRef.current.value;
 		const content = contentRef.current.value;
 		const photo = photoRef.current.files[0];
-		//
-		const guildId = "2c1d4e19-9c4d-4918-ab1b-2dfaadf63a87";
+		// sacar el guildId de la URL
+		const guildId = new URLSearchParams(window.location.search).get("guildId");
 		const formData = new FormData();
 		formData.append("title", title);
 		formData.append("content", content);
