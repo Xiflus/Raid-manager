@@ -57,7 +57,7 @@ const NavBar = () => {
 										</Link>
 									</li>
 									<li>
-										<Link className="" to="/posts/create">
+										<Link className="" to="/guilds/:guildId/posts/create">
 											Crear post
 										</Link>
 									</li>

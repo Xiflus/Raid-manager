@@ -28,10 +28,9 @@ function App() {
 				<Route path="/guild/create" element={<CreateGuildPage />} />
 				<Route path="/guild/:guildId/edit" element={<EditGuildPage />} />
 				<Route path="/characters/create" element={<CreateCharacterPage />} />
-				<Route path="/posts/create" element={<NewPostPage />} />
+				<Route path="/guilds/:guildId/posts/create" element={<NewPostPage />} />
 			</Routes>
 			<Footer />
-
 		</>
 	);
 }
