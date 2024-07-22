@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 
-const Pagination = ({ prevPage, nextPage, currentPage, totalGuilds, goToPage }) => {
+const Pagination = ({ prevPage, nextPage, currentPage, totalPages, goToPage }) => {
 	const pageNumbers = [];
-	for (let i = 1; i <= totalGuilds; i++) {
+	for (let i = 1; i <= totalPages; i++) {
 		pageNumbers.push(i);
 	}
 
@@ -28,9 +28,9 @@ const Pagination = ({ prevPage, nextPage, currentPage, totalGuilds, goToPage }) 
 Pagination.propTypes = {
 	prevPage: PropTypes.number,
 	nextPage: PropTypes.number,
-	currentPage: PropTypes.number,
-	totalGuilds: PropTypes.number,
-	goToPage: PropTypes.func,
+	currentPage: PropTypes.number.isRequired,
+	totalPages: PropTypes.number.isRequired,
+	goToPage: PropTypes.func.isRequired,
 };
 
 export default Pagination;
