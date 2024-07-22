@@ -14,26 +14,35 @@ import NewPostPage from "./pages/NewPostPage";
 import Footer from "./components/Footer";
 
 function App() {
-	return (
-		<>
-			<Header />
-			<Toaster position="top-center" toastOption={{ duration: 6000 }} />
-			<Routes>
-				<Route path="*" element={<NotFoundPage />} />
-				<Route path="/" element={<HomePage />} />
-				<Route path="/register" element={<RegisterPage />} />
-				<Route path="/login" element={<LoginPage />} />
-				<Route path="/recover-password" element={<RecoverPasswordPage />} />
-				<Route path="/auth/activate/:registrationCode" element={<ValidateUserPage />} />
-				<Route path="/guild/create" element={<CreateGuildPage />} />
-				<Route path="/guild/:guildId/edit" element={<EditGuildPage />} />
-				<Route path="/characters/create" element={<CreateCharacterPage />} />
-				<Route path="/posts/create" element={<NewPostPage />} />
-			</Routes>
-			<Footer />
-
-		</>
-	);
+  return (
+    <>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-1">
+          <Toaster position="top-center" toastOption={{ duration: 6000 }} />
+          <Routes>
+            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/recover-password" element={<RecoverPasswordPage />} />
+            <Route
+              path="/auth/activate/:registrationCode"
+              element={<ValidateUserPage />}
+            />
+            <Route path="/guild/create" element={<CreateGuildPage />} />
+            <Route path="/guild/:guildId/edit" element={<EditGuildPage />} />
+            <Route
+              path="/characters/create"
+              element={<CreateCharacterPage />}
+            />
+            <Route path="/posts/create" element={<NewPostPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </>
+  );
 }
 
 export default App;

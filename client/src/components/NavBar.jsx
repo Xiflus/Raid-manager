@@ -5,91 +5,97 @@ import { AuthContext } from "../context/AuthContext";
 const NavBar = () => {
 	const { authLogout, authUser } = useContext(AuthContext);
 	return (
-		<div className="">
-			<i className="" aria-hidden="true"></i>
-			<nav className="navbar nav-pos">
-				<ul className="">
-					{!authUser ? (
-						<>
-							<li className="">
-								<Link className="" to="/register">
-									Registrarse
-								</Link>
-							</li>
-							<li className="">
-								<Link className="" to="/login">
-									Iniciar sesión
-								</Link>
-							</li>
-							<li>
-								<Link className="" to="/recover-password">
-									Recuperar Contraseña
-								</Link>
-							</li>
-						</>
-					) : (
-						<>
-							<div className="">
-								<ul className="">
-									<li>
-										<Link className="" to="/users/profile">
-											Mi perfil
-										</Link>
-									</li>
-									<li>
-										<Link className="" to="/entries/NewEntry">
-											Nueva entrada
-										</Link>
-									</li>
-									<li>
-										<Link className="" to="/guild/create">
-											Creación de hermandad
-										</Link>
-									</li>
-									<li>
-										<Link className="" to="/guild/:guildId/edit">
-											Editar hermandad
-										</Link>
-									</li>
-									<li>
-										<Link className="" to="/characters/create">
-											Crear personaje
-										</Link>
-									</li>
-									<li>
-										<Link className="" to="/posts/create">
-											Crear post
-										</Link>
-									</li>
-									<li>
-										<button className="" onClick={authLogout}>
-											Cerrar sesión
-										</button>
-									</li>
-								</ul>
-							</div>
-
-							{/* <img className="" src="/grid-3x3-gap.svg" alt="" /> */}
-							{/* <li className="col">
-								<Link className="header-link navbar-brand" to="/users/profile">
-									Mi perfil
-								</Link>
-							</li>
-							<li className="col">
-								<Link className="header-link navbar-brand" to="/entries/NewEntry">
-									Nueva entrada
-								</Link>
-							</li>
-							<li className="col">
-								<button className="header-btn navbar-toggler" onClick={authLogout}>
-									Cerrar sesión
-								</button>
-							</li> */}
-						</>
-					)}
-				</ul>
-			</nav>
-		</div>
+		<nav className="flex-1">
+			<ul className="flex justify-around items-center p-4 space-x-4">
+				{!authUser ? (
+					<>
+						<li className="flex-1">
+							<Link
+								className="text-white font-bold hover:text-purple-500 block px-4 py-2 rounded-lg"
+								to="/register"
+							>
+								Registrarse
+							</Link>
+						</li>
+						<li className="flex-1">
+							<Link
+								className="text-white font-bold hover:text-purple-500 block px-4 py-2 rounded-lg"
+								to="/login"
+							>
+								Iniciar sesión
+							</Link>
+						</li>
+						<li className="flex-1">
+							<Link
+								className="text-white font-bold hover:text-purple-500 block px-4 py-2 rounded-lg"
+								to="/recover-password"
+							>
+								Recuperar Contraseña
+							</Link>
+						</li>
+					</>
+				) : (
+					<>
+						<li className="flex-1">
+							<Link
+								className="text-white font-bold hover:text-purple-500 block px-4 py-2 rounded-lg"
+								to="/users/profile"
+							>
+								Mi perfil
+							</Link>
+						</li>
+						<li className="flex-1">
+							<Link
+								className="text-white font-bold hover:text-purple-500 block px-4 py-2 rounded-lg"
+								to="/entries/NewEntry"
+							>
+								Nueva entrada
+							</Link>
+						</li>
+						<li className="flex-1">
+							<Link
+								className="text-white font-bold hover:text-purple-500 block px-4 py-2 rounded-lg"
+								to="/guild/create"
+							>
+								Creación de hermandad
+							</Link>
+						</li>
+						<li className="flex-1">
+							<Link
+								className="text-white font-bold hover:text-purple-500 block px-4 py-2 rounded-lg"
+								to="/guild/:guildId/edit"
+							>
+								Editar hermandad
+							</Link>
+						</li>
+						<li className="flex-1">
+							<Link
+								className="text-white font-bold hover:text-purple-500 block px-4 py-2 rounded-lg"
+								to="/characters/create"
+							>
+								Crear personaje
+							</Link>
+						</li>
+						<li className="flex-1">
+							<Link
+								className="text-white font-bold hover:text-purple-500 block px-4 py-2 rounded-lg"
+								to="/posts/create"
+							>
+								Crear post
+							</Link>
+						</li>
+						<li className="flex-1">
+							<button
+								className="text-white font-bold hover:text-purple-500 block px-4 py-2 rounded-lg focus:outline-none"
+								onClick={authLogout}
+							>
+								Cerrar sesión
+							</button>
+						</li>
+					</>
+				)}
+			</ul>
+		</nav>
 	);
 };
 
