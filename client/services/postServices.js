@@ -39,9 +39,10 @@ export const createPostServices = async ({ guildId, formData }) => {
 	const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId}/posts`, {
 		method: "POST",
 		headers: {
-			authorization: localStorage.getItem("token"),
+			authorization: localStorage.getItem("authToken"),
 		},
 		body: formData,
+		credentials: "include",
 	});
 	const body = await res.json();
 	if (body.status === "error") {

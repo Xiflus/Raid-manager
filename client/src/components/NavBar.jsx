@@ -3,8 +3,8 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 const NavBar = () => {
-  const { authLogout, authUser } = useContext(AuthContext);
-
+const { authLogout, authUser } = useContext(AuthContext);
+	
   return (
     <nav className="ml-auto">
       <ul className="flex flex-wrap justify-center md:justify-start items-center p-4 space-x-4 md:space-x-6">
