@@ -2,6 +2,8 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 import { Navigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const RegisterPage = () => {
 	const { authUser, authRegister } = useContext(AuthContext);
@@ -10,6 +12,8 @@ const RegisterPage = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [repeatedPass, setRepeatedPass] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
+	const [showRepeatedPass, setShowRepeatedPass] = useState(false);
 
 	const handleRegister = (e) => {
 		e.preventDefault();
@@ -28,7 +32,7 @@ const RegisterPage = () => {
 	return (
 		<main className="bg-black min-h-screen flex items-center justify-center">
 			<div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
-				<h2 className="text-white text-2xl font-bold mb-6">Página de registro</h2>
+				<h2 className="text-white text-2xl font-bold mb-6 text-center">Página de registro</h2>
 				<form onSubmit={handleRegister} className="space-y-6">
 					<div className="relative">
 						<input
@@ -64,7 +68,7 @@ const RegisterPage = () => {
 					</div>
 					<div className="relative">
 						<input
-							type="password"
+							type={showPassword ? 'text' : 'password'}
 							id="pass"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
@@ -77,10 +81,15 @@ const RegisterPage = () => {
 							className="absolute top-0 left-0 px-3 py-2 text-gray-500 transition-transform transform -translate-y-1/2 scale-75 origin-top-left peer-placeholder-shown:translate-y-1/2 peer-placeholder-shown:scale-100"
 						>
 						</label>
+						<FontAwesomeIcon
+							icon={showPassword ? faEyeSlash : faEye}
+							onClick={() => setShowPassword(!showPassword)}
+							className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-white"
+						/>
 					</div>
 					<div className="relative">
 						<input
-							type="password"
+							type={showRepeatedPass ? 'text' : 'password'}
 							id="repeatedPass"
 							value={repeatedPass}
 							onChange={(e) => setRepeatedPass(e.target.value)}
@@ -93,6 +102,11 @@ const RegisterPage = () => {
 							className="absolute top-0 left-0 px-3 py-2 text-gray-500 transition-transform transform -translate-y-1/2 scale-75 origin-top-left peer-placeholder-shown:translate-y-1/2 peer-placeholder-shown:scale-100"
 						>
 						</label>
+						<FontAwesomeIcon
+							icon={showRepeatedPass ? faEyeSlash : faEye}
+							onClick={() => setShowRepeatedPass(!showRepeatedPass)}
+							className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-white"
+						/>
 					</div>
 					<div>
 						<button

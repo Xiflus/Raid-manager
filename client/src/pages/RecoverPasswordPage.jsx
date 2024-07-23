@@ -22,7 +22,7 @@ const RecoverPasswordPage = () => {
 	return (
 		<main className="bg-black min-h-screen flex items-center justify-center">
 			<div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
-				<h2 className="text-white text-2xl font-bold mb-6">Recuperar Contraseña</h2>
+				<h2 className="text-white text-2xl font-bold mb-6 text-center">Recuperar Contraseña</h2>
 				<form onSubmit={handleSubmit} className="space-y-6">
 					<div className="relative">
 						<input
