@@ -72,7 +72,7 @@ const NavBar = () => {
 						<li className="flex-1">
 							<Link
 								className="text-white font-bold hover:text-purple-500 block px-4 py-2 rounded-lg"
-								to="/posts/create"
+								to="/guilds/:guildId/posts/create"
 							>
 								Crear post
 							</Link>

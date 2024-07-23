@@ -36,7 +36,7 @@ function App() {
               path="/characters/create"
               element={<CreateCharacterPage />}
             />
-            <Route path="/posts/create" element={<NewPostPage />} />
+            <Route path="/guilds/:guildId/posts/create" element={<NewPostPage />} />
           </Routes>
         </main>
         <Footer />
