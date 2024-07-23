@@ -25,7 +25,7 @@ const LoginPage = () => {
   if (authUser) return <Navigate to="/" />;
 
   return (
-    <main className="bg-black min-h-screen flex items-center justify-center">
+    <main className="bg-black flex flex-col items-center justify-center flex-1">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
         <form onSubmit={handleLogin} className="space-y-6">
           <h1 className="text-white text-2xl font-bold text-center">Tus credenciales</h1>
@@ -35,7 +35,7 @@ const LoginPage = () => {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full p-3 bg-gray-900 text-white border border-green-500 rounded-lg placeholder focus:outline-none"
+              className="w-full p-3 bg-gray-900 text-white border border-orange-500 rounded-lg placeholder focus:outline-none"
               placeholder="Usuario"
 			  required
             />
@@ -50,7 +50,7 @@ const LoginPage = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 bg-gray-900 text-white border border-green-500 rounded-lg placeholder focus:outline-none"
+              className="w-full p-3 bg-gray-900 text-white border border-orange-500 rounded-lg placeholder focus:outline-none"
               placeholder="Contraseña"
               required
             />
@@ -67,19 +67,24 @@ const LoginPage = () => {
           <div>
             <button
               type="submit"
-              className="w-full py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition-colors"
+              className="w-full py-3 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-700 transition-colors"
             >
               Entrar
             </button>
           </div>
           <div className="text-center">
-            <Link to="/recover-password" className="text-green-500 hover:underline">
+            <Link to="/recover-password" className="text-orange-500 hover:underline hover:text-orange-700">
               ¿Olvidaste tu contraseña?
             </Link>
             <span className="text-gray-400 mx-2">|</span>
-            <Link to="/register" className="text-green-500 hover:underline">
+            <Link to="/register" className="text-orange-500 hover:underline hover:text-orange-700">
               Crear una cuenta
             </Link>
+			<div className="mt-4">
+              <Link to="/" className="inline-block text-orange-500 hover:underline hover:text-orange-700">
+                Volver al inicio
+              </Link>
+            </div>
           </div>
         </form>
       </div>
