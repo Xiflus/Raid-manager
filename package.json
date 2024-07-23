@@ -4,14 +4,13 @@
 	"description": "Se trata de una aplicación externa para Wolrd of Warcraft, orientada en la gestion de hermandades para la realizacion de raids, creacion de eventos dentro del juego y reclutamiento de miembros",
 	"main": "index.js",
 	"scripts": {
-		"install":"cd server && npm install && cd ../client && npm install",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\""
 	},
 	"workspaces": [
-    "server",
-    "client"
-  ],
+		"server",
+		"client"
+	],
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
