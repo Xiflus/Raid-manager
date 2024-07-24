@@ -15,18 +15,18 @@ const GuildListItem = ({ guild }) => {
 
 				<h1>{guild.name}</h1>
 				<p>{guild.description}</p>
-				<p>{guild.members}</p>
-				<Link to={`/guilds/${guild.id}`}>View</Link>
+				<p>Miembros: {guild.members}</p>
+				<Link to={`/guilds/${guild.id}`}>+ Info</Link>
 			</div>
 		</>
 	);
 };
 GuildListItem.propTypes = {
 	guild: PropTypes.shape({
-		id: PropTypes.number.isRequired,
+		id: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired,
 		description: PropTypes.string.isRequired,
-		members: PropTypes.array.isRequired,
+		members: PropTypes.number.isRequired,
 	}).isRequired,
 };
 export default GuildListItem;

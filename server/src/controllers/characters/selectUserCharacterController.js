@@ -3,7 +3,7 @@ import { characterNotFoundError } from "../../services/errorService.js";
 
 const selectUserCharacterController = async (req, res, next) => {
 	try {
-		const characterId = req.body.characterId;
+		const characterId = req.params.characterId;
 		const userId = req.user.id;
 		const characters = await selectUserCharacterModel(userId, characterId);
 		const character = characters[0];

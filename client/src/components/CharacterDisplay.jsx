@@ -1,9 +1,14 @@
+/* eslint-disable no-unused-vars */
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import CharacterSelection from "./CharacterSelection";
+import { CharacterContext } from "../context/CharacterContext";
+import CharacterSelectionComponent from "./CharacterSelectionComponent";
 
-const CharacterDisplay = ({ characters }) => {
-	if (!characters || characters.length < 0) {
+const CharacterDisplay = () => {
+	const { userCharacters } = useContext(CharacterContext);
+	console.log("CharacterDisplay", userCharacters);
+	if (!userCharacters || userCharacters.length < 0) {
 		return (
 			<h2>
 				No hay personajes creados, crea uno <Link to="/characters/create">aquí</Link>
@@ -13,18 +18,9 @@ const CharacterDisplay = ({ characters }) => {
 	return (
 		<>
 			<h2>Personajes</h2>
-			<ul>
-				{characters[0]?.map((character) => {
-					return <CharacterSelection character={character} key={character.id} />;
-				})}
-			</ul>
+			<CharacterSelectionComponent characters={userCharacters} />
 		</>
 	);
-};
-
-//validamos los props
-CharacterDisplay.propTypes = {
-	characters: PropTypes.array,
 };
 
 export default CharacterDisplay;
