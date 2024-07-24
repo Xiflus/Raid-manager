@@ -163,6 +163,17 @@ const createTables = async () => {
                 FOREIGN KEY (postsId) REFERENCES posts(id)
             )
         `);
+		await pool.query(
+			`CREATE TABLE IF NOT EXISTS likes (
+                id CHAR(36) PRIMARY KEY NOT NULL,
+                character_id CHAR(36) NOT NULL,
+                postId CHAR(36) NOT NULL,
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (character_id) REFERENCES characters(id),
+                FOREIGN KEY (postsId) REFERENCES posts(id)
+            )
+        `
+		);
 
 		// añado el usuario admin
 		await pool.query(`

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -8,25 +9,27 @@ import { getGuildService } from "../../services/guildService";
 
 const GuildPage = () => {
 	const { guildId } = useParams();
-	console.log("GuildPage - ID", guildId);
 	const [guild, setGuild] = useState(null);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchGuild = async () => {
 			try {
-				const { guild } = getGuildService(guildId);
-				console.log("GuildPage", guild);
-				setGuild(guild);
+				const response = await getGuildService(guildId);
+				setGuild(response.guild[0]);
+				setLoading(false);
 			} catch (error) {
 				console.log("GuildPage", error);
 				toast.error("¡Error al cargar la guild!");
-			} finally {
-				setLoading(false);
 			}
 		};
 		fetchGuild();
-	}, [guildId]);
+	}, []);
+
+	// Falta animacion de carga
+	if (loading) {
+		return <h1>Cargando...</h1>;
+	}
 
 	return (
 		<>
@@ -34,7 +37,7 @@ const GuildPage = () => {
 				<h1>{guild.name}</h1>
 			</div>
 			<div className="">
-				{guild.avatar?.length > 0 ? <img src={`${VITE_API_URL}/${guild.avatar?.name}`} alt="" /> : <img src="/default-guild.png" alt="" />}
+				{guild.avatar?.length > 0 ? <img src={`${VITE_API_URL}/${guild?.avatar}`} alt="" /> : <img src="/default-guild.png" alt="" />}
 			</div>
 			<div className="">
 				<p>
