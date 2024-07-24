@@ -22,8 +22,9 @@ const CharacterDisplay = ({ characters }) => {
 	);
 };
 
-export default CharacterDisplay;
 //validamos los props
 CharacterDisplay.propTypes = {
 	characters: PropTypes.array,
 };
+
+export default CharacterDisplay;

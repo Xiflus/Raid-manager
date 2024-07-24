@@ -106,7 +106,7 @@ export const invalidTokenError = () => {
 	throw {
 		httpStatus: 401, // Unauthorized
 		code: "INVALID_TOKEN",
-		message: "Token inválido",
+		message: "Sesión expirada, por favor inicia sesión nuevamente",
 	};
 };
 export const characterAlreadyAtGuildError = () => {
