@@ -5,7 +5,6 @@ import GuildListItem from "./GuildListItem";
 import { Link } from "react-router-dom";
 
 const GuildList = ({ guilds }) => {
-	console.log("HERMANDADES", guilds);
 	if (!guilds || guilds.length < 0) {
 		return (
 			<h1>

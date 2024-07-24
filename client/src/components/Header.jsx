@@ -1,5 +1,6 @@
 import NavBar from "./NavBar";
 import LogoBar from "./LogoBar";
+import CharacterDisplay from "./CharacterDisplay";
 
 const Header = () => {
 	return (
@@ -7,6 +8,7 @@ const Header = () => {
 			<div className="flex justify-between items-center px-4 py-2">
 				<LogoBar />
 				<NavBar />
+				<CharacterDisplay />
 			</div>
 		</header>
 	);

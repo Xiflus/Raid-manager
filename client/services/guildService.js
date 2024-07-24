@@ -65,3 +65,15 @@ export const selectGuildsPageService = async (page = 1) => {
 
 	return body.data;
 };
+
+export const getGuildService = async (guildId) => {
+	const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId}`, setHeaders());
+
+	const body = await res.json();
+
+	if (body.status === "error") {
+		throw new Error(body.message);
+	}
+
+	return body.data;
+};
