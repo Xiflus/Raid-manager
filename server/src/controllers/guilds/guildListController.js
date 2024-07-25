@@ -3,7 +3,6 @@ import { totalGuildCountModel, selectAllGuildsModel } from "../../models/guilds/
 const guildListController = async (req, res, next) => {
 	try {
 		let { searchTerm = "", page = 1 } = req.query;
-
 		page = Number(page);
 		const limit = 3;
 		const offset = (page - 1) * limit;

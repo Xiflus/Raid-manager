@@ -9,26 +9,26 @@ const selectPostByIdModel = async (postId, characterId = "") => {
 	const pool = await getPool();
 
 	// Intentamos localizar la entrada con el id recibido.
-	const [posts] = await pool.query(
+	const posts = await pool.query(
 		`
             SELECT 
                 p.id,
                 p.tittle,
                 p.content,
-               
                 p.character_id,
                 p.character_id = ? AS owner,
-                c.caracter_name,
+                c.character_name,
                 AVG(IFNULL(v.value,0))AS likes,
-                BIT_OR(v.character_id=?) AS likedByMe,
+                BIT_OR(l.character_id=?) AS likedByMe,
                 p.createdAt
             FROM posts p
 		    INNER JOIN characters c ON p.character_id = c.characterId
-            LEFT JOIN votes v ON p.id = v.post_id
+            LEFT JOIN likes l ON p.id = v.post_id
             WHERE p.id = ?
         `,
 		[characterId, characterId, postId]
 	);
+	console.log("selectPostByIdModel", posts);
 
 	// Si no existe la entrada lanzamos un error.
 	if (posts.length < 1 || posts[0].id === null) {

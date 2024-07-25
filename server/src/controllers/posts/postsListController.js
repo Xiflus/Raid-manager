@@ -1,4 +1,4 @@
-import { totalPostCountModel, selectAllPostsModel } from "../../models/guilds/index.js";
+import { totalPostCountModel, selectAllPostsModel } from "../../models/posts/index.js";
 
 const postsListController = async (req, res, next) => {
 	try {

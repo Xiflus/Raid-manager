@@ -1,5 +1,6 @@
 import uuid4 from "uuid4";
-import { insertFileModel, insertPostModel } from "../../models/guilds/index.js";
+import { insertFileModel } from "../../models/guilds/index.js";
+import { insertPostModel } from "../../models/posts/index.js";
 import { saveFile } from "../../services/fileServices.js";
 import validateSchema from "../../schemas/utilities/validateSchema.js";
 import newPostSchema from "../../schemas/posts/newPostSchema.js";
@@ -12,10 +13,9 @@ const newPostController = async (req, res, next) => {
 		//obtenemos body
 		const { title, content } = req.body;
 		const characterId = req.session.characterId;
+		console.log("datos de session", req.session);
 		const userId = req.user.id;
 		const entryId = uuid4();
-
-		//insertamos el post y obtenemos el ID del post
 		const postId = await insertPostModel(entryId, title, content, characterId);
 		const character = await selectUserCharacterModel(userId, characterId);
 

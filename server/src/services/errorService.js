@@ -70,6 +70,14 @@ export const guildNotFoundError = (resource) => {
 	};
 };
 
+export const secondaryGuildNotFoundError = () => {
+	throw {
+		httpStatus: 404, // Not Found
+		code: "GUILD_NOT_FOUND",
+		message: `La hermandad no existe`,
+	};
+};
+
 export const sendEmailError = () => {
 	throw {
 		httpStatus: 500, // Internal server error

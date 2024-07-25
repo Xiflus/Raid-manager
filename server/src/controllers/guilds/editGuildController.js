@@ -9,20 +9,9 @@ const editGuildController = async (req, res, next) => {
 	try {
 		await validateSchema(editGuildSchema, req.body, req.files);
 		let { name, description } = req.body;
-		const userId = req.user.id;
 		const guildId = req.params.guildId;
 		const guildArray = await selectGuildByIdModel(guildId);
-
-		if (guildArray.length === 0) {
-			return res.status(404).send({
-				status: "error",
-				message: "Hermandad no encontrada",
-			});
-		}
 		const guild = guildArray[0];
-		if (userId !== String(guild.owner_id)) {
-			return notAuthorizedError();
-		}
 		name = name === guild.name ? null : name;
 		description = description === guild.description ? null : description;
 

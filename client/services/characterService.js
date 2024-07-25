@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 const { VITE_API_URL } = import.meta.env;
 const setHeaders = () => {
-	const config = {};
+	const config = {
+		credentials: "include",
+	};
 	const token = localStorage.getItem("authToken");
 	if (!token) {
 		return config;
@@ -18,6 +20,7 @@ export const createCharacterService = async (formData) => {
 		headers: {
 			authorization: localStorage.getItem("authToken"),
 		},
+		credentials: "include",
 		body: formData,
 	});
 	const body = await res.json();

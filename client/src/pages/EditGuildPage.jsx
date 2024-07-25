@@ -4,35 +4,34 @@ import toast from "react-hot-toast";
 import { editGuildService } from "../../services/guildService.js";
 
 const EditGuildPage = () => {
-    const guildnameRef = useRef();
-    const descriptionRef = useRef();
-    const avatarRef = useRef();
-    const { guildId } = useParams();
+	const guildnameRef = useRef();
+	const descriptionRef = useRef();
+	const avatarRef = useRef();
+	const { guildId } = useParams();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const name = guildnameRef.current.value;
-        let description = descriptionRef.current.value;
-        let avatar = avatarRef.current.files[0];
-        description = description === "" ? null : description;
-        avatar = avatar ? avatar : null;
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const name = guildnameRef.current.value;
+		let description = descriptionRef.current.value;
+		let avatar = avatarRef.current.files[0];
+		description = description === "" ? null : description;
+		avatar = avatar ? avatar : null;
 
-        const formData = new FormData();
-        formData.append("name", name);
-        if (description) formData.append("description", description);
-        if (avatar) formData.append("avatar", avatar);
+		const formData = new FormData();
+		formData.append("name", name);
+		if (description) formData.append("description", description);
+		if (avatar) formData.append("avatar", avatar);
 
-        try {
-            await editGuildService({ guildId, formData });
-            toast.success("Hermandad creada correctamente");
-            guildnameRef.current.value = "";
-            descriptionRef.current.value = "";
-            avatarRef.current.value = "";
-        } catch (error) {
-            toast.error(error.message);
-        }
-    };
-
+		try {
+			await editGuildService({ guildId, formData });
+			toast.success("Hermandad modificada correctamente");
+			guildnameRef.current.value = "";
+			descriptionRef.current.value = "";
+			avatarRef.current.value = "";
+		} catch (error) {
+			toast.error(error.message);
+		}
+	};
     return (
         <div className="bg-black flex flex-col items-center justify-center flex-1 p-4">
             <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md lg:max-w-lg xl:max-w-xl">
@@ -97,6 +96,7 @@ const EditGuildPage = () => {
             </div>
         </div>
     );
+
 };
 
 export default EditGuildPage;
