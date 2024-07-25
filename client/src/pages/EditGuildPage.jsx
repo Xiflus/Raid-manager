@@ -90,7 +90,7 @@ const EditGuildPage = () => {
                             type="submit"
                             className="w-full py-3 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-700 transition-colors"
                         >
-                            Crear Hermandad
+                            Modificar Hermandad
                         </button>
                     </div>
                 </form>
