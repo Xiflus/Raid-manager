@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 const { VITE_API_URL } = import.meta.env;
@@ -27,6 +26,7 @@ GuildListItem.propTypes = {
 		name: PropTypes.string.isRequired,
 		description: PropTypes.string.isRequired,
 		members: PropTypes.number.isRequired,
+		avatar: PropTypes.string.isRequired,
 	}).isRequired,
 };
 export default GuildListItem;

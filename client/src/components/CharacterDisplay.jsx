@@ -7,7 +7,6 @@ import CharacterSelectionComponent from "./CharacterSelectionComponent";
 
 const CharacterDisplay = () => {
 	const { userCharacters } = useContext(CharacterContext);
-	console.log("CharacterDisplay", userCharacters);
 	if (!userCharacters || userCharacters.length < 0) {
 		return (
 			<h2>

@@ -166,6 +166,7 @@ const createTables = async () => {
 		await pool.query(
 			`CREATE TABLE IF NOT EXISTS likes (
                 id CHAR(36) PRIMARY KEY NOT NULL,
+                value TINYINT UNSIGNED NOT NULL,
                 character_id CHAR(36) NOT NULL,
                 postId CHAR(36) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
