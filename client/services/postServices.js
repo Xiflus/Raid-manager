@@ -1,6 +1,8 @@
 const { VITE_API_URL } = import.meta.env;
 const setHeaders = () => {
-	const config = {};
+	const config = {
+		credentials: "include",
+	};
 	const token = localStorage.getItem("token");
 	if (!token) {
 		return config;

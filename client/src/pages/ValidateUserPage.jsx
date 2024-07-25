@@ -22,7 +22,7 @@ const ValidateUserPage = () => {
 			try {
 				await activateUserService(registrationCode);
 
-				toast.success("Usuario bien prolijo");
+				toast.success("¡Usuario activado correctamente! Logueate para continuar.");
 
 				navigate("/login");
 			} catch (error) {
