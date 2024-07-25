@@ -171,7 +171,7 @@ const createTables = async () => {
                 postId CHAR(36) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (character_id) REFERENCES characters(id),
-                FOREIGN KEY (postsId) REFERENCES posts(id)
+                FOREIGN KEY (postId) REFERENCES posts(id)
             )
         `
 		);
