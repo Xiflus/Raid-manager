@@ -8,50 +8,55 @@ const { VITE_API_URL } = import.meta.env;
 import { getGuildService } from "../../services/guildService";
 
 const GuildPage = () => {
-	const { guildId } = useParams();
-	const [guild, setGuild] = useState(null);
-	const [loading, setLoading] = useState(true);
+    const { guildId } = useParams();
+    const [guild, setGuild] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-	useEffect(() => {
-		const fetchGuild = async () => {
-			try {
-				const response = await getGuildService(guildId);
-				setGuild(response.guild[0]);
-				setLoading(false);
-			} catch (error) {
-				console.log("GuildPage", error);
-				toast.error("¡Error al cargar la guild!");
-			}
-		};
-		fetchGuild();
-	}, []);
+    useEffect(() => {
+        const fetchGuild = async () => {
+            try {
+                const response = await getGuildService(guildId);
+                setGuild(response.guild[0]);
+                setLoading(false);
+            } catch (error) {
+                console.log("GuildPage", error);
+                toast.error("¡Error al cargar la guild!");
+            }
+        };
+        fetchGuild();
+    }, []);
 
-	// Falta animacion de carga
-	if (loading) {
-		return <h1>Cargando...</h1>;
-	}
+    // Falta animacion de carga
+    if (loading) {
+        return <h1>Cargando...</h1>;
+    }
 
-	return (
-		<>
-			<div className="">
-				<h1>{guild.name}</h1>
-			</div>
-			<div className="">
-				{guild.avatar?.length > 0 ? <img src={`${VITE_API_URL}/${guild?.avatar}`} alt="" /> : <img src="/default-guild.png" alt="" />}
-			</div>
-			<div className="">
-				<p>
-					<strong>Miembros: </strong>
-					{guild.members}
-				</p>
-				<p>
-					<strong>Descripción: </strong>
-					{guild.description}
-				</p>
-				<Link to={`/guilds/${guild.id}/posts/create`}>Nuevo post</Link>
-			</div>
-		</>
-	);
+    return (
+        <>
+            <div className="">
+                <h1>{guild.name}</h1>
+            </div>
+            <div className="">
+                {guild.avatar?.length > 0 ? (
+                    <img src={`${VITE_API_URL}/${guild?.avatar}`} alt="" />
+                ) : (
+                    <img src="/default-guild.png" alt="" />
+                )}
+            </div>
+            <div className="">
+                <p>
+                    <strong>Miembros: </strong>
+                    {guild.members}
+                </p>
+                <p>
+                    <strong>Descripción: </strong>
+                    {guild.description}
+                </p>
+                <Link to={`/guilds/${guild.id}/posts/create`}>Nuevo post</Link>
+                <Link to={`/guilds/${guild.id}/edit`}> Editar Hermandad </Link>
+            </div>
+        </>
+    );
 };
 
 export default GuildPage;
