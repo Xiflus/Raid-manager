@@ -25,7 +25,7 @@ const createTables = async () => {
 		const pool = await getPool();
 		console.log("Borrar tablas...");
 		await pool.query(
-			"DROP TABLE IF EXISTS postsFiles, posts, event_participants, raid_events, raid_progress, raid_bosses, raids,join_requests, characters, guilds, users"
+			"DROP TABLE IF EXISTS postsFiles, posts, event_participants, raid_events, raid_progress, raid_bosses, raids,join_requests, characters, guilds, users, likes"
 		);
 
 		console.log("Creando tablas...");
@@ -176,7 +176,7 @@ const createTables = async () => {
         `
 		);
 
-		// añado el usuario admin
+		/*// añado el usuario admin
 		await pool.query(`
             INSERT INTO users (id, email, password, username, active, role)
             VALUES (
@@ -186,7 +186,7 @@ const createTables = async () => {
             "${ADMIN_NAME}",
             true,
             "admin");
-        `);
+        `);*/
 
 		console.log("¡Tablas creadas!");
 		process.exit(0);
