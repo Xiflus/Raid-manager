@@ -60,7 +60,13 @@ const EditGuildPage = () => {
                         ref={descriptionRef}
                     />
                     <FileInput id="avatar" label="Avatar:" ref={avatarRef} />
-                    <Button type="submit">Modificar Hermandad</Button>
+                    <Button
+                        type="submit"
+                        onClick={() => console.log("Button clicked")}
+                        onSubmit={() => console.log("Form submitted")}
+                    >
+                        Modificar Hermandad
+                    </Button>
                 </form>
             </FormContainer>
         </PageContainer>

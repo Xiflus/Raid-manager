@@ -71,7 +71,13 @@ const CreateGuildPage = () => {
                         ref={descriptionRef}
                     />
                     <FileInput id="avatar" label="Avatar:" ref={avatarRef} />
-                    <Button type="submit">Crear Hermandad</Button>
+                    <Button
+                        type="submit"
+                        onClick={() => console.log("Button clicked")}
+                        onSubmit={() => console.log("Form submitted")}
+                    >
+                        Crear Hermandad
+                    </Button>
                 </form>
                 <div className="text-center mt-6">
                     <h4 className="text-white">
