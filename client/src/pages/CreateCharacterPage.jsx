@@ -78,7 +78,13 @@ const CreateCharacterPage = () => {
                         required
                     />
                     <FileInput id="avatar" label="Avatar:" ref={avatarRef} />
-                    <Button type="submit">Crear Personaje</Button>
+                    <Button
+                        type="submit"
+                        onClick={() => console.log("Button clicked")}
+                        onSubmit={() => console.log("Form submitted")}
+                    >
+                        Crear Personaje
+                    </Button>
                 </form>
             </FormContainer>
         </PageContainer>
