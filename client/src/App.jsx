@@ -14,33 +14,65 @@ import NewPostPage from "./pages/NewPostPage";
 import Footer from "./components/Footer";
 import GuildPage from "./pages/GuildPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
-	return (
-		<>
-			<div className="flex flex-col min-h-screen">
-				<Header />
-				<main className="flex-1">
-					<Toaster position="top-center" toastOption={{ duration: 10000 }} />
-					<Routes>
-						<Route path="*" element={<NotFoundPage />} />
-						<Route path="/" element={<HomePage />} />
-						<Route path="/register" element={<RegisterPage />} />
-						<Route path="/login" element={<LoginPage />} />
-						<Route path="/recover-password" element={<RecoverPasswordPage />} />
-						<Route path="/auth/activate/:registrationCode" element={<ValidateUserPage />} />
-						<Route path="/guilds/create" element={<CreateGuildPage />} />
-						<Route path="/guilds/:guildId" element={<GuildPage />} />
-						<Route path="/guilds/:guildId/edit" element={<EditGuildPage />} />
-						<Route path="/characters/create" element={<CreateCharacterPage />} />
-						<Route path="/guilds/:guildId/posts/create" element={<NewPostPage />} />
-						<Route path="/change-password" element={<ChangePasswordPage />} />
-					</Routes>
-				</main>
-				<Footer />
-			</div>
-		</>
-	);
+    return (
+        <>
+            <div className="flex flex-col min-h-screen">
+                <Header />
+                <main className="flex-1">
+                    <Toaster
+                        position="top-center"
+                        toastOption={{ duration: 10000 }}
+                    />
+                    <Routes>
+                        <Route path="*" element={<NotFoundPage />} />
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route
+                            path="/recover-password"
+                            element={<RecoverPasswordPage />}
+                        />
+                        <Route
+                            path="/auth/activate/:registrationCode"
+                            element={<ValidateUserPage />}
+                        />
+                        <Route
+                            path="/guilds/create"
+                            element={<CreateGuildPage />}
+                        />
+                        <Route
+                            path="/guilds/:guildId"
+                            element={<GuildPage />}
+                        />
+                        <Route
+                            path="/guilds/:guildId/edit"
+                            element={<EditGuildPage />}
+                        />
+                        <Route
+                            path="/characters/create"
+                            element={<CreateCharacterPage />}
+                        />
+                        <Route
+                            path="/guilds/:guildId/posts/create"
+                            element={<NewPostPage />}
+                        />
+                        <Route
+                            path="/change-password"
+                            element={<ChangePasswordPage />}
+                        />
+                        <Route
+                            path="/users/profile"
+                            element={<ProfilePage />}
+                        />
+                    </Routes>
+                </main>
+                <Footer />
+            </div>
+        </>
+    );
 }
 
 export default App;
