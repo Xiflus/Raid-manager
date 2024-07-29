@@ -47,6 +47,7 @@ export const AuthProvider = ({ children }) => {
 		localStorage.removeItem("authToken");
 		sessionStorage.removeItem("React::DevTools::lastSelection");
 		sessionStorage.removeItem("selectedCharacter");
+		navigate("/");
 	};
 	return <AuthContext.Provider value={{ authRegister, authLogin, authLogout, authToken, authUser }}>{children}</AuthContext.Provider>;
 };

@@ -17,6 +17,11 @@ export const CharacterProvider = ({ children }) => {
 
 	useEffect(() => {
 		const fetchUserCharacters = async () => {
+			if (!userId) {
+				setUserCharacters(null);
+				setSelectedCharacter(null);
+				return;
+			}
 			try {
 				const { characters } = await getUserCharacterService(userId);
 				setUserCharacters(characters);
@@ -35,7 +40,6 @@ export const CharacterProvider = ({ children }) => {
 			setSelectedCharacter(character);
 			sessionStorage.setItem("selectedCharacter", JSON.stringify(character));
 		} catch (err) {
-			console.log(err.message)
 			toast.error(err.message);
 		}
 	};
