@@ -7,6 +7,9 @@ const createCharacterController = async (req, res, next) => {
 	try {
 		await validateSchema(characterSchema, req.body, req.files);
 		let { characterName, characterClass } = req.body;
+		// Pasamos el string a minusculas y ponemos la primera letra en mayuscula
+		characterName = characterName.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
+		characterClass = characterClass.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
 		const userId = req.user?.id;
 		let avatar;
 		if (req.files) {
