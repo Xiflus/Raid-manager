@@ -19,11 +19,11 @@ router.post("/api/users/login", loginUserController);
 
 router.get("/api/users", authUserController, getOwnUserController);
 
-router.post("/api/users/password-recover", passwordRecoverController);
+router.post("/api/users/password/recover", passwordRecoverController);
 
 router.put("/api/users/validate/:registrationCode", validateUserController);
 
-router.put("/api/users/password/reset", resetPasswordController);
+router.put("/api/users/password/reset/:recoverPassCode", resetPasswordController);
 
 router.put("/api/users/password/change", authUserController, editPasswordController);
 

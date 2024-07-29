@@ -3,7 +3,7 @@ import insertUserModel from "./insertUserModel.js";
 import updateActiveUserModel from "./updateActiveUserModel.js";
 import recoverPasswordModel from "./recoverPasswordModel.js";
 import resetPasswordModel from "./resetPasswordModel.js";
-import selectUserByEmailModel from "./selectUserByEmailModel.js";
+import selectUserByRecoverCodeModel from "./selectUserByRecoverCodeModel.js";
 import updatePasswordModel from "./updatePasswordModel.js";
 import selectUserbyIdModel from "./selectUserbyIdModel.js";
 import updateUserModel from "./updateUserModel.js";
@@ -14,7 +14,7 @@ export {
   updateActiveUserModel,
   recoverPasswordModel,
   resetPasswordModel,
-  selectUserByEmailModel,
+  selectUserByRecoverCodeModel,
   updatePasswordModel,
   selectUserbyIdModel,
   updateUserModel,

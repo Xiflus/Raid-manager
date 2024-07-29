@@ -1,22 +1,23 @@
 import { resetPasswordModel } from "../../models/users/index.js";
-import {resetPasswordSchema} from "../../schemas/users/index.js";
+import { resetPasswordSchema } from "../../schemas/users/index.js";
 import validateSchema from "../../utils/validateSchema.js";
+
 const resetPasswordController = async (req, res, next) => {
-	try {
+    try {
+        const { recoverPassCode } = req.params;
+        const { newPassword } = req.body;
 
-		await validateSchema(resetPasswordSchema, req.body);
-		// revisar logica de reseteo de contraseña sin buscar el user a traves del email si no a traves del recoverPassCode
-		const { email, recoverPassCode, newPassword } = req.body;
+        await validateSchema(resetPasswordSchema, { newPassword });
 
-		await resetPasswordModel(email, recoverPassCode, newPassword);
+        await resetPasswordModel(recoverPassCode, newPassword);
 
-		res.send({
-			status: "ok",
-			message: "Contraseña actualizada",
-		});
-	} catch (err) {
-		next(err);
-	}
+        res.send({
+            status: "ok",
+            message: "Contraseña actualizada",
+        });
+    } catch (err) {
+        next(err);
+    }
 };
 
 export default resetPasswordController;
