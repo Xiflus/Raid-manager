@@ -16,15 +16,12 @@ const createCharacterController = async (req, res, next) => {
 			const file = req.files.avatar;
 			avatar = await saveFile(file, 150);
 		}
-		await insertCharacterModel(characterName, characterClass, avatar, userId);
+		const newCharacter = await insertCharacterModel(characterName, characterClass, avatar, userId);
 		res.status(201).send({
 			status: "ok",
 			data: {
 				message: "Personaje creado",
-				character: {
-					characterName,
-					characterClass,
-				},
+				character: newCharacter,
 			},
 		});
 	} catch (err) {
