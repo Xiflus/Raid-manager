@@ -15,7 +15,7 @@ const passwordRecoverController = async (req, res, next) => {
 		const emailBody = `
     Se ha solicitado la recuperación de contraseña para este email en Raid manager. 
               
-    Utiliza el siguiente código para crear una nueva contraseña: ${recoverPassCode}
+    <a href="http://localhost:3000/change-password/${recoverPassCode}">Recuperar contraseña</a>
 
     Si no has sido tú ignora este email.
   `;

@@ -1,33 +1,34 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
-import { Navigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const ChangePasswordPage = () => {
-    const { authUser, authChangePassword } = useContext(AuthContext);
-
+    const { authChangePassword } = useContext(AuthContext);
+    const { recoverPassCode } = useParams();
+    const navigate = useNavigate()
     const [newPassword, setNewPassword] = useState("");
     const [repeatedNewPassword, setRepeatedNewPassword] = useState("");
     const [showNewPassword, setShowNewPassword] = useState(false);
     const [showRepeatedNewPassword, setShowRepeatedNewPassword] =
         useState(false);
 
-    const handleChangePassword = (e) => {
-        e.preventDefault();
-        try {
+        const handleChangePassword = async (e) => {
+            e.preventDefault();
             if (newPassword !== repeatedNewPassword) {
-                throw new Error("Las contraseñas no coinciden");
+                toast.error("Las contraseñas no coinciden");
+                return;
             }
-            authChangePassword(newPassword);
-            toast.success("Contraseña cambiada con éxito");
-        } catch (err) {
-            toast.error(err.message);
-        }
-    };
-
-    if (!authUser) return <Navigate to="/login" />;
+            try {
+                await authChangePassword(recoverPassCode, newPassword);
+                navigate("/login");
+            } catch (err) {
+                toast.error(err.message);
+            }
+        };
+    
 
     return (
         <main className="bg-black flex flex-col items-center justify-center flex-1 p-4">

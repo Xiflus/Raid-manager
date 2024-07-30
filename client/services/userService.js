@@ -98,7 +98,7 @@ export const updateAvatarService = async (avatar, authToken) => {
 
 export const recoverPasswordService = async ({ email }) => {
 	console.log(email);
-	const res = await fetch(`${VITE_API_URL}/api/users/password-recover`, {
+	const res = await fetch(`${VITE_API_URL}/api/users/password/recover`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -112,4 +112,22 @@ export const recoverPasswordService = async ({ email }) => {
 	}
 
 	return body;
+};
+
+export const changePasswordService = async (recoverPassCode, newPassword) => {
+    const res = await fetch(`${VITE_API_URL}/api/users/password/reset/${recoverPassCode}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ newPassword }),
+    });
+
+    const body = await res.json();
+
+    if (body.status === "error") {
+        throw new Error(body.message);
+    }
+
+    return body.message;
 };

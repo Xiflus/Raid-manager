@@ -60,7 +60,7 @@ function App() {
                             element={<NewPostPage />}
                         />
                         <Route
-                            path="/change-password"
+                            path="/change-password/:recoverPassCode"
                             element={<ChangePasswordPage />}
                         />
                         <Route
