@@ -3,6 +3,7 @@ import { recoverPasswordModel } from "../../models/users/index.js";
 import sendEmailUtil from "../../utils/sendEmailUtil.js";
 import { recoverPasswordSchema } from "../../schemas/users/index.js";
 import validateSchema from "../../utils/validateSchema.js";
+import {FRONTEND_URL} from "../../../env.js"
 
 const passwordRecoverController = async (req, res, next) => {
 	try {
@@ -15,7 +16,7 @@ const passwordRecoverController = async (req, res, next) => {
 		const emailBody = `
     Se ha solicitado la recuperación de contraseña para este email en Raid manager. 
               
-    <a href="http://localhost:3000/change-password/${recoverPassCode}">Recuperar contraseña</a>
+    <a href="${FRONTEND_URL}/reset/password/${recoverPassCode}">Recuperar contraseña</a>
 
     Si no has sido tú ignora este email.
   `;

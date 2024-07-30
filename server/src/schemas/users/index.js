@@ -6,5 +6,6 @@ import updatePasswordSchema from "./editPasswordSchema.js";
 import recoverPasswordSchema from "./recoverPasswordSchema.js";
 import validateUserSchema from "./validateUserSchema.js";
 import resetPasswordSchema from "./resetPasswordSchema.js";
+import editPasswordSchema from "./editPasswordSchema.js";
 
-export { editUserAvatarSchema, editUserSchema, loginUserSchema, newUserSchema, updatePasswordSchema, recoverPasswordSchema, validateUserSchema, resetPasswordSchema };
+export { editUserAvatarSchema, editUserSchema, loginUserSchema, newUserSchema, updatePasswordSchema, recoverPasswordSchema, validateUserSchema, resetPasswordSchema, editPasswordSchema };

@@ -1,34 +1,34 @@
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import toast from "react-hot-toast";
+import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-const ChangePasswordPage = () => {
-    const [currentPassword, setCurrentPassword] = useState("");
+const ResetPasswordPage = () => {
+    const { authResetPassword } = useContext(AuthContext);
+    const { recoverPassCode } = useParams();
+    const navigate = useNavigate()
     const [newPassword, setNewPassword] = useState("");
     const [repeatedNewPassword, setRepeatedNewPassword] = useState("");
-    const [showCurrentPassword, setShowCurrentPassword] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
-    const [showRepeatedNewPassword, setShowRepeatedNewPassword] = useState(false);
-    const navigate = useNavigate();
-    const { authChangePassword } = useContext(AuthContext);
+    const [showRepeatedNewPassword, setShowRepeatedNewPassword] =
+        useState(false);
 
-    const handleChangePassword = async (e) => {
-        e.preventDefault();
-        if (newPassword !== repeatedNewPassword) {
-            toast.error("Las contraseñas no coinciden");
-            return;
-        }
-        try {
-            await authChangePassword(currentPassword, newPassword);
-            toast.success("contraseña actualizada, vuelve a loguear");
-            
-        } catch (err) {
-            toast.error(err.message);
-        }
-    };
+        const handleResetPassword = async (e) => {
+            e.preventDefault();
+            if (newPassword !== repeatedNewPassword) {
+                toast.error("Las contraseñas no coinciden");
+                return;
+            }
+            try {
+                await authResetPassword(recoverPassCode, newPassword);
+                
+            } catch (err) {
+                toast.error(err.message);
+            }
+        };
+    
 
     return (
         <main className="bg-black flex flex-col items-center justify-center flex-1 p-4">
@@ -36,23 +36,7 @@ const ChangePasswordPage = () => {
                 <h2 className="text-white text-2xl font-bold mb-6 text-center">
                     Cambiar contraseña
                 </h2>
-                <form onSubmit={handleChangePassword} className="space-y-6">
-                    <div className="relative">
-                        <input
-                            type={showCurrentPassword ? "text" : "password"}
-                            id="currentPassword"
-                            value={currentPassword}
-                            onChange={(e) => setCurrentPassword(e.target.value)}
-                            className="w-full p-3 bg-gray-900 text-white border border-orange-500 rounded-lg placeholder focus:outline-none"
-                            placeholder="Contraseña actual"
-                            required
-                        />
-                        <FontAwesomeIcon
-                            icon={showCurrentPassword ? faEyeSlash : faEye}
-                            onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                            className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-white"
-                        />
-                    </div>
+                <form onSubmit={handleResetPassword} className="space-y-6">
                     <div className="relative">
                         <input
                             type={showNewPassword ? "text" : "password"}
@@ -63,6 +47,10 @@ const ChangePasswordPage = () => {
                             placeholder="Nueva contraseña"
                             required
                         />
+                        <label
+                            htmlFor="newPassword"
+                            className="absolute top-0 left-0 px-3 py-2 text-gray-500 transition-transform transform -translate-y-1/2 scale-75 origin-top-left peer-placeholder-shown:translate-y-1/2 peer-placeholder-shown:scale-100"
+                        ></label>
                         <FontAwesomeIcon
                             icon={showNewPassword ? faEyeSlash : faEye}
                             onClick={() => setShowNewPassword(!showNewPassword)}
@@ -74,14 +62,24 @@ const ChangePasswordPage = () => {
                             type={showRepeatedNewPassword ? "text" : "password"}
                             id="repeatedNewPassword"
                             value={repeatedNewPassword}
-                            onChange={(e) => setRepeatedNewPassword(e.target.value)}
+                            onChange={(e) =>
+                                setRepeatedNewPassword(e.target.value)
+                            }
                             className="w-full p-3 bg-gray-900 text-white border border-orange-500 rounded-lg placeholder focus:outline-none"
                             placeholder="Repetir nueva contraseña"
                             required
                         />
+                        <label
+                            htmlFor="repeatedNewPassword"
+                            className="absolute top-0 left-0 px-3 py-2 text-gray-500 transition-transform transform -translate-y-1/2 scale-75 origin-top-left peer-placeholder-shown:translate-y-1/2 peer-placeholder-shown:scale-100"
+                        ></label>
                         <FontAwesomeIcon
                             icon={showRepeatedNewPassword ? faEyeSlash : faEye}
-                            onClick={() => setShowRepeatedNewPassword(!showRepeatedNewPassword)}
+                            onClick={() =>
+                                setShowRepeatedNewPassword(
+                                    !showRepeatedNewPassword
+                                )
+                            }
                             className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-white"
                         />
                     </div>
@@ -99,4 +97,4 @@ const ChangePasswordPage = () => {
     );
 };
 
-export default ChangePasswordPage;
+export default ResetPasswordPage;

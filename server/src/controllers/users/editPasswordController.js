@@ -1,14 +1,12 @@
 import bcrypt from "bcrypt";
-import { verifyToken } from "../../utils/jwtHandler.js";
-import updatePasswordModel from "../../models/users/updatePasswordModel.js";
+import {updatePasswordModel, selectUserbyIdModel} from "../../models/users/index.js";
 import { invalidCredentialsError } from "../../services/errorService.js";
-import { selectUserbyIdModel } from "../../models/users/index.js";
 import validateSchema from "../../utils/validateSchema.js";
-import { updatePasswordSchema } from "../../schemas/users/index.js";
+import { editPasswordSchema } from "../../schemas/users/index.js";
 
 const editPasswordController = async (req, res, next) => {
 	try {
-		await validateSchema(updatePasswordSchema, req.body);
+		await validateSchema(editPasswordSchema, req.body);
 
 		let { currentPassword, newPassword } = req.body;
 		const userId = req.user.id;

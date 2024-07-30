@@ -3,6 +3,7 @@ import validateSchema from "../../utils/validateSchema.js";
 import { newUserSchema } from "../../schemas/users/index.js";
 import sendMailUtil from "../../utils/sendEmailUtil.js";
 import { insertUserModel } from "../../models/users/index.js";
+import {FRONTEND_URL} from "../../../env.js"
 
 const newUserController = async (req, res, next) => {
 	try {
@@ -22,7 +23,7 @@ const newUserController = async (req, res, next) => {
     
     Para activar tu cuenta, haz clic en el siguiente enlace:
 
-    <a href="http://localhost:3000/auth/activate/${registrationCode}">Activar mi cuenta</a>
+    <a href="${FRONTEND_URL}/auth/activate/${registrationCode}">Activar mi cuenta</a>
    `;
 		await sendMailUtil(email, emailSubject, emailBody);
 		// ya validada, llamamos al modelo para que realice la consulta a la base de datos

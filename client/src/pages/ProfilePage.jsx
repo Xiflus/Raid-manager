@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { editGuildService } from "../../services/guildService.js";
 import TextInput from "../components/jsxComponents/TextInput.jsx";
@@ -12,6 +12,7 @@ const ProfilePage = () => {
     const usernameRef = useRef();
     const avatarRef = useRef();
     const { userId } = useParams();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,6 +32,10 @@ const ProfilePage = () => {
         } catch (error) {
             toast.error(error.message);
         }
+    };
+
+    const handleChangePasswordClick = () => {
+        navigate("/change/password");
     };
 
     return (
@@ -53,6 +58,10 @@ const ProfilePage = () => {
                     <FileInput id="avatar" label="Avatar:" ref={avatarRef} />
                     <Button type="submit" text="Modificar Perfil" />
                 </form>
+                <div>
+                <Button type="submit" text="Cambiar contraseña" onClick={handleChangePasswordClick}/>
+                </div>
+                
             </FormContainer>
         </PageContainer>
     );
