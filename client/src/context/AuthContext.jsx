@@ -58,23 +58,19 @@ export const AuthProvider = ({ children }) => {
 
   const authResetPassword = async (recoverPassCode, newPassword) => {
     try {
-      const message = await resetPasswordService(recoverPassCode, newPassword);
+      await resetPasswordService(recoverPassCode, newPassword);
       toast.success("contraseña actualizada");
-      navigate("/login")
+      navigate("/login");
     } catch (err) {
       toast.error(err.message);
     }
   };
 
   const authChangePassword = async (currentPassword, newPassword) => {
-    
     try {
-      const message = await changePasswordService(
-        currentPassword,
-        newPassword
-      );
+      await changePasswordService(currentPassword, newPassword);
       authLogout();
-      navigate("/login")
+      navigate("/login");
     } catch (err) {
       toast.error(err.message);
     }

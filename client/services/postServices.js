@@ -3,7 +3,7 @@ const setHeaders = () => {
 	const config = {
 		credentials: "include",
 	};
-	const token = localStorage.getItem("token");
+	const token = localStorage.getItem("authToken");
 	if (!token) {
 		return config;
 	}
@@ -57,7 +57,7 @@ export const insertFileService = async ({ postsId, formData }) => {
 	const res = await fetch(`${VITE_API_URL}/api/posts/${postsId}/files`, {
 		method: "POST",
 		headers: {
-			authorization: localStorage.getItem("token"),
+			authorization: localStorage.getItem("authToken"),
 		},
 		body: formData,
 	});
@@ -82,7 +82,7 @@ export const likePostsService = async (postsId, rating) => {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			authorization: localStorage.getItem("token"),
+			authorization: localStorage.getItem("authToken"),
 		},
 		body: JSON.stringify({ value: rating }),
 	});

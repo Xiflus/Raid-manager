@@ -16,6 +16,7 @@ import GuildPage from "./pages/GuildPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import ProfilePage from "./pages/ProfilePage";
+import ProfileForm from "./components/ProfileForm";
 
 function App() {
     return (
@@ -71,6 +72,10 @@ function App() {
                         <Route
                             path="/users/profile"
                             element={<ProfilePage />}
+                        />
+                        <Route
+                            path="/users/profile/change"
+                            element={<ProfileForm/>}
                         />
                     </Routes>
                 </main>
