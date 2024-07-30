@@ -13,6 +13,7 @@ import CreateCharacterPage from "./pages/CreateCharacterPage";
 import NewPostPage from "./pages/NewPostPage";
 import Footer from "./components/Footer";
 import GuildPage from "./pages/GuildPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import ProfilePage from "./pages/ProfilePage";
 
@@ -60,7 +61,11 @@ function App() {
                             element={<NewPostPage />}
                         />
                         <Route
-                            path="/change-password/:recoverPassCode"
+                            path="/reset/password/:recoverPassCode"
+                            element={<ResetPasswordPage />}
+                        />
+                        <Route
+                            path="/change/password"
                             element={<ChangePasswordPage />}
                         />
                         <Route

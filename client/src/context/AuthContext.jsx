@@ -6,6 +6,7 @@ import {
   getPrivateProfileService,
   singUpService,
   loginService,
+  resetPasswordService,
   changePasswordService,
 } from "../../services/userService.js";
 
@@ -55,10 +56,25 @@ export const AuthProvider = ({ children }) => {
     navigate("/");
   };
 
-  const authChangePassword = async (recoverPassCode, newPassword) => {
+  const authResetPassword = async (recoverPassCode, newPassword) => {
     try {
-      const message = await changePasswordService(recoverPassCode, newPassword);
-      toast.success(message);
+      const message = await resetPasswordService(recoverPassCode, newPassword);
+      toast.success("contraseña actualizada");
+      navigate("/login")
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+
+  const authChangePassword = async (currentPassword, newPassword) => {
+    
+    try {
+      const message = await changePasswordService(
+        currentPassword,
+        newPassword
+      );
+      authLogout();
+      navigate("/login")
     } catch (err) {
       toast.error(err.message);
     }
@@ -66,7 +82,15 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ authRegister, authLogin, authLogout, authToken, authUser, authChangePassword }}
+      value={{
+        authRegister,
+        authLogin,
+        authLogout,
+        authToken,
+        authUser,
+        authResetPassword,
+        authChangePassword,
+      }}
     >
       {children}
     </AuthContext.Provider>
