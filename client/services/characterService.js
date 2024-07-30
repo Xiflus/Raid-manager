@@ -17,17 +17,15 @@ const setHeaders = () => {
 export const createCharacterService = async (formData) => {
 	const res = await fetch(`${VITE_API_URL}/api/characters`, {
 		method: "POST",
-		headers: {
-			authorization: localStorage.getItem("authToken"),
-		},
-		credentials: "include",
+		headers: setHeaders().headers,
 		body: formData,
 	});
 	const body = await res.json();
 	if (body.status === "error") {
-		throw new Error(body.message);
+		throw new Error(body.message.character);
 	}
-	return body.data;
+	console.log("characterService", body.data.character);
+	return body.data.character;
 };
 
 export const getUserCharacterService = async () => {

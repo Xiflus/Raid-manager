@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, createContext, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import PropTypes from "prop-types";
@@ -15,20 +16,20 @@ export const CharacterProvider = ({ children }) => {
 	});
 	const userId = authUser?.id;
 
+	const fetchUserCharacters = async () => {
+		if (!userId) {
+			setUserCharacters(null);
+			setSelectedCharacter(null);
+			return;
+		}
+		try {
+			const { characters } = await getUserCharacterService(userId);
+			setUserCharacters(characters);
+		} catch (err) {
+			toast.error(err.message);
+		}
+	};
 	useEffect(() => {
-		const fetchUserCharacters = async () => {
-			if (!userId) {
-				setUserCharacters(null);
-				setSelectedCharacter(null);
-				return;
-			}
-			try {
-				const { characters } = await getUserCharacterService(userId);
-				setUserCharacters(characters);
-			} catch (err) {
-				toast.error(err.message);
-			}
-		};
 		fetchUserCharacters();
 	}, [userId]);
 
@@ -45,7 +46,7 @@ export const CharacterProvider = ({ children }) => {
 	};
 
 	return (
-		<CharacterContext.Provider value={{ userCharacters, selectedCharacter, characterSelection, setSelectedCharacter }}>
+		<CharacterContext.Provider value={{ userCharacters, selectedCharacter, characterSelection, setSelectedCharacter, fetchUserCharacters }}>
 			{children}
 		</CharacterContext.Provider>
 	);
