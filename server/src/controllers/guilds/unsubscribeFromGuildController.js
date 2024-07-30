@@ -1,17 +1,19 @@
 import { selectCharacterByIdModel, selectGuildByIdModel, deleteFromGuildModel } from "../../models/guilds/index.js";
 import { requiredFieldsError, characterNotFoundError, guildNotFoundError } from "../../services/errorService.js";
-import {unsubscribeFromGuildSchema} from "../../schemas/guilds/index.js"
+import { unsubscribeFromGuildSchema } from "../../schemas/guilds/index.js";
 import validateSchema from "../../utils/validateSchema.js";
 
 const unsubscribeFromGuildController = async (req, res, next) => {
 	await validateSchema(unsubscribeFromGuildSchema, req.body);
-	const { guildName, characterName } = req.body;
-	if (!guildName || !characterName) {
+	const guildId = req.params.guildId;
+	const { characterName } = req.body;
+	console.log("unsuscribeFromGuildController", guildName);
+	if (!characterName) {
 		return requiredFieldsError();
 	}
 	try {
 		const characters = await selectCharacterByIdModel(characterName);
-		const guilds = await selectGuildByIdModel(guildName);
+		const guilds = await selectGuildByIdModel(guildId);
 		if (!characters || characters.length === 0) {
 			characterNotFoundError();
 		}
@@ -20,6 +22,7 @@ const unsubscribeFromGuildController = async (req, res, next) => {
 		}
 		const character = characters[0];
 		const guild = guilds[0];
+		console.log("unsuscribeFromGuildController", character, guild);
 
 		await deleteFromGuildModel(character.id, guild.id);
 		res.send({
