@@ -37,7 +37,8 @@ export const CharacterProvider = ({ children }) => {
 		try {
 			const data = await selectCharacterService(characterId);
 			toast.success(data.message);
-			const character = data.character[0];
+			const character = data.character;
+			console.log("CharacterContext", character);
 			setSelectedCharacter(character);
 			sessionStorage.setItem("selectedCharacter", JSON.stringify(character));
 		} catch (err) {
