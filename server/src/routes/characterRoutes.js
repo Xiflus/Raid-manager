@@ -4,7 +4,7 @@ import { createCharacterController, getUserCharacterListController, selectUserCh
 
 const router = express.Router();
 
-router.get("/api/characters/:characterId", authUserController, selectUserCharacterController);
+router.post("/api/characters/select", authUserController, selectUserCharacterController);
 
 router.post("/api/characters", authUserController, createCharacterController);
 
