@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext.jsx";
 import UserInfo from "../components/UserInfo.jsx";
 import Button from "../components/jsxComponents/Button.jsx";
+import UserGuildListComponent from "../components/UserGuildListComponent.jsx";
 
 const ProfilePage = () => {
   const { authUser } = useContext(AuthContext);
@@ -24,6 +25,7 @@ const ProfilePage = () => {
     <UserInfo/>
     <Button onClick={handlePasswordClick} text="Cambiar contraseña" />
     <Button onClick={handleProfileClick} text="Actualizar perfil" />
+    <UserGuildListComponent/>
     </>
   );
 };
