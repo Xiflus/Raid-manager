@@ -34,7 +34,9 @@ export const singUpService = async (username, email, password) => {
 export const loginService = async (username, password) => {
   const res = await fetch(`${VITE_API_URL}/api/users/login`, {
     method: "POST",
-    headers: setHeaders().headers,
+    headers: {
+      "content-type": "application/json",
+    },
     body: JSON.stringify({ username, password }),
   });
 
@@ -72,7 +74,10 @@ export const getPrivateProfileService = async () => {
 export const updateUserService = async (username) => {
   const res = await fetch(`${VITE_API_URL}/api/users`, {
     method: "put",
-    headers: setHeaders().headers,
+    headers: {
+      "content-type": "application/json",
+      authorization:localStorage.getItem("authToken")
+    },
     body: JSON.stringify({
       username,
     }),
