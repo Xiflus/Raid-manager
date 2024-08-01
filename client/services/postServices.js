@@ -2,14 +2,14 @@ const { VITE_API_URL } = import.meta.env;
 const setHeaders = () => {
 	const config = {
 		credentials: "include",
+		headers: {
+			"content-type": "application/json",
+		},
 	};
 	const token = localStorage.getItem("authToken");
-	if (!token) {
-		return config;
+	if (token) {
+		config.headers.authorization = token;
 	}
-	config.headers = {
-		authorization: token,
-	};
 	return config;
 };
 export const selectAllPostsServices = async () => {
@@ -23,9 +23,9 @@ export const selectAllPostsServices = async () => {
 	return body.data;
 };
 
-export const selectPostsPageService = async (page = 1) => {
+export const selectPostsPageService = async (guildId, page = 1) => {
 	// Ajustar la URL para incluir el parámetro de página
-	const res = await fetch(`${VITE_API_URL}/api/posts?page=${page}`, setHeaders());
+	const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId.guildId}/posts?page=${page}`, setHeaders());
 
 	const body = await res.json();
 
@@ -41,10 +41,9 @@ export const createPostServices = async ({ guildId, formData }) => {
 	const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId}/posts`, {
 		method: "POST",
 		headers: {
-			authorization: localStorage.getItem("authToken"),
+			Authorization: localStorage.getItem("authToken"),
 		},
 		body: formData,
-		credentials: "include",
 	});
 	const body = await res.json();
 	if (body.status === "error") {
@@ -56,9 +55,7 @@ export const createPostServices = async ({ guildId, formData }) => {
 export const insertFileService = async ({ postsId, formData }) => {
 	const res = await fetch(`${VITE_API_URL}/api/posts/${postsId}/files`, {
 		method: "POST",
-		headers: {
-			authorization: localStorage.getItem("authToken"),
-		},
+		headers: setHeaders().headers,
 		body: formData,
 	});
 	const body = await res.json();
@@ -69,7 +66,7 @@ export const insertFileService = async ({ postsId, formData }) => {
 };
 
 export const getPostService = async (postsId) => {
-	const res = await fetch(`${VITE_API_URL}/api/posts/${postsId}`);
+	const res = await fetch(`${VITE_API_URL}/api/posts/${postsId}`, setHeaders());
 	const body = await res.json();
 	if (body.status === "error") {
 		throw new Error(body.message);
@@ -80,10 +77,7 @@ export const getPostService = async (postsId) => {
 export const likePostsService = async (postsId, rating) => {
 	const res = await fetch(`${VITE_API_URL}/api/posts/${postsId}/votes`, {
 		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			authorization: localStorage.getItem("authToken"),
-		},
+		headers: setHeaders().headers,
 		body: JSON.stringify({ value: rating }),
 	});
 	const body = await res.json();

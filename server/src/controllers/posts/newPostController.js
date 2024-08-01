@@ -9,14 +9,12 @@ import { selectUserCharacterModel } from "../../models/characters/index.js";
 //funcion controladora que añade entrada
 const newPostController = async (req, res, next) => {
 	try {
-		await validateSchema(newPostSchema, Object.assign(req.body, req.file));
+		await validateSchema(newPostSchema, req.body);
 		//obtenemos body
-		const { title, content } = req.body;
-		const characterId = req.session.characterId;
-		console.log("datos de session", req.session);
+		const { title, content, characterId } = req.body;
 		const userId = req.user.id;
 		const entryId = uuid4();
-		const postId = await insertPostModel(entryId, title, content, characterId);
+		await insertPostModel(entryId, title, content, characterId);
 		const character = await selectUserCharacterModel(userId, characterId);
 
 		console.log("Personaje", character);
@@ -25,8 +23,8 @@ const newPostController = async (req, res, next) => {
 		let files = [];
 
 		//si req.files existe, hay archivos
-		if (req.files) {
-			const filesArray = Object.values(req.files).slice(0, 3);
+		if (req.files && req.files.photos) {
+			const filesArray = Array.isArray(req.files.photos) ? req.files.photos : [req.files.photos];
 
 			for (const file of filesArray) {
 				const fileName = await saveFile(file, 150);
@@ -41,14 +39,6 @@ const newPostController = async (req, res, next) => {
 		res.status(201).send({
 			status: "ok",
 			message: "Post creado",
-			data: {
-				post: {
-					id: postId,
-					title,
-					content,
-					files,
-				},
-			},
 		});
 	} catch (err) {
 		console.log(err);

@@ -7,6 +7,7 @@ import { CharacterContext } from "../context/CharacterContext";
 const CharacterSelectionComponent = ({ characters }) => {
 	const { selectedCharacter, characterSelection } = useContext(CharacterContext);
 	const [selectedOption, setSelectedOption] = useState(null);
+	console.log("CharacterSelectionComponent - personajes", characters);
 
 	useEffect(() => {
 		// Formatea los datos para react-select
@@ -14,8 +15,12 @@ const CharacterSelectionComponent = ({ characters }) => {
 			value: character.id,
 			label: (
 				<div className="flex items-center">
-					{character.avatar?.length > 0 ? (
-						<img src={`${VITE_API_URL}/${character?.avatar}`} alt={`${character.name} avatar`} className="w-8 h-8 rounded-full mr-2" />
+					{character.character_avatar?.length === 0 ? (
+						<img
+							src={`${VITE_API_URL}/${character?.character_avatar}`}
+							alt={`${character.character_name} avatar`}
+							className="w-8 h-8 rounded-full mr-2"
+						/>
 					) : (
 						<img src="/default-guild.png" alt="default-avatar" className="w-8 h-8 rounded-full mr-2" />
 					)}
@@ -28,6 +33,7 @@ const CharacterSelectionComponent = ({ characters }) => {
 		if (selectedCharacter) {
 			const currentOption = options.find((option) => option.value === selectedCharacter.id);
 			setSelectedOption(currentOption);
+			console.log("CharacterSelectionComponent - selectedChar", selectedCharacter);
 		}
 	}, [characters, selectedCharacter]);
 
