@@ -74,11 +74,15 @@ export const getPostService = async (postsId) => {
 	return body.data;
 };
 
-export const likePostsService = async (postsId, rating) => {
-	const res = await fetch(`${VITE_API_URL}/api/posts/${postsId}/votes`, {
+export const likePostsService = async (guildId, postId, characterId, value) => {
+	console.log("likePOstService", guildId, postId, value);
+	const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId}/posts/${postId}/likes`, {
 		method: "POST",
-		headers: setHeaders().headers,
-		body: JSON.stringify({ value: rating }),
+		headers: {
+			"content-type": "application/json",
+			authorization: localStorage.getItem("authToken"),
+		},
+		body: JSON.stringify({ value, characterId }),
 	});
 	const body = await res.json();
 	if (body.status === "error") {
