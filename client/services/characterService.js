@@ -17,7 +17,9 @@ const setHeaders = () => {
 export const createCharacterService = async (formData) => {
 	const res = await fetch(`${VITE_API_URL}/api/characters`, {
 		method: "POST",
-		headers: setHeaders().headers,
+		headers: {
+			authorization:localStorage.getItem("authToken")
+		},
 		body: formData,
 	});
 	const body = await res.json();
