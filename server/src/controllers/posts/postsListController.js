@@ -2,17 +2,16 @@ import { totalPostCountModel, selectAllPostsModel } from "../../models/posts/ind
 
 const postsListController = async (req, res, next) => {
 	try {
-		let { title, content, page = 1 } = req.query;
+		let { searchTerm, page = 1 } = req.query;
 
 		page = Number(page);
 		const limit = 4;
 		const offset = (page - 1) * limit;
 		const totalPosts = await totalPostCountModel();
 		const totalPages = Math.ceil(totalPosts / limit);
-		const userId = req.user.id;
-		// const characters = await getUserCharacterListModel(userId);
+		const characterId = req.session?.characterId;
 
-		const posts = await selectAllPostsModel(title, content, req.character?.id, limit, offset);
+		const posts = await selectAllPostsModel(searchTerm, characterId, limit, offset);
 		res.send({
 			status: "ok",
 			data: {
