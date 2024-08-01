@@ -42,12 +42,13 @@ const CharacterSelectionComponent = ({ characters }) => {
 		characterSelection(characterId);
 	};
 
+	
+
 	return (
 		<div className="p-4">
 			{characters ? (
 				<div>
-					<label htmlFor="characters" className="block text-gray-700 text-sm font-bold mb-2">
-						Personajes
+					<label htmlFor="characters" className="block  text-gray-700 text-sm font-bold mb-2">
 					</label>
 					<Select
 						options={characters.map((character) => ({
@@ -63,7 +64,7 @@ const CharacterSelectionComponent = ({ characters }) => {
 									) : (
 										<img src="/default-guild.png" alt="default-avatar" className="w-8 h-8 rounded-full mr-2" />
 									)}
-									<span className="text-gray-700">{character.character_name}</span>
+									<span className=" text-gray-700">{character.character_name}</span>
 								</div>
 							),
 						}))}

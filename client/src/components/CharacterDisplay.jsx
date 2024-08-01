@@ -14,13 +14,8 @@ const CharacterDisplay = () => {
 			<NotCharacterComponent/>
 		);
 	}
-	return (
-		<>	
-        <h2>
-            Personajes
-        </h2>
+	return (	
         <CharacterSelectionComponent characters={userCharacters} />
-		</>
 	);
 };
 
