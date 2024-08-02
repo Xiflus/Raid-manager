@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -34,7 +33,6 @@ const GuildPage = () => {
 	if (loading) {
 		return <h1>Cargando...</h1>;
 	}
-
 	return (
 		<>
 			<div className="">

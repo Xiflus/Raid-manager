@@ -7,7 +7,6 @@ import { CharacterContext } from "../context/CharacterContext";
 const CharacterSelectionComponent = ({ characters }) => {
 	const { selectedCharacter, characterSelection } = useContext(CharacterContext);
 	const [selectedOption, setSelectedOption] = useState(null);
-	console.log("CharacterSelectionComponent - personajes", characters);
 
 	useEffect(() => {
 		// Formatea los datos para react-select
@@ -33,7 +32,6 @@ const CharacterSelectionComponent = ({ characters }) => {
 		if (selectedCharacter) {
 			const currentOption = options.find((option) => option.value === selectedCharacter.id);
 			setSelectedOption(currentOption);
-			console.log("CharacterSelectionComponent - selectedChar", selectedCharacter);
 		}
 	}, [characters, selectedCharacter]);
 
@@ -42,27 +40,24 @@ const CharacterSelectionComponent = ({ characters }) => {
 		characterSelection(characterId);
 	};
 
-	
-
 	return (
 		<div className="p-4">
 			{characters ? (
 				<div>
-					<label htmlFor="characters" className="block  text-gray-700 text-sm font-bold mb-2">
-					</label>
+					<label htmlFor="characters" className="block  text-gray-700 text-sm font-bold mb-2"></label>
 					<Select
 						options={characters.map((character) => ({
 							value: character.id,
 							label: (
 								<div className="flex items-center">
-									{character.avatar?.length > 0 ? (
+									{character?.character_avatar === null ? (
+										<img src="/default-guild.png" alt="default-avatar" className="w-8 h-8 rounded-full mr-2" />
+									) : (
 										<img
-											src={`${VITE_API_URL}/${character?.avatar}`}
+											src={`${VITE_API_URL}/${character?.character_avatar}`}
 											alt={`${character.character_name} avatar`}
 											className="w-8 h-8 rounded-full mr-2"
 										/>
-									) : (
-										<img src="/default-guild.png" alt="default-avatar" className="w-8 h-8 rounded-full mr-2" />
 									)}
 									<span className=" text-gray-700">{character.character_name}</span>
 								</div>
@@ -93,10 +88,10 @@ const CustomOption = (props) => {
 CharacterSelectionComponent.propTypes = {
 	characters: PropTypes.arrayOf(
 		PropTypes.shape({
-			id: PropTypes.string.isRequired,
-			name: PropTypes.string.isRequired,
-			class: PropTypes.string.isRequired,
-			avatar: PropTypes.string.isRequired,
+			id: PropTypes.string,
+			character_name: PropTypes.string,
+			character_class: PropTypes.string,
+			character_avatar: PropTypes.string,
 		})
 	).isRequired,
 };

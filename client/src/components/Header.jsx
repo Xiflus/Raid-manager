@@ -7,7 +7,7 @@ import { AuthContext } from "../context/AuthContext";
 const Header = () => {
 	const { authUser } = useContext(AuthContext);
 	return (
-		<header className="bg-gray-950">
+		<header className="bg-gray-900 text-white w-full h-[var(--header-height)]">
 			<div className="flex justify-between items-center px-4 py-2">
 				<LogoBar />
 				{authUser ? (
