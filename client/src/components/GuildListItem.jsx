@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+
 const { VITE_API_URL } = import.meta.env;
 
 const GuildListItem = ({ guild }) => {
@@ -16,6 +17,7 @@ const GuildListItem = ({ guild }) => {
 				<h1>{guild.name}</h1>
 				<p>{guild.description}</p>
 				<p>Miembros: {guild.members}</p>
+
 				<Link to={`/guilds/${guild.id}`}>+ Info</Link>
 			</div>
 		</>

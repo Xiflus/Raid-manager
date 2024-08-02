@@ -28,16 +28,6 @@ app.use(
 	})
 );
 
-app.use((req, res, next) => {
-	if (req.path.startsWith("/api/guilds") && req.method === "POST" && req.headers["content-type"]?.startsWith("multipart/form-data")) {
-		next();
-	} else {
-		express.json()(req, res, next);
-	}
-});
-
-app.use(express.urlencoded({ extended: true }));
-
 app.use(
 	fileUpload({
 		createParentPath: true,
@@ -47,6 +37,9 @@ app.use(
 		abortOnlimit: true,
 	})
 );
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static(UPLOADS_DIR));
 
 app.use(morgan("dev"));

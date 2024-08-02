@@ -10,6 +10,6 @@ router.get("/api/guilds/:guildId/posts", authUserController, guildExistsControll
 
 router.get("/api/guilds/:guildId/posts/:postId", authUserController, guildExistsController, isMemberController, getPostController);
 
-router.put("/api/guilds/:guildId/posts/:postId/likes", authUserController, guildExistsController, isMemberController, addLikesController);
+router.post("/api/guilds/:guildId/posts/:postId/likes", authUserController, guildExistsController, isMemberController, addLikesController);
 
 export default router;

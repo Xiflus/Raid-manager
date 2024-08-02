@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 const { VITE_API_URL } = import.meta.env;
 import { getGuildService } from "../../services/guildService";
+import usePosts from "../hooks/usePosts.js";
+import Pagination from "../components/Pagination";
+import PostList from "../components/PostList";
 
 const GuildPage = () => {
-	const character = JSON.parse(localStorage.getItem("selectedCharacter"));
-	console.log("GuildPage", character);
-
+	const { posts, prevPage, nextPage, currentPage, totalPages, totalPosts, goToPage } = usePosts();
 	const { guildId } = useParams();
 	const [guild, setGuild] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -32,7 +33,6 @@ const GuildPage = () => {
 	if (loading) {
 		return <h1>Cargando...</h1>;
 	}
-
 	return (
 		<>
 			<div className="">
@@ -50,6 +50,17 @@ const GuildPage = () => {
 					<strong>Descripción: </strong>
 					{guild.description}
 				</p>
+				<div>
+					<PostList posts={posts} />
+					<Pagination
+						prevPage={prevPage}
+						nextPage={nextPage}
+						currentPage={currentPage}
+						totalPages={totalPages}
+						totalPosts={totalPosts}
+						goToPage={goToPage}
+					/>
+				</div>
 				<Link to={`/guilds/${guild.id}/posts/create`}>Nuevo post</Link>
 				<Link to={`/guilds/${guild.id}/edit`}> Editar Hermandad </Link>
 			</div>
