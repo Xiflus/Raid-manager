@@ -70,29 +70,27 @@ const UserGuildListComponent = () => {
   }, [userCharacters]);
 
   if (loading) {
-    return <p>Cargando...</p>;
+    return <p className="text-center text-white">Cargando...</p>;
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return <p className="text-center text-red-500">{error}</p>;
   }
 
   return (
-    <div>
-      <h1>Personajes con Hermandades</h1>
-      <ul>
+    <div className="flex flex-col items-center text-white font-bold">
+      <h1 className="text-2xl mb-4 mt-8 text-gray-300">Personajes con Hermandades</h1>
+      <ul className="space-y-4">
         {filteredCharacters.map((character) => (
-          <li key={character.guildId}>
-            <p>Nombre de la hermandad: {guildDetails[character.guildId]?.name || "Hermandad no encontrada"}</p>
-            <p>Personaje: {character.characterName}</p>
-            <p>Avatar:{}</p>
+          <li key={character.guildId} className="bg-gray-800 p-4 rounded-lg shadow-lg w-full max-w-md">
+            <p className="text-lg">Nombre de la hermandad: {guildDetails[character.guildId]?.name || "Hermandad no encontrada"}</p>
+            <p className="text-lg">Personaje: {character.characterName}</p>
           </li>
         ))}
       </ul>
     </div>
   );
 };
-
 UserGuildListComponent.propTypes = {};
 
 export default UserGuildListComponent;
