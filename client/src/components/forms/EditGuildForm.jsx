@@ -9,59 +9,48 @@ import Button from "../jsxComponents/Button.jsx";
 import PropTypes from "prop-types";
 
 const EditGuildForm = ({ onSubmit }) => {
-    const guildnameRef = useRef();
-    const descriptionRef = useRef();
-    const avatarRef = useRef();
-    const { guildId } = useParams();
+	const guildnameRef = useRef();
+	const descriptionRef = useRef();
+	const avatarRef = useRef();
+	const { guildId } = useParams();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const name = guildnameRef.current.value;
-        let description = descriptionRef.current.value;
-        let avatar = avatarRef.current.files[0];
-        description = description === "" ? null : description;
-        avatar = avatar ? avatar : null;
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const name = guildnameRef.current.value;
+		let description = descriptionRef.current.value;
+		let avatar = avatarRef.current.files[0];
+		description = description === "" ? null : description;
+		avatar = avatar ? avatar : null;
 
-        const formData = new FormData();
-        formData.append("name", name);
-        if (description) formData.append("description", description);
-        if (avatar) formData.append("avatar", avatar);
+		const formData = new FormData();
+		formData.append("name", name);
+		if (description) formData.append("description", description);
+		if (avatar) formData.append("avatar", avatar);
 
-        try {
-            await editGuildService({ guildId, formData });
-            toast.success("Hermandad modificada correctamente");
-            guildnameRef.current.value = "";
-            descriptionRef.current.value = "";
-            avatarRef.current.value = "";
-            if (onSubmit) onSubmit();
-        } catch (error) {
-            toast.error(error.message);
-        }
-    };
+		try {
+			await editGuildService({ guildId, formData });
+			toast.success("Hermandad modificada correctamente");
+			guildnameRef.current.value = "";
+			descriptionRef.current.value = "";
+			avatarRef.current.value = "";
+			if (onSubmit) onSubmit();
+		} catch (error) {
+			toast.error(error.message);
+		}
+	};
 
-    return (
-        <form onSubmit={handleSubmit} className="space-y-6">
-            <TextInput
-                id="guildname"
-                label="Nombre de la hermandad:"
-                placeholder="Nombre de la hermandad"
-                ref={guildnameRef}
-                required
-            />
-            <TextArea
-                id="description"
-                label="Descripción:"
-                placeholder="Descripción (opcional)"
-                ref={descriptionRef}
-            />
-            <FileInput id="avatar" label="Avatar:" ref={avatarRef} />
-            <Button type="submit">Modificar Hermandad</Button>
-        </form>
-    );
+	return (
+		<form onSubmit={handleSubmit} className="space-y-6">
+			<TextInput id="guildname" label="Nombre de la hermandad:" placeholder="Nombre de la hermandad" ref={guildnameRef} required />
+			<TextArea id="description" label="Descripción:" placeholder="Descripción (opcional)" ref={descriptionRef} />
+			<FileInput id="avatar" label="Avatar:" ref={avatarRef} />
+			<Button type="submit" text="Modificar Hermandad" />
+		</form>
+	);
 };
 
 EditGuildForm.propTypes = {
-    onSubmit: PropTypes.func,
+	onSubmit: PropTypes.func,
 };
 
 export default EditGuildForm;

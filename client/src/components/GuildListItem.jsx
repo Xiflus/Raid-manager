@@ -6,11 +6,12 @@ const GuildListItem = ({ guild }) => {
 	if (!guild) {
 		return <h1>No hay guilds creadas actualmente</h1>;
 	}
+	console.log("GuildListItem", guild);
 
 	return (
 		<>
 			<div>
-				<img src={guild.avatar?.name ? `${VITE_API_URL}/${guild.avatar?.name}` : "/default-guild.png"} alt="" />
+				<img src={guild?.avatar ? `${VITE_API_URL}/${guild?.avatar}` : "/default-guild.png"} alt="" />
 
 				<h1>{guild.name}</h1>
 				<p>{guild.description}</p>
@@ -23,10 +24,10 @@ const GuildListItem = ({ guild }) => {
 GuildListItem.propTypes = {
 	guild: PropTypes.shape({
 		id: PropTypes.string.isRequired,
-		name: PropTypes.string.isRequired,
-		description: PropTypes.string.isRequired,
-		members: PropTypes.number.isRequired,
-		avatar: PropTypes.string.isRequired,
+		name: PropTypes.string,
+		description: PropTypes.string,
+		members: PropTypes.number,
+		avatar: PropTypes.string,
 	}).isRequired,
 };
 export default GuildListItem;

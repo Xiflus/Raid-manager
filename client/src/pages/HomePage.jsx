@@ -10,12 +10,8 @@ const HomePage = () => {
 	const { guilds, prevPage, nextPage, currentPage, totalPages, totalGuilds, goToPage } = useGuilds();
 
 	return !authUser ? (
-		<main className="flex flex-col items-center justify-center flex-1 bg-black text-orange-500">
-			<img
-				src="raidManager.png" // Reemplaza esto con la URL de tu imagen
-				alt="Profile"
-				className="w-48 h-48 rounded-full mb-6"
-			/>
+		<div className="flex flex-col items-center justify-center flex-1 bg-black text-orange-500">
+			<img src="raidManager.png" alt="Profile" className="w-48 h-48 rounded-full mb-6" />
 			<div className="flex space-x-4">
 				<Link to="/login" className="text-orange-500  text-2xl hover:text-orange-700">
 					Iniciar sesión
@@ -24,7 +20,7 @@ const HomePage = () => {
 					Registrarse
 				</Link>
 			</div>
-		</main>
+		</div>
 	) : (
 		<main className="flex flex-col items-center justify-center min-h-screen bg-black text-orange-500">
 			<div className="flex flex-col items-center">
