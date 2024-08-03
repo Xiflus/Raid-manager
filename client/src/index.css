@@ -1,23 +1,6 @@
-/* * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-div#root {
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-}
-
-div#root > header,
-div#root > footer {
-	padding: 1rem;
-	text-align: center;
-	background-color: rgb(241, 68, 68);
-}
-
-main {
-	flex-grow: 1;
-	padding: 1rem;
-} */
+@font-face {
+	font-family: 'LifeCraft';
+	src: url('../public/fonts/LifeCraft_Font.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+  };
