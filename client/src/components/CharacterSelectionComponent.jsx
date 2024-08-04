@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
-const { VITE_API_URL } = import.meta.env;
 import { CharacterContext } from "../context/CharacterContext";
+const { VITE_API_URL } = import.meta.env;
 
 const CharacterSelectionComponent = ({ characters }) => {
 	const { selectedCharacter, characterSelection } = useContext(CharacterContext);
@@ -42,14 +42,11 @@ const CharacterSelectionComponent = ({ characters }) => {
 		characterSelection(characterId);
 	};
 
-	
-
 	return (
 		<div className="p-4">
 			{characters ? (
 				<div>
-					<label htmlFor="characters" className="block  text-gray-700 text-sm font-bold mb-2">
-					</label>
+					<label htmlFor="characters" className="block  text-gray-700 text-sm font-bold mb-2"></label>
 					<Select
 						options={characters.map((character) => ({
 							value: character.id,

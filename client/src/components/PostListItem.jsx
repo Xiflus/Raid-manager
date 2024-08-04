@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-// import LikeButton from "./jsxComponents/LikeButton";
+import LikeButton from "./jsxComponents/LikeButton";
 
 const PostListItem = ({ post }) => {
 	console.log("PostListItem", post);
@@ -12,7 +12,7 @@ const PostListItem = ({ post }) => {
 			</Link>
 			<p>{post.content}</p>
 			<div className="post-item">
-				<div className="post-footer">{/* <LikeButton postId={post.id} initialStateLike={post.likedByMe} initialLikesCount={post.likes} /> */}</div>
+				<div className="post-footer">{<LikeButton postId={post.id} initialStateLike={post.likedByMe} initialLikesCount={post.likes} />}</div>
 			</div>
 		</li>
 	);
