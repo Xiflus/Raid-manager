@@ -9,76 +9,72 @@ import Button from "../components/jsxComponents/Button.jsx";
 import PageContainer from "../components/PageContainer.jsx";
 import FormContainer from "../components/FormContainer.jsx";
 
+const characterOptions = [
+    { value: "Warrior", label: "Guerrero", img: "/public/imgCharacters/guerrero.png" },
+    { value: "Paladin", label: "Paladín", img: "/public/imgCharacters/paladin.png" },
+    { value: "Hunter", label: "Cazador", img: "/public/imgCharacters/cazador.png" },
+    { value: "Rogue", label: "Pícaro", img: "/public/imgCharacters/picaro.png" },
+    { value: "Priest", label: "Sacerdote", img: "/public/imgCharacters/sacerdote.png" },
+    { value: "Shaman", label: "Chamán", img: "/public/imgCharacters/chaman.png" },
+    { value: "Mage", label: "Mago", img: "/public/imgCharacters/mago.png" },
+    { value: "Warlock", label: "Brujo", img: "/public/imgCharacters/brujo.png" },
+    { value: "Monk", label: "Monje", img: "/public/imgCharacters/monje.png" },
+    { value: "Druid", label: "Druida", img: "/public/imgCharacters/druida.png" },
+    { value: "Demon Hunter", label: "Cazador de demonios", img: "/public/imgCharacters/cazadorDeDemonios.png" },
+    { value: "Death Knight", label: "Caballero de la muerte", img: "/public/imgCharacters/caballeroDeLaMuerte.png" },
+    { value: "Evoker", label: "Evocador", img: "/public/imgCharacters/evocador.png" }
+];
+
 const CreateCharacterPage = () => {
-	const { fetchUserCharacters } = useContext(CharacterContext);
-	const nameRef = useRef();
-	const characterClassRef = useRef();
-	const avatarRef = useRef();
+    const { fetchUserCharacters } = useContext(CharacterContext);
+    const nameRef = useRef();
+    const characterClassRef = useRef();
+    const avatarRef = useRef();
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		const name = nameRef.current.value;
-		const characterClass = characterClassRef.current.value;
-		let avatar = avatarRef.current.files[0];
-		avatar = avatar ? avatar : null;
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const name = nameRef.current.value;
+        const characterClass = characterClassRef.current.value;
+        let avatar = avatarRef.current.files[0];
+        avatar = avatar ? avatar : null;
 
-		const formData = new FormData();
-		formData.append("characterName", name);
-		formData.append("characterClass", characterClass);
-		if (avatar) formData.append("avatar", avatar);
+        const formData = new FormData();
+        formData.append("characterName", name);
+        formData.append("characterClass", characterClass);
+        if (avatar) formData.append("avatar", avatar);
 
-		try {
-			const newCharacter = await createCharacterService(formData);
-			console.log("CreateCharacterPage", newCharacter);
-			toast.success("Personaje creado correctamente");
-			nameRef.current.value = "";
-			characterClassRef.current.value = "";
-			avatarRef.current.value = "";
-			await fetchUserCharacters();
-		} catch (error) {
-			toast.error(error.message);
-		}
-	};
+        try {
+            const newCharacter = await createCharacterService(formData);
+            console.log("CreateCharacterPage", newCharacter);
+            toast.success("Personaje creado correctamente");
+            nameRef.current.value = "";
+            characterClassRef.current.value = "";
+            avatarRef.current.value = "";
+            await fetchUserCharacters();
+        } catch (error) {
+            toast.error(error.message);
+        }
+    };
 
-	return (
-		<PageContainer>
-			<FormContainer>
-				<h2 className="text-white text-2xl font-bold mb-6 text-center">Creación de Personaje</h2>
-				<form onSubmit={handleSubmit} className="space-y-6">
-					<TextInput id="name" label="Nombre del personaje:" placeholder="Nombre del personaje" ref={nameRef} required />
-					<SelectInput
-						id="class"
-						label="Selecciona una clase:"
-						options={[
-							{ value: "Warrior", label: "Guerrero" },
-							{ value: "Paladin", label: "Paladín" },
-							{ value: "Hunter", label: "Cazador" },
-							{ value: "Rogue", label: "Pícaro" },
-							{ value: "Priest", label: "Sacerdote" },
-							{ value: "Shaman", label: "Chamán" },
-							{ value: "Mage", label: "Mago" },
-							{ value: "Warlock", label: "Brujo" },
-							{ value: "Monk", label: "Monje" },
-							{ value: "Druid", label: "Druida" },
-							{
-								value: "Demon Hunter",
-								label: "Cazador de demonios",
-							},
-							{
-								value: "Death Knight",
-								label: "Caballero de la muerte",
-							},
-							{ value: "Evoker", label: "Evocador" },
-						]}
-						ref={characterClassRef}
-						required
-					/>
-					<FileInput id="avatar" label="Avatar:" ref={avatarRef} />
-					<Button type="submit" text="Crear Personaje" />
-				</form>
-			</FormContainer>
-		</PageContainer>
-	);
+    return (
+        <PageContainer>
+            <FormContainer>
+                <h2 className="text-white text-2xl font-bold mb-6 text-center">Creación de Personaje</h2>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <TextInput id="name" label="Nombre del personaje:" placeholder="Nombre del personaje" ref={nameRef} required />
+                    <SelectInput
+                        id="class"
+                        label="Selecciona una clase:"
+                        options={characterOptions}
+                        ref={characterClassRef}
+                        required
+                    />
+                    <FileInput id="avatar" label="Avatar:" ref={avatarRef} />
+                    <Button type="submit" text="Crear Personaje" />
+                </form>
+            </FormContainer>
+        </PageContainer>
+    );
 };
 
 export default CreateCharacterPage;
