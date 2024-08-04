@@ -10,19 +10,21 @@ const addLikesModel = async (value, characterId, postsId) => {
 		[characterId, postsId]
 	);
 	console.log("addLikesModel", likes);
-	if (likes.length > 0) {
+	if (likes[0].count > 0) {
 		await pool.query(
 			`
 			UPDATE likes SET value = ? WHERE character_id = ? AND postId = ?`,
 			[value, characterId, postsId]
 		);
-		return;
+	} else {
+		await pool.query(
+			`
+			INSERT INTO likes (id, value, character_id, postId) VALUES (?, ?, ?, ?)`,
+			[likeId, value, characterId, postsId]
+		);
 	}
-	await pool.query(
-		`
-        INSERT INTO likes (id, value, character_id, postId) VALUES (?, ?, ?, ?)`,
-		[likeId, value, characterId, postsId]
-	);
+	const [[updatedLikes]] = await pool.query(`SELECT COUNT(*) as totalLikes FROM likes WHERE postId = ? AND value = true`, [postsId]);
+	return updatedLikes.totalLikes;
 };
 
 export default addLikesModel;

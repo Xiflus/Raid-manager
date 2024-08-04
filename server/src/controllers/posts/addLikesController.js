@@ -4,17 +4,18 @@ import validateSchema from "../../schemas/utilities/validateSchema.js";
 
 const addLikesController = async (req, res, next) => {
 	try {
-		const { value } = req.body;
-		const characterId = req.session.characterId;
+		const { value, characterId } = req.body;
+
 		const postId = req.params.postId;
 		const validData = { value };
-		console.log("request body:", validData);
+		console.log("addLikesController", characterId, postId, value);
 		await validateSchema(addLikesSchema, validData);
 
-		await addLikesModel(value, characterId, postId);
+		const totalLikes = await addLikesModel(value, characterId, postId);
 		res.status(200).send({
 			status: "ok",
 			message: "+1",
+			data: { likes: totalLikes },
 		});
 	} catch (error) {
 		next(error);

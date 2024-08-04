@@ -74,8 +74,8 @@ export const getPostService = async (postsId) => {
 	return body.data;
 };
 
-export const likePostsService = async (guildId, postId, characterId, value) => {
-	console.log("likePOstService", guildId, postId, value);
+export const likePostsService = async (guildId, postId, value, characterId) => {
+	console.log("likePostService", guildId, postId, value);
 	const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId}/posts/${postId}/likes`, {
 		method: "POST",
 		headers: {

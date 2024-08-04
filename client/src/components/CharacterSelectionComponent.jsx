@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
-const { VITE_API_URL } = import.meta.env;
 import { CharacterContext } from "../context/CharacterContext";
+const { VITE_API_URL } = import.meta.env;
 
 const CharacterSelectionComponent = ({ characters }) => {
 	const { selectedCharacter, characterSelection } = useContext(CharacterContext);
