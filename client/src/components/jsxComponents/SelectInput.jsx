@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const applyGradientToText = (text) => {
-    return text.split('').map((char, index) => (
-        <span key={index} className="letter" data-letter={char}>
-            {char}
-        </span>
-    ));
-};
-
 const SelectInput = React.forwardRef(
     ({ id, label, options, required }, ref) => {
         const [currentIndex, setCurrentIndex] = useState(0);
@@ -86,7 +78,7 @@ SelectInput.propTypes = {
         PropTypes.shape({
             value: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
-            img: PropTypes.string.isRequired, // Añadir esta línea para la imagen
+            img: PropTypes.string.isRequired,
         })
     ).isRequired,
     required: PropTypes.bool,
