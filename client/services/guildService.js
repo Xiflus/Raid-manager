@@ -77,3 +77,19 @@ export const getGuildService = async (guildId) => {
 
 	return body.data;
 };
+
+export const joinGuildService = async (guildId,characterName) => {
+	const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId}/join`, {
+		method: "POST",
+		headers: {
+			'Content-Type': 'application/json',
+			authorization: localStorage.getItem("authToken"),
+		},
+		body: JSON.stringify({ characterName }),
+	});
+	const body = await res.json();
+	if (body.status === "error") {
+		throw new Error(body.message);
+	}
+	return body.data;
+};
