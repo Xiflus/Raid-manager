@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/api/guilds/:guildId/posts", authUserController, guildExistsController, isMemberController, newPostController);
 
-router.get("/api/guilds/:guildId/posts", authUserController, guildExistsController, isMemberController, postsListController);
+router.get("/api/guilds/:guildId/posts", authUserController, guildExistsController, postsListController);
 
 router.get("/api/guilds/:guildId/posts/:postId", authUserController, guildExistsController, isMemberController, getPostController);
 

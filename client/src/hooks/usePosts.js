@@ -12,8 +12,7 @@ const usePosts = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(null);
 	const [totalPosts, setTotalPosts] = useState(null);
-	const guildId = useParams();
-	console.log("usePosts", guildId);
+	const { guildId } = useParams();
 	const fetchPosts = async (page) => {
 		try {
 			const { posts, totalPosts, totalPages } = await selectPostsPageService(guildId, page);
@@ -34,7 +33,6 @@ const usePosts = () => {
 	const goToPage = (page) => {
 		setCurrentPage(page);
 	};
-	console.log("usePosts", posts);
 	return { posts, setPosts, searchTerm, setSearchTerm, prevPage, nextPage, currentPage, totalPages, totalPosts, goToPage };
 };
 
