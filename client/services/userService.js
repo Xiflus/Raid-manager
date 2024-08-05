@@ -71,7 +71,9 @@ export const getPrivateProfileService = async () => {
 export const updateUserService = async (username) => {
 	const res = await fetch(`${VITE_API_URL}/api/users`, {
 		method: "put",
-		headers: setHeaders().headers,
+		headers: {"content-type": "application/json",
+			authorization:localStorage.getItem("authToken")
+		},
 		body: JSON.stringify({
 			username,
 		}),
@@ -88,7 +90,9 @@ export const updateAvatarService = async (avatar) => {
 	formData.append("avatar", avatar);
 	const res = await fetch(`${VITE_API_URL}/api/users/avatar`, {
 		method: "put",
-		headers: setHeaders().headers,
+		headers: {
+			authorization:localStorage.getItem("authToken")
+		},
 		body: formData,
 	});
 	const body = await res.json();
@@ -102,7 +106,9 @@ export const recoverPasswordService = async ({ email }) => {
 	console.log(email);
 	const res = await fetch(`${VITE_API_URL}/api/users/password/recover`, {
 		method: "POST",
-		headers: setHeaders().headers,
+		headers: {
+			"content-type": "application/json",
+		},
 		body: JSON.stringify({ email }),
 	});
 
@@ -117,7 +123,7 @@ export const recoverPasswordService = async ({ email }) => {
 export const resetPasswordService = async (recoverPassCode, newPassword) => {
 	const res = await fetch(`${VITE_API_URL}/api/users/password/reset/${recoverPassCode}`, {
 		method: "PUT",
-		headers: setHeaders().headers,
+		headers:{ "content-type": "application/json"},
 		body: JSON.stringify({ newPassword }),
 	});
 
@@ -133,7 +139,9 @@ export const resetPasswordService = async (recoverPassCode, newPassword) => {
 export const changePasswordService = async (currentPassword, newPassword) => {
 	const res = await fetch(`${VITE_API_URL}/api/users/password/change`, {
 		method: "PUT",
-		headers: setHeaders().headers,
+		headers: {"content-type": "application/json",
+			authorization:localStorage.getItem("authToken")
+		},
 		body: JSON.stringify({ currentPassword, newPassword }),
 	});
 
