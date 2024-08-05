@@ -7,6 +7,7 @@ import { getGuildService } from "../../services/guildService";
 import usePosts from "../hooks/usePosts.js";
 import Pagination from "../components/Pagination";
 import PostList from "../components/PostList";
+import JoinRequestButton from "../components/JoinRequestButton.jsx";
 import { CharacterContext } from "../context/CharacterContext";
 
 const GuildPage = () => {
@@ -49,6 +50,7 @@ const GuildPage = () => {
 
 	const characterGuildId = selectedCharacter[0]?.guild_id;
 	const characterRole = selectedCharacter[0]?.role;
+	const characterName = selectedCharacter[0]?.character_name;
 
 	return (
 		<>
@@ -67,6 +69,8 @@ const GuildPage = () => {
 					<strong>Descripción: </strong>
 					{guild.description}
 				</p>
+				{!characterGuildId && 
+				<JoinRequestButton guildId={guildId} characterName={characterName}/>}
 
 				{characterGuildId === guild.id && (
 					<>
@@ -85,6 +89,11 @@ const GuildPage = () => {
 						{characterRole === "staff" && (
 							<>
 								<Link to={`/guilds/${guild.id}/edit`}>Editar Hermandad</Link>
+								<div>
+									<p>
+										Crear un componente para mostrar las solicitudes de unión a un admin
+									</p>
+								</div>
 							</>
 						)}
 					</>
