@@ -41,8 +41,8 @@ export const editGuildService = async ({ guildId, formData }) => {
 	return body.data;
 };
 
-export const selectAllGuildsService = async () => {
-	const res = await fetch(`${VITE_API_URL}/api/guilds`, setHeaders());
+export const selectAllGuildsService = async (searchTerm) => {
+	const res = await fetch(`${VITE_API_URL}/api/guilds?searchTerm=${searchTerm}`, setHeaders());
 
 	const body = await res.json();
 
@@ -75,5 +75,21 @@ export const getGuildService = async (guildId) => {
 		throw new Error(body.message);
 	}
 
+	return body.data;
+};
+
+export const joinGuildService = async (guildId,characterName) => {
+	const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId}/join`, {
+		method: "POST",
+		headers: {
+			'Content-Type': 'application/json',
+			authorization: localStorage.getItem("authToken"),
+		},
+		body: JSON.stringify({ characterName }),
+	});
+	const body = await res.json();
+	if (body.status === "error") {
+		throw new Error(body.message);
+	}
 	return body.data;
 };
