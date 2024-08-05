@@ -41,8 +41,8 @@ export const editGuildService = async ({ guildId, formData }) => {
 	return body.data;
 };
 
-export const selectAllGuildsService = async () => {
-	const res = await fetch(`${VITE_API_URL}/api/guilds`, setHeaders());
+export const selectAllGuildsService = async (searchTerm) => {
+	const res = await fetch(`${VITE_API_URL}/api/guilds?searchTerm=${searchTerm}`, setHeaders());
 
 	const body = await res.json();
 

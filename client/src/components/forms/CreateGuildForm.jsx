@@ -10,11 +10,11 @@ import { CharacterContext } from "../../context/CharacterContext";
 
 const CreateGuildForm = ({ onSubmit }) => {
 	const { selectedCharacter } = useContext(CharacterContext);
-	const characterName = selectedCharacter.character_name;
-	console.log("selectedCharacter", selectedCharacter);
 	const guildnameRef = useRef();
 	const descriptionRef = useRef();
 	const avatarRef = useRef();
+	const characterName = selectedCharacter[0]?.character_name;
+	console.log("selectedCharacter - characterName", characterName);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -48,7 +48,7 @@ const CreateGuildForm = ({ onSubmit }) => {
 			<TextInput id="guildname" label="Nombre de la hermandad:" placeholder="Nombre de la hermandad" ref={guildnameRef} required />
 			<TextArea id="description" label="Descripción:" placeholder="Descripción (opcional)" ref={descriptionRef} />
 			<FileInput id="avatar" label="Avatar:" ref={avatarRef} />
-			<Button type="submit" text="Crear Personaje" />
+			<Button type="submit" text="Crear Hermandad" />
 		</form>
 	);
 };

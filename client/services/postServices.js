@@ -55,7 +55,9 @@ export const createPostServices = async ({ guildId, formData }) => {
 export const insertFileService = async ({ postsId, formData }) => {
 	const res = await fetch(`${VITE_API_URL}/api/posts/${postsId}/files`, {
 		method: "POST",
-		headers: setHeaders().headers,
+		headers: {
+			Authorization: localStorage.getItem("authToken"),
+		},
 		body: formData,
 	});
 	const body = await res.json();

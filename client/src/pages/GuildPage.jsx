@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 const { VITE_API_URL } = import.meta.env;
@@ -8,31 +7,49 @@ import { getGuildService } from "../../services/guildService";
 import usePosts from "../hooks/usePosts.js";
 import Pagination from "../components/Pagination";
 import PostList from "../components/PostList";
+import { CharacterContext } from "../context/CharacterContext";
 
 const GuildPage = () => {
-	const { posts, prevPage, nextPage, currentPage, totalPages, totalPosts, goToPage } = usePosts();
+	const { selectedCharacter } = useContext(CharacterContext);
 	const { guildId } = useParams();
 	const [guild, setGuild] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const { posts, prevPage, nextPage, currentPage, totalPages, totalPosts, goToPage } = usePosts();
 
 	useEffect(() => {
+		// Si no hay personaje seleccionado, no intentar cargar la guild
+		if (!selectedCharacter || selectedCharacter.length === 0) {
+			setLoading(false);
+			return;
+		}
+
 		const fetchGuild = async () => {
 			try {
 				const response = await getGuildService(guildId);
-				setGuild(response.guild[0]);
-				setLoading(false);
+				setGuild(response?.guild[0]);
 			} catch (error) {
 				console.log("GuildPage", error);
 				toast.error("¡Error al cargar la guild!");
+			} finally {
+				setLoading(false);
 			}
 		};
 		fetchGuild();
-	}, [guildId]);
+	}, [guildId, selectedCharacter]);
 
-	// Falta animacion de carga
+	// Si no hay personaje seleccionado, mostrar un mensaje
+	if (!selectedCharacter || selectedCharacter.length === 0) {
+		return <p>Todavía no has seleccionado ningún personaje, selecciona uno para ver la información de la hermandad.</p>;
+	}
+
+	// Mostrar animación de carga si está cargando
 	if (loading) {
 		return <h1>Cargando...</h1>;
 	}
+
+	const characterGuildId = selectedCharacter[0]?.guild_id;
+	const characterRole = selectedCharacter[0]?.role;
+
 	return (
 		<>
 			<div className="">
@@ -50,19 +67,28 @@ const GuildPage = () => {
 					<strong>Descripción: </strong>
 					{guild.description}
 				</p>
-				<div>
-					<PostList posts={posts} />
-					<Pagination
-						prevPage={prevPage}
-						nextPage={nextPage}
-						currentPage={currentPage}
-						totalPages={totalPages}
-						totalPosts={totalPosts}
-						goToPage={goToPage}
-					/>
-				</div>
-				<Link to={`/guilds/${guild.id}/posts/create`}>Nuevo post</Link>
-				<Link to={`/guilds/${guild.id}/edit`}> Editar Hermandad </Link>
+
+				{characterGuildId === guild.id && (
+					<>
+						<div>
+							<PostList posts={posts} />
+							<Pagination
+								prevPage={prevPage}
+								nextPage={nextPage}
+								currentPage={currentPage}
+								totalPages={totalPages}
+								totalPosts={totalPosts}
+								goToPage={goToPage}
+							/>
+						</div>
+						<Link to={`/guilds/${guild.id}/posts/create`}>Nuevo post</Link>
+						{characterRole === "staff" && (
+							<>
+								<Link to={`/guilds/${guild.id}/edit`}>Editar Hermandad</Link>
+							</>
+						)}
+					</>
+				)}
 			</div>
 		</>
 	);
