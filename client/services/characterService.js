@@ -11,14 +11,16 @@ const setHeaders = () => {
 	if (token) {
 		config.headers.authorization = token;
 	}
+
 	return config;
 };
+console.log("setHeaders.headers", setHeaders().headers);
 
 export const createCharacterService = async (formData) => {
 	const res = await fetch(`${VITE_API_URL}/api/characters`, {
 		method: "POST",
 		headers: {
-			authorization:localStorage.getItem("authToken")
+			authorization: localStorage.getItem("authToken"),
 		},
 		body: formData,
 	});

@@ -10,12 +10,10 @@ import FormContainer from "../components/FormContainer.jsx";
 
 const ProfilePage = () => {
 	const { authUser } = useContext(AuthContext);
-	!authUser && window.location.replace("/login");
 	const navigate = useNavigate();
 
-	// if (!authUser) {
-	// 	navigate("/login");
-	// }
+	!authUser && navigate("/login");
+
 	const handlePasswordClick = () => {
 		navigate("/change/password");
 	};

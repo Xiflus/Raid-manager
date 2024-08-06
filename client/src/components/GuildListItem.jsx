@@ -7,7 +7,6 @@ const GuildListItem = ({ guild }) => {
 	if (!guild) {
 		return <h1>No hay guilds creadas actualmente</h1>;
 	}
-	console.log("GuildListItem", guild);
 
 	return (
 		<>
