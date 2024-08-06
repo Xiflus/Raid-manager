@@ -2,8 +2,11 @@ import { useRef, useContext } from "react";
 import toast from "react-hot-toast";
 import { createPostServices } from "../../services/postServices";
 import { CharacterContext } from "../context/CharacterContext";
+import { AuthContext } from "../context/AuthContext";
 
 const NewPostPage = () => {
+	const { authUser } = useContext(AuthContext);
+	!authUser && window.location.replace("/login");
 	const { selectedCharacter } = useContext(CharacterContext);
 	const titleRef = useRef();
 	const contentRef = useRef();

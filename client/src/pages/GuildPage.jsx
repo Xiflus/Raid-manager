@@ -9,8 +9,11 @@ import Pagination from "../components/Pagination";
 import PostList from "../components/PostList";
 import JoinRequestButton from "../components/JoinRequestButton.jsx";
 import { CharacterContext } from "../context/CharacterContext";
+import { AuthContext } from "../context/AuthContext";
 
 const GuildPage = () => {
+	const { authUser } = useContext(AuthContext);
+	!authUser && window.location.replace("/login");
 	const { selectedCharacter } = useContext(CharacterContext);
 	const { guildId } = useParams();
 	const [guild, setGuild] = useState(null);
@@ -69,8 +72,7 @@ const GuildPage = () => {
 					<strong>Descripción: </strong>
 					{guild.description}
 				</p>
-				{!characterGuildId && 
-				<JoinRequestButton guildId={guildId} characterName={characterName}/>}
+				{!characterGuildId && <JoinRequestButton guildId={guildId} characterName={characterName} />}
 
 				{characterGuildId === guild.id && (
 					<>
@@ -90,9 +92,7 @@ const GuildPage = () => {
 							<>
 								<Link to={`/guilds/${guild.id}/edit`}>Editar Hermandad</Link>
 								<div>
-									<p>
-										Crear un componente para mostrar las solicitudes de unión a un admin
-									</p>
+									<p>Crear un componente para mostrar las solicitudes de unión a un admin</p>
 								</div>
 							</>
 						)}
