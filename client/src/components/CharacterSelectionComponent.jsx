@@ -34,11 +34,14 @@ const CharacterSelectionComponent = ({ characters }) => {
 			setSelectedOption(currentOption);
 		}
 	}, [characters, selectedCharacter]);
+
 	// Cambia el personaje seleccionado mediante el contexto
 	const handleChange = (selectedOption) => {
 		const characterId = selectedOption.value;
 		characterSelection(characterId);
 	};
+
+
 
 	return (
 		<div className="p-4">
