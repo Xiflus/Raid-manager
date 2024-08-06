@@ -81,16 +81,16 @@ const UserGuildListComponent = () => {
   }
   const isCharacterSelected = selectedCharacter && selectedCharacter.length > 0;
   return (
-    <div className="flex flex-col items-center text-white font-bold">
+    <div className="flex flex-col items-center text-white font-bold ">
       <h1 className="text-2xl mb-4 mt-8 text-gray-300">
         Personajes con Hermandades
       </h1>
       <ul className="space-y-4">
         {filteredCharacters.map((character) => (
           <li
-            key={character.guildId}
-            className="bg-gray-800 p-4 rounded-lg shadow-lg w-full max-w-md"
-          >
+          key={character.guildId}
+          className="bg-gray-800 p-4 rounded-lg w-full shadow-orange-semi-transparent max-w-md transition-transform duration-300 hover:scale-105"
+        >
             <p className="text-lg">
               Nombre de la hermandad:{" "}
               <Link

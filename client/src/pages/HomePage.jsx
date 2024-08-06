@@ -23,7 +23,7 @@ const HomePage = () => {
 	return !authUser ? (
 		<main className="flex flex-col items-center justify-center flex-1 bg-black text-orange-500">
 			<img
-				src="raidManager.png" // Reemplaza esto con la URL de tu imagen
+				src="raidManager.png"
 				alt="Profile"
 				className="w-48 h-48 rounded-full mb-6"
 			/>
