@@ -1,5 +1,5 @@
 import { useRef, useContext } from "react";
-import toast from "react-hot-toast";
+import { showToast } from "../../utils/toast.jsx";
 import { createGuildService } from "../../../services/guildService.js";
 import TextInput from "../jsxComponents/TextInput.jsx";
 import TextArea from "../jsxComponents/TextArea.jsx";
@@ -14,7 +14,6 @@ const CreateGuildForm = ({ onSubmit }) => {
 	const descriptionRef = useRef();
 	const avatarRef = useRef();
 	const characterName = selectedCharacter[0]?.character_name;
-	console.log("selectedCharacter - characterName", characterName);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -31,15 +30,14 @@ const CreateGuildForm = ({ onSubmit }) => {
 		if (avatar) formData.append("avatar", avatar);
 
 		try {
-			console.log("formData", formData);
 			await createGuildService(formData);
-			toast.success("Hermandad creada correctamente");
+			showToast("Hermandad creada correctamente", "success");
 			guildnameRef.current.value = "";
 			descriptionRef.current.value = "";
 			avatarRef.current.value = "";
 			if (onSubmit) onSubmit();
-		} catch (error) {
-			toast.error(error.message);
+		} catch (err) {
+			showToast(err.message, "error");
 		}
 	};
 

@@ -5,7 +5,6 @@ const manageGuildRequest = async (characterId, guildId, status, joinReqId) => {
 	const pool = await getPool();
 	// revisar si el usuario ya existe?
 	let [characters] = await pool.query("SELECT id, character_name, user_id, guild_id FROM characters WHERE id = ?", [characterId]);
-	console.log(status);
 	let character = characters[0];
 	let characterName = character.character_name;
 

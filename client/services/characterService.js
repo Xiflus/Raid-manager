@@ -14,21 +14,35 @@ const setHeaders = () => {
 
 	return config;
 };
-console.log("setHeaders.headers", setHeaders().headers);
 
 export const createCharacterService = async (formData) => {
-	const res = await fetch(`${VITE_API_URL}/api/characters`, {
-		method: "POST",
-		headers: {
-			authorization: localStorage.getItem("authToken"),
-		},
-		body: formData,
-	});
-	const body = await res.json();
-	if (body.status === "error") {
-		throw new Error(body.message.character);
+	try {
+		const res = await fetch(`${VITE_API_URL}/api/characters`, {
+			method: "POST",
+			headers: {
+				authorization: localStorage.getItem("authToken"),
+			},
+			body: formData,
+		});
+
+		if (!res.ok) {
+			// Manejar los errores HTTP
+			const errorBody = await res.json();
+			throw new Error(errorBody.message);
+		}
+
+		const body = await res.json();
+		if (body.status === "error") {
+			// Manejar los errores del cuerpo de la respuesta
+			throw new Error(body.message.character);
+		}
+
+		return body.data.character;
+	} catch (error) {
+		// Re-lanzar el error para que pueda ser manejado por el consumidor del servicio
+		console.error("Error en createCharacterService:", error); // Para depuración
+		throw error;
 	}
-	return body.data.character;
 };
 
 export const getUserCharacterService = async () => {

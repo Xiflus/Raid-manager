@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import Button from "./jsxComponents/Button";
 import { joinGuildService } from "../../services/guildService";
 
@@ -11,9 +11,9 @@ const JoinRequestButton = ({guildId,characterName}) => {
   const handleClick = async () => {
     try {
         await joinGuildService(guildId,characterName);
-        toast.success("Solicitud a hermandad enviada correctamente. Recibirás un email con la confirmación pronto.")
+        showToast("Solicitud a hermandad enviada correctamente. Recibirás un email con la confirmación pronto.", "success")
     } catch (err) {
-        toast.error("Error al solicitar unión.")
+        showToast("Error al solicitar unión.", "error")
     }
     
       };

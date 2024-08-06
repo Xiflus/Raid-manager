@@ -1,5 +1,5 @@
 import { useRef, useContext } from "react";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import { createCharacterService } from "../../services/characterService.js";
 import { CharacterContext } from "../context/CharacterContext.jsx";
 import { AuthContext } from "../context/AuthContext.jsx";
@@ -12,11 +12,11 @@ import FormContainer from "../components/FormContainer.jsx";
 
 const characterOptions = [
 	{ value: "Warrior", label: "Guerrero", img: "/public/imgCharacters/guerrero.png" },
-	{ value: "Paladin", label: "Paladín", img: "/public/imgCharacters/paladin.png" },
+	{ value: "Paladin", label: "Paladin", img: "/public/imgCharacters/paladin.png" },
 	{ value: "Hunter", label: "Cazador", img: "/public/imgCharacters/cazador.png" },
-	{ value: "Rogue", label: "Pícaro", img: "/public/imgCharacters/picaro.png" },
+	{ value: "Rogue", label: "Picaro", img: "/public/imgCharacters/picaro.png" },
 	{ value: "Priest", label: "Sacerdote", img: "/public/imgCharacters/sacerdote.png" },
-	{ value: "Shaman", label: "Chamán", img: "/public/imgCharacters/chaman.png" },
+	{ value: "Shaman", label: "Chaman", img: "/public/imgCharacters/chaman.png" },
 	{ value: "Mage", label: "Mago", img: "/public/imgCharacters/mago.png" },
 	{ value: "Warlock", label: "Brujo", img: "/public/imgCharacters/brujo.png" },
 	{ value: "Monk", label: "Monje", img: "/public/imgCharacters/monje.png" },
@@ -48,14 +48,13 @@ const CreateCharacterPage = () => {
 
 		try {
 			const newCharacter = await createCharacterService(formData);
-			console.log("CreateCharacterPage", newCharacter);
-			toast.success("Personaje creado correctamente");
+			showToast("Personaje creado correctamente", "success");
 			nameRef.current.value = "";
 			characterClassRef.current.value = "";
 			avatarRef.current.value = "";
 			await fetchUserCharacters();
-		} catch (error) {
-			toast.error(error.message);
+		} catch (err) {
+		showToast(err.message, "error");
 		}
 	};
 

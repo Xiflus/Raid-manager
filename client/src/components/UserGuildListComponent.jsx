@@ -1,11 +1,10 @@
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import { useEffect, useState, useContext } from "react";
 import { CharacterContext } from "../context/CharacterContext";
 import { getGuildService } from "../../services/guildService";
 
 const UserGuildListComponent = () => {
 	const { userCharacters } = useContext(CharacterContext);
-	console.log("User Characters:", userCharacters);
 
 	const [filteredCharacters, setFilteredCharacters] = useState([]);
 	const [guildDetails, setGuildDetails] = useState({});
@@ -29,21 +28,16 @@ const UserGuildListComponent = () => {
 					const guildPromises = charactersWithGuild.map((character) => getGuildService(character.guildId));
 					const characterGuildDetails = await Promise.all(guildPromises);
 
-					// Log para verificar la estructura
-					console.log("Character Guild Details:", characterGuildDetails);
-
 					// Usa un Map para combinar varias respuestas
 					const guildDetailsMap = new Map();
 
 					characterGuildDetails.forEach((response) => {
 						if (response && response.guild && response.guild.length > 0) {
 							const guild = response.guild[0]; // Asumiendo que quieres el primer elemento del array
-							console.log("Guild Data:", guild);
+						
 							// Añade o actualiza el mapa
 							guildDetailsMap.set(guild.id, guild);
-						} else {
-							toast.error("Unexpected response format");
-						}
+						} 
 					});
 
 					// Convierte el Map en un objeto
@@ -52,7 +46,7 @@ const UserGuildListComponent = () => {
 					setGuildDetails(guildDetailsObject);
 				} catch (err) {
 					setError("Error al buscar los datos de la hermandad");
-					toast.error("Error al buscar los datos de la hermandad", err);
+					showToast("Error al buscar los datos de la hermandad", "error");
 				} finally {
 					setLoading(false);
 				}
@@ -61,7 +55,7 @@ const UserGuildListComponent = () => {
 			if (charactersWithGuild.length > 0) {
 				fetchGuildDetails();
 			} else {
-				toast.error("No tienes ningún personaje con hermandad");
+				showToast("No tienes ningún personaje con hermandad", "error");
 				setLoading(false);
 			}
 		}

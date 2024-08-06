@@ -43,8 +43,6 @@ const newUserController = async (req, res, next) => {
 		});
 	} catch (err) {
 		next(err);
-		// console.log(error);
-		// res.status(500).send("Error en el servidor al crear user");
 	}
 };
 

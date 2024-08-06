@@ -28,7 +28,6 @@ export const saveFile = async (file, width) => {
     // Creamos un objeto de tipo Sharp con la imagen recibida. Para crear la imagen tipo Sharp
     // es necesario pasarle a Sharp el buffer de datos que estará en la propiedad "data" del archivo
     // en cuestión.
-    console.log("Procesando el archivo...");
     const sharpFile = sharp(file.data);
 
     //redimension imagen
@@ -46,7 +45,6 @@ export const saveFile = async (file, width) => {
     //return nombre del archivo
     return fileName;
   } catch (err) {
-    console.log("Error en save file...", err);
     saveFileError();
   }
 };
@@ -64,7 +62,6 @@ export const deleteFile = async (fileName) => {
     //Eliminamos el fichero
     await fs.unlink(filePath);
   } catch (err) {
-    console.log("Error en deleteFile...", err);
     deleteFileError();
   }
 };

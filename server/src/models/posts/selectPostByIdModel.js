@@ -28,7 +28,6 @@ const selectPostByIdModel = async (postId, characterId = "") => {
         `,
 		[characterId, characterId, postId]
 	);
-	console.log("selectPostByIdModel", posts);
 
 	// Si no existe la entrada lanzamos un error.
 	if (posts.length < 1 || posts[0].id === null) {

@@ -7,7 +7,6 @@ const unsubscribeFromGuildController = async (req, res, next) => {
 	await validateSchema(unsubscribeFromGuildSchema, req.body);
 	const guildId = req.params.guildId;
 	const { characterName } = req.body;
-	console.log("unsuscribeFromGuildController", guildName);
 	if (!characterName) {
 		return requiredFieldsError();
 	}
@@ -22,7 +21,6 @@ const unsubscribeFromGuildController = async (req, res, next) => {
 		}
 		const character = characters[0];
 		const guild = guilds[0];
-		console.log("unsuscribeFromGuildController", character, guild);
 
 		await deleteFromGuildModel(character.id, guild.id);
 		res.send({

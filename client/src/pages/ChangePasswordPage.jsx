@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import { AuthContext } from "../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -18,15 +18,15 @@ const ChangePasswordPage = () => {
     const handleChangePassword = async (e) => {
         e.preventDefault();
         if (newPassword !== repeatedNewPassword) {
-            toast.error("Las contraseñas no coinciden");
+            showToast("Las contraseñas no coinciden", "error");
             return;
         }
         try {
             await authChangePassword(currentPassword, newPassword);
-            toast.success("contraseña actualizada, vuelve a loguear");
+            showToast("Contraseña actualizada, vuelve a loguear", "success");
             
         } catch (err) {
-            toast.error(err.message);
+            showToast(err.message, "error");
         }
     };
 

@@ -1,5 +1,5 @@
 import { useRef, useContext } from "react";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import { createPostServices } from "../../services/postServices";
 import { CharacterContext } from "../context/CharacterContext";
 import { AuthContext } from "../context/AuthContext";
@@ -29,9 +29,9 @@ const NewPostPage = () => {
 			titleRef.current.value = "";
 			contentRef.current.value = "";
 			photosRef.current.value = "";
-			toast.success("¡Post creado, vuelve a la hermandad para verlo!");
-		} catch (error) {
-			toast.error(error.message);
+			showToast("¡Post creado, vuelve a la hermandad para verlo!", "success");
+		} catch (err) {
+			showToast(err.message, "error");
 		}
 	};
 	return (

@@ -8,7 +8,6 @@ const addLikesController = async (req, res, next) => {
 
 		const postId = req.params.postId;
 		const validData = { value };
-		console.log("addLikesController", characterId, postId, value);
 		await validateSchema(addLikesSchema, validData);
 
 		const totalLikes = await addLikesModel(value, characterId, postId);

@@ -2,7 +2,7 @@
 import { useEffect, createContext, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import PropTypes from "prop-types";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import { getUserCharacterService, selectCharacterService } from "../../services/characterService.js";
 
 export const CharacterContext = createContext(null);
@@ -26,7 +26,7 @@ export const CharacterProvider = ({ children }) => {
 			const { characters } = await getUserCharacterService(userId);
 			setUserCharacters(characters);
 		} catch (err) {
-			toast.error(err.message);
+			showToast(err.message, "error");
 		}
 	};
 	useEffect(() => {
@@ -36,12 +36,12 @@ export const CharacterProvider = ({ children }) => {
 	const characterSelection = async (characterId) => {
 		try {
 			const data = await selectCharacterService(characterId);
-			toast.success(data.message);
+			showToast(data.message, "success");
 			const character = data.character;
 			setSelectedCharacter(character);
 			sessionStorage.setItem("selectedCharacter", JSON.stringify(character));
 		} catch (err) {
-			toast.error(err.message);
+			showToast(err.message, "error");
 		}
 	};
 

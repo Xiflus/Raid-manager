@@ -8,7 +8,6 @@ const PostList = ({ posts }) => {
 			<h3>Posts</h3>
 			<ul className="post-list">
 				{posts?.map((post) => {
-					console.log("posts", posts);
 					return <PostListItem post={post} key={post.id} />;
 				})}
 			</ul>

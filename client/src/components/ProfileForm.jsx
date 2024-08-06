@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import PropTypes from "prop-types"; // Importar PropTypes
 import TextInput from "../components/jsxComponents/TextInput.jsx";
 import FileInput from "../components/jsxComponents/FileInput.jsx";
@@ -23,15 +23,15 @@ const ProfileForm = () => {
           if (username) {
             await updateUserService(username);
             usernameRef.current.value = "";
-            toast.success("Usuario actualizado correctamente");
+            showToast("Usuario actualizado correctamente", "success");
           }
           if (avatar) {
             await updateAvatarService(avatar);
             avatarRef.current.value = "";
-            toast.success("Avatar actualizado correctamente");
+            showToast("Avatar actualizado correctamente", "success");
           }
         } catch (err) {
-          toast.error(err.message);
+          showToast(err.message, "error");
         }
       };
   return (

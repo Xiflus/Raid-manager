@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import LikeButton from "./jsxComponents/LikeButton";
 
 const PostListItem = ({ post }) => {
-	console.log("PostListItem", post);
 	return (
 		<li className="post-list-item">
 			<Link to={`/posts/${post.id}`}>

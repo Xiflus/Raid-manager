@@ -1,7 +1,7 @@
 import { useEffect, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import {
   getPrivateProfileService,
   singUpService,
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
         const user = await getPrivateProfileService(authToken);
         setAuthUser(user);
       } catch (err) {
-        toast.error(err.message);
+        showToast(err.message, "error");
       }
     };
     if (authToken) fetchUser();
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
       toast.success(message);
       navigate("/login");
     } catch (err) {
-      toast.error(err.message);
+      showToast(err.message, "error");
     }
   };
   const authLogin = async (username, password) => {
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
       toast.success("contraseña actualizada");
       navigate("/login");
     } catch (err) {
-      toast.error(err.message);
+      showToast(err.message, "error");
     }
   };
 
@@ -72,7 +72,7 @@ export const AuthProvider = ({ children }) => {
       authLogout();
       navigate("/login");
     } catch (err) {
-      toast.error(err.message);
+      showToast(err.message, "error");
     }
   };
 

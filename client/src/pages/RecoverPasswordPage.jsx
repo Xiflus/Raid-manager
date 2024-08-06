@@ -1,6 +1,5 @@
 import { useRef } from "react";
-import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { showToast } from "../utils/toast.jsx";
 import { recoverPasswordService } from "../../services/userService.js";
 
 const RecoverPasswordPage = () => {
@@ -12,10 +11,10 @@ const RecoverPasswordPage = () => {
 
 		try {
 			await recoverPasswordService({ email });
-			toast.success("Se ha enviado un enlace de recuperación a su correo electrónico.");
+			showToast("Se ha enviado un enlace de recuperación a su correo electrónico.", "success");
 			emailRef.current.value = "";
-		} catch (error) {
-			toast.error(error.message);
+		} catch (err) {
+			showToast(err.message, "error");
 		}
 	};
 

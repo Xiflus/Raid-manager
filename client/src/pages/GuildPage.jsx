@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 const { VITE_API_URL } = import.meta.env;
 import { getGuildService } from "../../services/guildService";
 import usePosts from "../hooks/usePosts.js";
@@ -32,8 +32,7 @@ const GuildPage = () => {
 				const response = await getGuildService(guildId);
 				setGuild(response?.guild[0]);
 			} catch (error) {
-				console.log("GuildPage", error);
-				toast.error("¡Error al cargar la guild!");
+				showToast("¡Error al cargar la guild!", "error");
 			} finally {
 				setLoading(false);
 			}

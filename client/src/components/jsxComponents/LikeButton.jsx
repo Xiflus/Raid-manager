@@ -2,13 +2,12 @@ import { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { likePostsService } from "../../../services/postServices";
 import { CharacterContext } from "../../context/CharacterContext";
-import toast from "react-hot-toast";
+import { showToast } from "../../utils/toast.jsx";
 
 const LikeButton = ({ postId, initialStateLike, initialLikesCount }) => {
 	const { selectedCharacter } = useContext(CharacterContext);
 
 	const characterId = selectedCharacter[0]?.id;
-	console.log("LikeButton/characterId", characterId);
 
 	const [likedByMe, setLikedByMe] = useState(initialStateLike);
 	const [likes, setLikes] = useState(initialLikesCount);
@@ -22,9 +21,8 @@ const LikeButton = ({ postId, initialStateLike, initialLikesCount }) => {
 		try {
 			const response = await likePostsService(guildId, postId, value, characterId);
 			setLikes(response.likes);
-			console.log("likeButton/handleLike/response", response.likes);
-		} catch (error) {
-			toast.error(error.message);
+		} catch (err) {
+			showToast(err.message, "error");
 		}
 	};
 	return (

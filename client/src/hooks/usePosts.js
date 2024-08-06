@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import { selectPostsPageService } from "../../services/postServices.js";
 import { useParams } from "react-router-dom";
 const usePosts = () => {
@@ -21,8 +21,8 @@ const usePosts = () => {
 			setNextPage(currentPage + 1 > totalPages ? null : currentPage + 1);
 			setTotalPages(totalPages);
 			setTotalPosts(totalPosts);
-		} catch (error) {
-			toast.error(error.message);
+		} catch (err) {
+			showToast(err.message, "error");
 		}
 	};
 	useEffect(() => {

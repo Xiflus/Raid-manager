@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useState, useEffect } from "react";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import { selectGuildsPageService } from "../../services/guildService";
 
 const useGuilds = () => {
@@ -20,8 +20,8 @@ const useGuilds = () => {
 			setNextPage(currentPage + 1 > totalPages ? null : currentPage + 1);
 			setTotalPages(totalPages);
 			setTotalGuilds(totalGuilds);
-		} catch (error) {
-			toast.error(error.message);
+		} catch (err) {
+			showToast(err.message, "error");
 		}
 	};
 	useEffect(() => {

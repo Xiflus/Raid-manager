@@ -103,7 +103,6 @@ export const updateAvatarService = async (avatar) => {
 };
 
 export const recoverPasswordService = async ({ email }) => {
-	console.log(email);
 	const res = await fetch(`${VITE_API_URL}/api/users/password/recover`, {
 		method: "POST",
 		headers: {
