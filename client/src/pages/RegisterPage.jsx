@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import { Navigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -23,7 +23,7 @@ const RegisterPage = () => {
       }
       authRegister(username, email, password);
     } catch (err) {
-      toast.error(err.message);
+      showToast(err.message, "error");
     }
   };
 

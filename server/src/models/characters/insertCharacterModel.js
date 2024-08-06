@@ -24,7 +24,6 @@ const insertCharacterModel = async (characterName, characterClass, avatar, userI
          WHERE id = ?`,
 		[characterId]
 	);
-	console.log(newCharacter[0]);
 
 	return newCharacter[0]; // Devuelve el primer elemento
 };

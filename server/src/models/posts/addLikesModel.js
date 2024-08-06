@@ -9,7 +9,7 @@ const addLikesModel = async (value, characterId, postsId) => {
 		SELECT COUNT(*) as count FROM likes WHERE character_id = ? AND postId = ?`,
 		[characterId, postsId]
 	);
-	console.log("addLikesModel", likes);
+	
 	if (likes[0].count > 0) {
 		await pool.query(
 			`

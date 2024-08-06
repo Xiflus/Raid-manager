@@ -1,10 +1,8 @@
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import LikeButton from "./jsxComponents/LikeButton";
 
 const PostListItem = ({ post }) => {
-	console.log("PostListItem", post);
 	return (
 		<li className="border-2 w-full p-3 bg-gray-900 text-white border-orange-500 rounded-lg placeholder focus:outline-none  m-px">
 			<h2 className="text-xl font-medium center">{post.tittle}</h2>

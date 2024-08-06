@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { CharacterContext } from "../context/CharacterContext";
 import { Navigate, Link } from "react-router-dom";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
@@ -18,8 +18,8 @@ const LoginPage = () => {
 		try {
 			await authLogin(username, password);
 			!userCharacters && <Navigate to="/characters/create" />;
-		} catch (error) {
-			toast.error("Error al iniciar sesión" + error.message);
+		} catch (err) {
+			showToast("Error al iniciar sesión: " + err.message, "error");
 		}
 	};
 

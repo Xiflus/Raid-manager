@@ -1,7 +1,7 @@
 import { useEffect, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import {
   getPrivateProfileService,
   singUpService,
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
         const user = await getPrivateProfileService(authToken);
         setAuthUser(user);
       } catch (err) {
-        toast.error(err.message);
+        showToast(err.message, "error");
       }
     };
     if (authToken) fetchUser();
@@ -34,10 +34,10 @@ export const AuthProvider = ({ children }) => {
   const authRegister = async (username, email, password) => {
     try {
       const message = await singUpService(username, email, password);
-      toast.success(message);
+      showToast(message, "success");
       navigate("/login");
     } catch (err) {
-      toast.error(err.message);
+      showToast(err.message, "error");
     }
   };
   const authLogin = async (username, password) => {
@@ -59,10 +59,10 @@ export const AuthProvider = ({ children }) => {
   const authResetPassword = async (recoverPassCode, newPassword) => {
     try {
       await resetPasswordService(recoverPassCode, newPassword);
-      toast.success("contraseña actualizada");
+      showToast("contraseña actualizada", "success");
       navigate("/login");
     } catch (err) {
-      toast.error(err.message);
+      showToast(err.message, "error");
     }
   };
 
@@ -72,7 +72,7 @@ export const AuthProvider = ({ children }) => {
       authLogout();
       navigate("/login");
     } catch (err) {
-      toast.error(err.message);
+      showToast(err.message, "error");
     }
   };
 

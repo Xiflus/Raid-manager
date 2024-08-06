@@ -1,51 +1,48 @@
-//hooks
 import { useContext, useEffect } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-
-//context
 import { AuthContext } from "../context/AuthContext";
-
-//toast
-import { toast } from "react-hot-toast";
-
 import { activateUserService } from "../../services/userService";
+import { showToast } from "../utils/toast";
 
 const ValidateUserPage = () => {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	const { authUser } = useContext(AuthContext);
+  const { authUser } = useContext(AuthContext);
 
-	const { registrationCode } = useParams();
+  const { registrationCode } = useParams();
 
-	useEffect(() => {
-		const fetchValidateUser = async () => {
-			try {
-				await activateUserService(registrationCode);
+  useEffect(() => {
+    const fetchValidateUser = async () => {
+      try {
+        await activateUserService(registrationCode);
 
-				toast.success("¡Usuario activado correctamente! Logueate para continuar.");
+        showToast(
+          "¡Usuario activado correctamente! Logueate para continuar.",
+          "success"
+        );
 
-				navigate("/login");
-			} catch (error) {
-				toast.error("¡Codigo de activación incorrecto!");
+        navigate("/login");
+      } catch (error) {
+        showToast("¡Codigo de activación incorrecto!", "error");
 
-				navigate("/register");
-			}
-		};
+        navigate("/register");
+      }
+    };
 
-		if (!authUser) {
-			fetchValidateUser();
-		}
-	}, [registrationCode, authUser, navigate]);
+    if (!authUser) {
+      fetchValidateUser();
+    }
+  }, [registrationCode, authUser, navigate]);
 
-	if (authUser) {
-		return <Navigate to="/" />;
-	}
+  if (authUser) {
+    return <Navigate to="/" />;
+  }
 
-	return (
-		<main>
-			<h2>Página de validación de usuario</h2>
-		</main>
-	);
+  return (
+    <main>
+      <h2>Página de validación de usuario</h2>
+    </main>
+  );
 };
 
 export default ValidateUserPage;

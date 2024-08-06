@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import toast from "react-hot-toast";
-import PropTypes from "prop-types"; // Importar PropTypes
+import { showToast } from "../utils/toast.jsx";
+import PropTypes from "prop-types";
 import TextInput from "../components/jsxComponents/TextInput.jsx";
 import FileInput from "../components/jsxComponents/FileInput.jsx";
 import Button from "../components/jsxComponents/Button.jsx";
@@ -27,18 +27,17 @@ const ProfileForm = () => {
             if (username) {
                 await updateUserService(username);
                 usernameRef.current.value = "";
-                toast.success("Usuario actualizado correctamente");
+                showToast("Usuario actualizado correctamente", "success");
             }
             if (avatar) {
-                console.log("profileForm-formData", formData);
                 await updateAvatarService(avatar);
                 avatarRef.current.value = "";
-                toast.success("Avatar actualizado correctamente");
+                showToast("Avatar actualizado correctamente", "success");
             }
             navigate("/users/profile", { replace: true });
             window.location.reload();
         } catch (err) {
-            toast.error(err.message);
+            showToast(err.message, "error");
         }
     };
     return (

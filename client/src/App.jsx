@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -17,6 +16,7 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import ProfilePage from "./pages/ProfilePage";
 import ProfileForm from "./components/ProfileForm";
+import { ToastConfig } from "./utils/toast.jsx";
 
 function App() {
 	return (
@@ -24,7 +24,7 @@ function App() {
 			<div className="flex flex-col min-h-screen">
 				<Header className="w-full fixed top-0 z-10" />
 				<main className="flex-grow mt-[calc(var(--header-height))] mb-[calc(var(--footer-height))]">
-					<Toaster position="top-center" toastOption={{ duration: 10000 }} />
+					<ToastConfig />
 					<Routes>
 						<Route path="*" element={<NotFoundPage />} />
 						<Route path="/" element={<HomePage />} />
