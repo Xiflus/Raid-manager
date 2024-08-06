@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { createPostServices } from "../../services/postServices";
 import { CharacterContext } from "../context/CharacterContext";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const NewPostPage = () => {
 	const { authUser } = useContext(AuthContext);
@@ -11,6 +12,7 @@ const NewPostPage = () => {
 	const titleRef = useRef();
 	const contentRef = useRef();
 	const photosRef = useRef();
+	const navigate = useNavigate();
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const title = titleRef.current.value;
@@ -30,6 +32,8 @@ const NewPostPage = () => {
 			contentRef.current.value = "";
 			photosRef.current.value = "";
 			toast.success("¡Post creado, vuelve a la hermandad para verlo!");
+			//volvemos a la página de perfil
+			navigate(`/guilds/${guildId}`);
 		} catch (error) {
 			toast.error(error.message);
 		}
