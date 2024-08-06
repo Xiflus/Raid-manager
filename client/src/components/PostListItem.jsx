@@ -6,10 +6,8 @@ import LikeButton from "./jsxComponents/LikeButton";
 const PostListItem = ({ post }) => {
 	console.log("PostListItem", post);
 	return (
-		<li className="post-list-item">
-			<Link to={`/posts/${post.id}`}>
-				<h2>{post.tittle}</h2>
-			</Link>
+		<li className="border-2 w-full p-3 bg-gray-900 text-white border-orange-500 rounded-lg placeholder focus:outline-none  m-px">
+			<h2 className="text-xl font-medium center">{post.tittle}</h2>
 			<p>{post.content}</p>
 			<div className="post-item">
 				<div className="post-footer">{<LikeButton postId={post.id} initialStateLike={post.likedByMe} initialLikesCount={post.likes} />}</div>

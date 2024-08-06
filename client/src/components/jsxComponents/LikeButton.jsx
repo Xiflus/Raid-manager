@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import { likePostsService } from "../../../services/postServices";
 import { CharacterContext } from "../../context/CharacterContext";
 import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 
 const LikeButton = ({ postId, initialStateLike, initialLikesCount }) => {
 	const { selectedCharacter } = useContext(CharacterContext);
@@ -12,8 +16,11 @@ const LikeButton = ({ postId, initialStateLike, initialLikesCount }) => {
 
 	const [likedByMe, setLikedByMe] = useState(initialStateLike);
 	const [likes, setLikes] = useState(initialLikesCount);
+
+	const { guildId } = useParams();
+	console.log("LikeButton/guildId", guildId);
+
 	const handleLike = async () => {
-		const guildId = window.location.pathname.split("/")[2];
 		const value = !likedByMe;
 
 		setLikedByMe(value);
@@ -29,9 +36,9 @@ const LikeButton = ({ postId, initialStateLike, initialLikesCount }) => {
 	};
 	return (
 		<div className="like-button">
-			<span className="likes">Likes: {likes}</span>
-			<button onClick={handleLike} className={`like-button ${likedByMe ? "liked" : ""}`}>
-				{likedByMe ? "Liked" : "Like"}
+			<button onClick={handleLike} className="focus:outline-none">
+				<FontAwesomeIcon icon={likedByMe ? solidHeart : regularHeart} className={`text-base ${likedByMe ? "text-red-500" : "text-gray-400"}`} />
+				<span className="ml-px ">{likes}</span>
 			</button>
 		</div>
 	);
