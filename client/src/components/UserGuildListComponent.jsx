@@ -104,9 +104,10 @@ const UserGuildListComponent = () => {
             <p className="text-lg">
               Personaje miembro: {character.characterName}
             </p>
-            {isCharacterSelected &&
+            {isCharacterSelected ?
               selectedCharacter[0]?.id !== character.id && (
-                <button
+                <Link
+                  to={`/guilds/${character.guildId}`}
                   onClick={() => {
                     characterSelection(character.id);
                     // FETCH
@@ -131,8 +132,34 @@ const UserGuildListComponent = () => {
                   className="text-blue-500 hover:underline mt-2"
                 >
                   Visitar hermandad como {character.characterName}
-                </button>
-              )}
+                </Link>
+              ):<Link
+              to={`/guilds/${character.guildId}`}
+              onClick={() => {
+                characterSelection(character.id);
+                // FETCH
+                setSelectedCharacter([
+                  {
+                    // character_avatar: null,
+                    // character_class: "Rogue",
+                    // character_name: "Lina",
+                    // createdAt:
+                    //     "2024-08-01T17:46:05.000Z",
+                    // guild_id:
+                    //     "08c77c47-97b3-43fe-adb5-0dae653b470f",
+                    // id: "87d942c4-8c7f-4b6b-883b-3ae224c1be75",
+                    // modifiedAt:
+                    //     "2024-08-01T17:47:47.000Z",
+                    // role: "staff",
+                    // user_id:
+                    //     "85e8b84c-6ebf-4464-9000-b0f1eec03e13",
+                  },
+                ]);
+              }}
+              className="text-blue-500 hover:underline mt-2"
+            >
+              Visitar hermandad como {character.characterName}
+            </Link>}
           </li>
         ))}
       </ul>
