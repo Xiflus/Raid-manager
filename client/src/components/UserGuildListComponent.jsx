@@ -2,10 +2,11 @@ import toast from "react-hot-toast";
 import { useEffect, useState, useContext } from "react";
 import { CharacterContext } from "../context/CharacterContext";
 import { getGuildService } from "../../services/guildService";
+import { Link } from "react-router-dom";
+
 
 const UserGuildListComponent = () => {
-	const { userCharacters } = useContext(CharacterContext);
-	console.log("User Characters:", userCharacters);
+	const { userCharacters,selectedCharacter,characterSelection } = useContext(CharacterContext);
 
 	const [filteredCharacters, setFilteredCharacters] = useState([]);
 	const [guildDetails, setGuildDetails] = useState({});
@@ -19,6 +20,8 @@ const UserGuildListComponent = () => {
 				.map((character) => ({
 					characterName: character.character_name,
 					guildId: character.guild_id,
+          // sin id:character.id no me salía directamente el botón
+          id:character.id,
 				}));
 			setFilteredCharacters(charactersWithGuild);
 
@@ -75,19 +78,34 @@ const UserGuildListComponent = () => {
 		return <p className="text-center text-red-500">{error}</p>;
 	}
 
-	return (
-		<div className="flex flex-col items-center text-white font-bold">
-			<h1 className="text-2xl mb-4 mt-8 text-gray-300">Personajes con Hermandades</h1>
-			<ul className="space-y-4">
-				{filteredCharacters.map((character) => (
-					<li key={character.guildId} className="bg-gray-800 p-4 rounded-lg shadow-lg w-full max-w-md">
-						<p className="text-lg">Nombre de la hermandad: {guildDetails[character.guildId]?.name || "Hermandad no encontrada"}</p>
-						<p className="text-lg">Personaje: {character.characterName}</p>
-					</li>
-				))}
-			</ul>
-		</div>
-	);
+  return (
+    <div className="flex flex-col items-center text-white font-bold">
+      <h1 className="text-2xl mb-4 mt-8 text-gray-300">Personajes con Hermandades</h1>
+      <ul className="space-y-4">
+        {filteredCharacters.map((character) => (
+          <li key={character.guildId} className="bg-gray-800 p-4 rounded-lg shadow-lg w-full max-w-md">
+            <p className="text-lg">
+              Nombre de la hermandad:{" "}
+              <Link to={`/guilds/${character.guildId}`} className="text-blue-500 hover:underline">
+                {guildDetails[character.guildId]?.name || "Hermandad no encontrada"}
+              </Link>
+            </p>
+            <p className="text-lg">Personaje miembro: {character.characterName}</p>
+            {selectedCharacter[0]?.id !== character.id && (
+              <button
+                onClick={() => {
+                  characterSelection(character.id);
+                }}
+                className="text-blue-500 hover:underline mt-2"
+              >
+                Visitar hermandad como {character.characterName}
+              </button>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 UserGuildListComponent.propTypes = {};
 
