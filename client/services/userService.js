@@ -90,10 +90,8 @@ export const updateUserService = async (username) => {
 };
 
 export const updateAvatarService = async (avatar) => {
-    console.log("userService.js-avatar", avatar);
     const formData = new FormData();
     formData.append("avatar", avatar);
-    console.log("userService.js-formData", formData);
     const res = await fetch(`${VITE_API_URL}/api/users/edit`, {
         method: "put",
         headers: {
@@ -109,7 +107,6 @@ export const updateAvatarService = async (avatar) => {
 };
 
 export const recoverPasswordService = async ({ email }) => {
-    console.log(email);
     const res = await fetch(`${VITE_API_URL}/api/users/password/recover`, {
         method: "POST",
         headers: {

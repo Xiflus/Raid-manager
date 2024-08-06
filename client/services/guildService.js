@@ -26,7 +26,6 @@ export const createGuildService = async (formData) => {
 	return body.data;
 };
 export const editGuildService = async ({ guildId, formData }) => {
-	console.log(formData);
 	const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId}`, {
 		method: "PUT",
 		headers: {

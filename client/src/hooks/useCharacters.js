@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react";
-import toast from "react-hot-toast";
+import { showToast } from "../utils/toast.jsx";
 import { selectCharactersService } from "../../services/characterService";
 
 const useCharacters = () => {
-	const [characters, setCharacters] = useState([]);
-	const fetchCharacters = async () => {
-		try {
-			const { characters } = await selectCharactersService();
-			console.log("characters", characters);
-			setCharacters(characters);
-		} catch (error) {
-			toast.error(error.message);
-		}
-	};
-	useEffect(() => {
-		fetchCharacters();
-	}, []);
-	return { characters };
+  const [characters, setCharacters] = useState([]);
+  const fetchCharacters = async () => {
+    try {
+      const { characters } = await selectCharactersService();
+      setCharacters(characters);
+    } catch (err) {
+      showToast(err.message, "error");
+    }
+  };
+  useEffect(() => {
+    fetchCharacters();
+  }, []);
+  return { characters };
 };
 
 export default useCharacters;

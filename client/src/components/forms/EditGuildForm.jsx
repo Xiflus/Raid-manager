@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useParams } from "react-router-dom";
-import toast from "react-hot-toast";
+import { showToast } from "../../utils/toast.jsx";
 import { editGuildService } from "../../../services/guildService.js";
 import TextInput from "../jsxComponents/TextInput.jsx";
 import TextArea from "../jsxComponents/TextArea.jsx";
@@ -29,13 +29,13 @@ const EditGuildForm = ({ onSubmit }) => {
 
 		try {
 			await editGuildService({ guildId, formData });
-			toast.success("Hermandad modificada correctamente");
+			showToast("Hermandad modificada correctamente", "success");
 			guildnameRef.current.value = "";
 			descriptionRef.current.value = "";
 			avatarRef.current.value = "";
 			if (onSubmit) onSubmit();
-		} catch (error) {
-			toast.error(error.message);
+		} catch (err) {
+			showToast(err.message, "error");
 		}
 	};
 

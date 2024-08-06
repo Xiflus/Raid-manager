@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import PropTypes from "prop-types";
 import GuildListItem from "./GuildListItem";
 import { Link } from "react-router-dom";
 

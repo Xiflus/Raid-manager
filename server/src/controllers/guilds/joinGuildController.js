@@ -22,8 +22,6 @@ const joinGuildController = async (req, res, next) => {
 
 		const character = characters[0];
 		const guild = guilds[0];
-		/* console.log("character",character)
-		console.log("guild",guild) */
 		const requestId = uuid4();
 
 		await joinRequestModel(requestId, character.id, guild.id);

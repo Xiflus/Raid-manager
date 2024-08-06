@@ -2,7 +2,6 @@ import getPool from "../../db/getPool.js";
 import { notFoundError } from "../../services/errorService.js";
 
 const recoverPasswordModel = async (email, recoverPassCode) => {
-	console.log("recoverPasswordModel", email, recoverPassCode);
 	const pool = await getPool();
 	const users = await pool.query(`SELECT id, recoverPassCode FROM users WHERE email = ?`, [email]);
 	const user = users[0];

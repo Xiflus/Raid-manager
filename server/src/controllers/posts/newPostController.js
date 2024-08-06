@@ -17,8 +17,6 @@ const newPostController = async (req, res, next) => {
 		await insertPostModel(entryId, title, content, characterId);
 		const character = await selectUserCharacterModel(userId, characterId);
 
-		console.log("Personaje", character);
-
 		//preparamos para posible multimedia
 		let files = [];
 

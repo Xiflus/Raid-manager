@@ -13,7 +13,6 @@ const SearchBar = ({ placeholder, onSearch }) => {
 			const data = await selectAllGuildsService(searchWord);
 			onSearch(data.guilds);
 		} catch (error) {
-			console.error("Error fetching guilds:", error);
 			onSearch([]);
 		} finally {
 			setLoading(false);

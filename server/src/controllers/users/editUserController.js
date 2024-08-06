@@ -14,20 +14,15 @@ const editUserController = async (req, res, next) => {
         const userId = req.user.id;
         const user = await selectUserbyIdModel(userId);
 
-        console.log("Usuario encontrado:", user);
         username = username === user.username ? null : username;
         let avatar;
 
         if (req.files) {
-            console.log("Archivos recibidos:", req.files);
             if (user.avatar) {
-                console.log("Avatar antiguo encontrado:", user.avatar);
                 await deleteFile(user.avatar);
             }
             const file = req.files.avatar;
-            console.log("Archivo avatar recibido:", file);
             avatar = await saveFile(file, 150);
-            console.log("Nuevo avatar guardado:", avatar);
         }
 
         await updateUserModel(username, avatar, userId);
