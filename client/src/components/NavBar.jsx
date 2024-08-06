@@ -1,12 +1,15 @@
+import { showToast } from "../utils/toast.jsx";
 import { Link, useLocation } from "react-router-dom";
 import { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { CharacterContext } from "../context/CharacterContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import LogoBar from "./LogoBar";
 
 const NavBar = () => {
   const { authLogout, authUser } = useContext(AuthContext);
+  const { selectedCharacter } = useContext(CharacterContext);
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
   const location = useLocation();
@@ -71,24 +74,42 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="w-full text-center">
-              <Link
-                className="text-white font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg"
-                to="/guilds/create"
-                onClick={() => setIsOpen(false)}
-              >
-                Crear hermandad
-              </Link>
+              {selectedCharacter ? (
+                <Link
+                  className="text-white font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg"
+                  to="/guilds/create"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Crear hermandad
+                </Link>
+              ) : (
+                <Link
+                  className="text-white font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg"
+                  to="/characters/create"
+                  onClick={() => {
+                    setIsOpen(false);
+                    showToast(
+                      "Crea o selecciona un personaje para continuar",
+                      "error"
+                    );
+                  }}
+                >
+                  Crear hermandad
+                </Link>
+              )}
             </li>
             <li className="w-full text-center">
               <Link
                 className="text-white font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg"
                 to="/characters/create"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                }}
               >
                 Crear personaje
               </Link>
             </li>
-            <li >
+            <li>
               <button
                 className="text-white font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg focus:outline-none"
                 onClick={() => {
