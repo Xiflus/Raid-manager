@@ -14,7 +14,6 @@ const HomePage = () => {
 	// Este useEffect actualiza filteredGuilds cuando guilds cambia
 	useEffect(() => {
 		setFilteredGuilds(guilds);
-		console.log("HomePage - guilds", guilds);
 	}, [guilds]);
 
 	const handleSearch = (searchResults) => {
