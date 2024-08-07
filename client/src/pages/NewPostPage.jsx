@@ -31,7 +31,7 @@ const NewPostPage = () => {
 			titleRef.current.value = "";
 			contentRef.current.value = "";
 			photosRef.current.value = "";
-			showToast("¡Post creado, vuelve a la hermandad para verlo!", "success");
+			showToast("¡Post creado!", "success");
 			//volvemos a la página de perfil
 			navigate(`/guilds/${guildId}`);
 		} catch (err) {
