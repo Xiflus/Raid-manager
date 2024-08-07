@@ -33,8 +33,8 @@ router.delete("/api/guilds/:guildId", authUserController, guildExistsController,
 
 router.post("/api/guilds/:guildId/join", authUserController, guildExistsController, joinGuildController);
 
-router.get("/api/guilds/:guildId/join-req", authUserController, guildExistsController, isStaffController, listGuildJoinReqController);
+router.get("/api/guilds/:guildId/join-req", authUserController, guildExistsController, listGuildJoinReqController);
 
-router.put("/api/guilds/:guildId/:joinReqId", authUserController, guildExistsController, isStaffController, validateMembersController);
+router.put("/api/guilds/:guildId/join-req/:joinReqId", authUserController, guildExistsController, validateMembersController);
 
 export default router;

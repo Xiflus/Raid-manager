@@ -3,7 +3,7 @@ import { selectJoinReqByIdModel, manageGuildRequest, addMemberToGuildModel } fro
 
 const validateMembersController = async (req, res, next) => {
 	try {
-		const status = req.body.status;
+		const { status } = req.body;
 		const joinReqId = req.params.joinReqId;
 
 		const requestArray = await selectJoinReqByIdModel(joinReqId);
@@ -13,7 +13,7 @@ const validateMembersController = async (req, res, next) => {
 
 		const guildId = req.params.guildId;
 
-		const { characterName, guildName, userMail, reqStatus } = await manageGuildRequest(characterId, guildId, status, joinReqId);
+		const { characterName, guildName, userMail } = await manageGuildRequest(characterId, guildId, status, joinReqId);
 		const emailSubject = "Solicitud de union a la hermandad";
 		let emailBody = "";
 		status === "approved"
@@ -33,14 +33,14 @@ const validateMembersController = async (req, res, next) => {
     Si necesitas mas informacion puedes contactar con el admistrador de la hermandad.
 
    `);
+		status === "approved" && (await addMemberToGuildModel(characterId, guildId));
 
-		await addMemberToGuildModel(characterId, guildId);
 		await sendMailUtil(userMail, emailSubject, emailBody);
 
 		res.send({
 			status: "ok",
-			message: "Usuario creado correctamente, por favor revisa tu correo ...",
-			data: { characterName, guildName, userMail, reqStatus },
+			message: "Miembro validado y añadido a la hermandad",
+			data: { characterName, guildName, userMail },
 		});
 	} catch (err) {
 		console.log(err);
