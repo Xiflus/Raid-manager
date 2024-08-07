@@ -28,7 +28,7 @@ const ChangePasswordPage = () => {
   };
 
   return (
-    <main className="bg-black flex flex-col items-center justify-center flex-1 p-4">
+    <main className="bg-black flex flex-col items-center justify-center min-h-screen p-4">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-white text-2xl font-bold mb-6 text-center">
           Cambiar contraseña
