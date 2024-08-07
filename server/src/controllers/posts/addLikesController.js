@@ -10,11 +10,11 @@ const addLikesController = async (req, res, next) => {
 		const validData = { value };
 		await validateSchema(addLikesSchema, validData);
 
-		const totalLikes = await addLikesModel(value, characterId, postId);
+		const { totalLikes, likedByMe } = await addLikesModel(value, characterId, postId);
 		res.status(200).send({
 			status: "ok",
 			message: "+1",
-			data: { likes: totalLikes },
+			data: { likes: totalLikes, likedByMe },
 		});
 	} catch (error) {
 		next(error);

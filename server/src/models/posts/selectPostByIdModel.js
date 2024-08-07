@@ -18,7 +18,7 @@ const selectPostByIdModel = async (postId, characterId = "") => {
                 p.character_id,
                 p.character_id = ? AS owner,
                 c.character_name,
-                AVG(IFNULL(v.value,0))AS likes,
+                COUNT(l.value)AS likes,
                 BIT_OR(l.character_id=?) AS likedByMe,
                 p.createdAt
             FROM posts p
