@@ -5,7 +5,9 @@ const { VITE_API_URL } = import.meta.env;
 
 const GuildListItem = ({ guild }) => {
 	if (!guild) {
-		return <h1>No hay guilds creadas actualmente</h1>;
+		return <h1 className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl">
+		Todavía no hay hermandades creadas, crea una <Link to="/guilds/create" className="text-blue-400 hover:underline">aquí</Link>
+	</h1>;
 	}
 
 	return (
