@@ -51,16 +51,20 @@ const GuildPage = () => {
   // Si no hay personaje seleccionado, mostrar un mensaje
   if (!selectedCharacter || selectedCharacter.length === 0) {
     return (
-      <p>
-        Todavía no has seleccionado ningún personaje, selecciona uno para ver la
-        información de la hermandad.
-      </p>
+      <div className="flex items-center justify-center min-h-screen bg-black p-4">
+        <p className="text-white text-lg">
+          Todavía no has seleccionado ningún personaje, selecciona uno para ver la información de la hermandad.
+        </p>
+      </div>
     );
   }
 
-  // Mostrar animación de carga si está cargando
   if (loading) {
-    return <h1>Cargando...</h1>;
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-black p-4">
+        <h1 className="text-white text-lg">Cargando...</h1>
+      </div>
+    );
   }
 
   const characterGuildId = selectedCharacter[0]?.guild_id;
@@ -68,38 +72,35 @@ const GuildPage = () => {
   const characterName = selectedCharacter[0]?.character_name;
 
   return (
-    <>
+    <div className="bg-black min-h-screen flex flex-col items-center p-4 pb-10">
       {guild && (
         <>
-          <div className="">
-            <h1>{guild.name}</h1>
-          </div>
-          <div className="">
-            {guild.avatar?.length > 0 ? (
-              <img src={`${VITE_API_URL}/${guild?.avatar}`} alt="" />
-            ) : (
-              <img src="/default-guild.png" alt="" />
-            )}
-          </div>
-          <div className="">
-            <p>
-              <strong>Miembros: </strong>
-              {guild.members}
-            </p>
-            <p>
-              <strong>Descripción: </strong>
-              {guild.description}
-            </p>
-            {!characterGuildId && (
-              <JoinRequestButton
-                guildId={guildId}
-                characterName={characterName}
+          <div className="w-full max-w-4xl  bg-gray-800 p-6 rounded-lg shadow-lg mb-8">
+            <h1 className="flex items-center justify-center text-3xl font-bold  text-white mb-4">{guild.name}</h1>
+            <div className="flex items-center justify-center mb-4">
+              <img
+                src={guild.avatar ? `${VITE_API_URL}/${guild.avatar}` : "/default-guild.png"}
+                alt={guild.name}
+                className="size-48 rounded-full mt-1 shadow-orange-semi-transparent"
               />
+            </div>
+            <p className="flex items-center justify-center text-white text-lg mb-4">
+              <strong>Miembros:</strong> {guild.members}
+            </p>
+            <textarea
+              className="w-full p-3 bg-gray-900 text-white border border-orange-500 rounded-lg resize-none"
+              readOnly
+              rows="4"
+              value={guild.description}
+            />
+            {!characterGuildId && (
+              <div className="mb-4">
+                <JoinRequestButton guildId={guildId} characterName={characterName} />
+              </div>
             )}
-
             {characterGuildId === guild.id && (
               <>
-                <div>
+                <div className="mb-4">
                   <PostList posts={posts} />
                   <Pagination
                     prevPage={prevPage}
@@ -110,16 +111,23 @@ const GuildPage = () => {
                     goToPage={goToPage}
                   />
                 </div>
-                <Link to={`/guilds/${guild.id}/posts/create`}>Nuevo post</Link>
+                <Link
+                  to={`/guilds/${guild.id}/posts/create`}
+                  className="w-full py-3 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-700 transition-colors mb-4 block text-center"
+                >
+                  Nuevo post
+                </Link>
                 {characterRole === "staff" && (
                   <>
-                    <Link to={`/guilds/${guild.id}/edit`}>
+                    <Link
+                      to={`/guilds/${guild.id}/edit`}
+                      className="w-full py-3 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-700 transition-colors mb-4 block text-center"
+                    >
                       Editar Hermandad
                     </Link>
-                    <div>
-                      <p>
-                        Crear un componente para mostrar las solicitudes de
-                        unión a un admin
+                    <div className="bg-gray-800 p-4 rounded-lg shadow-lg mb-4">
+                      <p className="text-white">
+                        Crear un componente para mostrar las solicitudes de unión a un admin
                       </p>
                     </div>
                   </>
@@ -129,7 +137,7 @@ const GuildPage = () => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 export default GuildPage;
