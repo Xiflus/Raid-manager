@@ -9,8 +9,13 @@ import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 
 const LikeButton = ({ postId, initialStateLike, initialLikesCount }) => {
+	console.log("LikeButton -> postId", postId);
+	console.log("LikeButton -> initialStateLike", initialStateLike);
+	console.log("LikeButton -> initialLikesCount", initialLikesCount);
+
 	const { selectedCharacter } = useContext(CharacterContext);
 	const characterId = selectedCharacter[0]?.id;
+
 	const [likedByMe, setLikedByMe] = useState(initialStateLike);
 	const [likes, setLikes] = useState(initialLikesCount);
 	const { guildId } = useParams();

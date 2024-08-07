@@ -2,9 +2,8 @@ import { totalPostCountModel, selectAllPostsModel } from "../../models/posts/ind
 
 const postsListController = async (req, res, next) => {
 	try {
-		let { searchTerm, page = 1 } = req.query;
-		const characterId = req.session?.characterId;
-		console.log("Character ID from session:", characterId);
+		let { characterId, searchTerm, page = 1 } = req.query;
+		console.log("postsListController -> characterId", characterId);
 
 		page = Number(page);
 		const limit = 4;
