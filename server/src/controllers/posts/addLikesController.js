@@ -5,6 +5,7 @@ import validateSchema from "../../schemas/utilities/validateSchema.js";
 const addLikesController = async (req, res, next) => {
 	try {
 		const { value, characterId } = req.body;
+		console.log("addLikesController -> characterId", characterId);
 
 		const postId = req.params.postId;
 		const validData = { value };

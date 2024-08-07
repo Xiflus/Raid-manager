@@ -1,7 +1,8 @@
 import getPool from "../../db/getPool.js";
 
-const selectAllPostsModel = async (searchTerm = "", characterId = "", limit, offset) => {
+const selectAllPostsModel = async (searchTerm = "", characterId, limit, offset) => {
 	const pool = await getPool();
+	console.log("selectAllPostsModel -> characterId", characterId);
 
 	const [posts] = await pool.query(
 		`SELECT 
@@ -11,8 +12,8 @@ const selectAllPostsModel = async (searchTerm = "", characterId = "", limit, off
             p.character_id,
             p.character_id = ? as owner,
             c.character_name,
-            COUNT(l.value) AS likes,
-            BIT_OR(l.character_id = ? AND l.value = true) AS likedByMe,
+            COUNT(CASE WHEN l.value = 1 THEN 1 ELSE NULL END) AS likes,
+            EXISTS (SELECT 1 FROM likes WHERE postId = p.id AND character_id = ? AND value = 1) AS likedByMe,
             p.createdAt
         FROM posts p
         INNER JOIN characters c ON c.id = p.character_id
@@ -43,6 +44,7 @@ const selectAllPostsModel = async (searchTerm = "", characterId = "", limit, off
 		// Cambiamos el tipo de la propiedad "likedByMe" de Number a Boolean.
 		post.likedByMe = Boolean(post.likedByMe);
 	}
+
 	return posts;
 };
 
