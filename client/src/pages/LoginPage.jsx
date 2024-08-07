@@ -26,7 +26,7 @@ const LoginPage = () => {
 	if (authUser) return <Navigate to="/" />;
 
 	return (
-		<main className="bg-black flex flex-col items-center justify-center flex-1">
+		<main className="bg-black flex flex-col items-center justify-center min-h-screen">
 			<div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
 				<form onSubmit={handleLogin} className="space-y-6">
 					<h1 className="text-white text-2xl font-bold text-center">Tus credenciales</h1>

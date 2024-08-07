@@ -1,47 +1,78 @@
-@import './index.css';
+@import "./index.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @layer utilities {
-    .radial-gradient {
-        background: radial-gradient(circle, rgba(55, 65, 81, 0.8) 0%, rgba(107, 114, 128, 0.8) 50%, rgba(229, 231, 235, 0.8) 100%);
-      }
-    }
+  .radial-gradient {
+    background: radial-gradient(
+      circle,
+      rgba(55, 65, 81, 0.8) 0%,
+      rgba(107, 114, 128, 0.8) 50%,
+      rgba(229, 231, 235, 0.8) 100%
+    );
+  }
+}
 
 .text-gradient {
-    display: inline-block;
-    background: linear-gradient(to right, #d4af37, #b8860b); /* Degradado de dorado a dorado oscuro */
-    -webkit-background-clip: text; /* Para navegadores WebKit (Chrome, Safari) */
-    -moz-background-clip: text;    /* Para Firefox */
-    background-clip: text;         /* Para otros navegadores */
-    color: transparent;            /* Hacer que el texto sea transparente para mostrar el degradado */
+  display: inline-block;
+  background: linear-gradient(
+    to right,
+    #d4af37,
+    #b8860b
+  ); /* Degradado de dorado a dorado oscuro */
+  -webkit-background-clip: text; /* Para navegadores WebKit (Chrome, Safari) */
+  -moz-background-clip: text; /* Para Firefox */
+  background-clip: text; /* Para otros navegadores */
+  color: transparent; /* Hacer que el texto sea transparente para mostrar el degradado */
 }
 
 .letter-wrapper {
-    display: inline-block;
-    position: relative;
+  display: inline-block;
+  position: relative;
 }
 
 .letter-wrapper::after {
-    content: attr(data-letter);
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: linear-gradient(to right, #d4af37, #b8860b); /* Degradado dorado */
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra del texto */
-    z-index: 1;
-    display: block;
-    white-space: pre;
+  content: attr(data-letter);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    to right,
+    #d4af37,
+    #b8860b
+  ); /* Degradado dorado */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+  z-index: 1;
+  display: block;
+  white-space: pre;
 }
 
 .letter {
-    display: inline-block;
-    position: relative;
+  display: inline-block;
+  position: relative;
 }
 
 .shadow-orange-semi-transparent {
-    box-shadow: 0 4px 6px -1px rgba(255, 165, 0, 0.4), 0 2px 4px -1px rgba(255, 165, 0, 0.4);
-  }
+  box-shadow:
+    0 4px 6px -1px rgba(255, 165, 0, 0.4),
+    0 2px 4px -1px rgba(255, 165, 0, 0.4);
+}
+
+:root {
+  --header-height: 5rem; /* Ajusta esta altura según tu diseño */
+  --footer-height: 2rem; /* Ajusta esta altura según tu diseño */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding-top: var(--header-height);
+  padding-bottom: var(--footer-height);
+  overflow-x: hidden; /* Evita el desbordamiento horizontal */
+}
