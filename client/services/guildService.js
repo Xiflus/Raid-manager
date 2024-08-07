@@ -77,14 +77,46 @@ export const getGuildService = async (guildId) => {
 	return body.data;
 };
 
-export const joinGuildService = async (guildId,characterName) => {
+export const joinGuildService = async (guildId, characterName) => {
 	const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId}/join`, {
 		method: "POST",
 		headers: {
-			'Content-Type': 'application/json',
+			"Content-Type": "application/json",
 			authorization: localStorage.getItem("authToken"),
 		},
 		body: JSON.stringify({ characterName }),
+	});
+	const body = await res.json();
+	if (body.status === "error") {
+		throw new Error(body.message);
+	}
+	return body.data;
+};
+
+export const JoinRequestListService = async (guildId) => {
+	const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId}/join-req`, {
+		headers: {
+			authorization: localStorage.getItem("authToken"),
+		},
+	});
+
+	const body = await res.json();
+
+	if (body.status === "error") {
+		throw new Error(body.message);
+	}
+
+	return body.data;
+};
+
+export const validateMembersService = async (guildId, joinReqId, status) => {
+	const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId}/join-req/${joinReqId}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			authorization: localStorage.getItem("authToken"),
+		},
+		body: JSON.stringify({ status }),
 	});
 	const body = await res.json();
 	if (body.status === "error") {
