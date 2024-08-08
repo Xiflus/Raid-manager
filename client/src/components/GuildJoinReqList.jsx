@@ -20,9 +20,8 @@ const GuildJoinReqList = ({ guildId }) => {
 		fetchRequestCount();
 	}, [guildId]);
 	return (
-		<div className="w-full py-3 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-700 transition-colors mb-4 block text-center flex items-center justify-center">
-      <InboxIcon guildId={guildId} requestCount={requestCount} className="text-gray-500" />
-      <span className="text-white ml-2">Solicitudes de hermandad</span>
+		<div>
+      <InboxIcon guildId={guildId} requestCount={requestCount} />
     </div>
 	);
 };
