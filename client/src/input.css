@@ -62,8 +62,8 @@
 }
 
 :root {
-  --header-height: 5rem; /* Ajusta esta altura según tu diseño */
-  --footer-height: 2rem; /* Ajusta esta altura según tu diseño */
+  --header-height: 5rem;
+  --footer-height: 2rem;
 }
 
 body {
@@ -74,5 +74,5 @@ body {
 main {
   padding-top: var(--header-height);
   padding-bottom: var(--footer-height);
-  overflow-x: hidden; /* Evita el desbordamiento horizontal */
+  overflow-x: hidden; 
 }

@@ -28,7 +28,7 @@ const CharacterSelectionComponent = ({ characters }) => {
               className="w-8 h-8 rounded-full mr-2"
             />
           )}
-          <span className="text-gray-700">{character.character_name}</span>
+          <span className="text-white">{character.character_name}</span>
         </div>
       ),
     }));
@@ -48,16 +48,16 @@ const CharacterSelectionComponent = ({ characters }) => {
     characterSelection(characterId);
   };
 
-
   return (
     <div className="p-4">
       {characters ? (
         <div>
           <label
             htmlFor="characters"
-            className="block  text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-700 text-sm font-bold mb-2"
           ></label>
           <Select
+            classNamePrefix="react-select"
             options={characters.map((character) => ({
               value: character.id,
               label: (
@@ -75,7 +75,7 @@ const CharacterSelectionComponent = ({ characters }) => {
                       className="w-8 h-8 rounded-full mr-2"
                     />
                   )}
-                  <span className=" text-gray-700">
+                  <span className="text-white">
                     {character.character_name}
                   </span>
                 </div>
@@ -83,8 +83,37 @@ const CharacterSelectionComponent = ({ characters }) => {
             }))}
             onChange={handleChange}
             placeholder="Selecciona un personaje"
-            components={{ Option: CustomOption }}
             value={selectedOption}
+            styles={{
+              control: (provided, state) => ({
+                ...provided,
+                backgroundColor: 'gray',
+                color: 'white',
+                border: '1px solid transparent', // Elimina el borde
+                boxShadow: 'none', // Elimina la sombra
+                minHeight: '38px', // Tamaño fijo del Select
+                width: '250px', // Tamaño fijo del Select
+                '&:hover': {
+                  border: '1px solid transparent' // Elimina el borde en hover
+                }
+              }),
+              singleValue: (provided) => ({
+                ...provided,
+                color: 'white'
+              }),
+              menu: (provided) => ({
+                ...provided,
+                backgroundColor: 'gray'
+              }),
+              option: (provided, state) => ({
+                ...provided,
+                backgroundColor: state.isSelected ? 'darkgray' : 'gray',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#F97316', // Color de fondo en hover
+                }
+              })
+            }}
           />
         </div>
       ) : (
@@ -113,6 +142,7 @@ CharacterSelectionComponent.propTypes = {
     })
   ).isRequired,
 };
+
 CustomOption.propTypes = {
   data: PropTypes.shape({
     label: PropTypes.node.isRequired,

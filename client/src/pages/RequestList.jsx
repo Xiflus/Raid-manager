@@ -51,20 +51,20 @@ const RequestList = () => {
     return (
         <PageContainer>
             <FormContainer>
-                <h1 className="text-xl font-bold text-center mb-4">
+                <h1 className="text-xl font-bold text-gray-300 text-center mb-4">
                     Solicitudes de ingreso
                 </h1>
                 <ul className="space-y-4">
                     {requests.map((request) => (
                         <li
                             key={request.id}
-                            className="p-4 bg-gray-100 shadow rounded-md"
+                            className="bg-gray-600 p-4 rounded-lg w-full shadow-orange-semi-transparent  transition-transform duration-300 hover:scale-105"
                         >
-                            <p className="text-lg font-semibold">
-                                {request.character_name}
+                            <p className="text-lg text-white font-semibold">
+                                usuario: {request.character_name}
                             </p>
-                            <p className="text-sm text-gray-500">
-                                {request.character_class}
+                            <p className="text-sm text-gray-300">
+                                personaje: {request.character_class}
                             </p>
                             <div className="flex space-x-2 mt-4">
                                 <Button

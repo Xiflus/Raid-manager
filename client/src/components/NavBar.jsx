@@ -52,7 +52,7 @@ const NavBar = () => {
                 <div>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="text-white z-50"
+                    className="z-50"
                   >
                     <FontAwesomeIcon icon={faTimes} size="lg" />
                   </button>
@@ -66,7 +66,7 @@ const NavBar = () => {
             )}
             <li className="w-full text-center">
               <Link
-                className="text-white font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg"
+                className="text-gray-200 font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg"
                 to="/users/profile"
                 onClick={() => setIsOpen(false)}
               >
@@ -76,7 +76,7 @@ const NavBar = () => {
             <li className="w-full text-center">
               {selectedCharacter ? (
                 <Link
-                  className="text-white font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg"
+                  className="text-gray-200 font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg"
                   to="/guilds/create"
                   onClick={() => setIsOpen(false)}
                 >
@@ -84,7 +84,7 @@ const NavBar = () => {
                 </Link>
               ) : (
                 <Link
-                  className="text-white font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg"
+                  className="text-gray-200 font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg"
                   to="/characters/create"
                   onClick={() => {
                     setIsOpen(false);
@@ -100,7 +100,7 @@ const NavBar = () => {
             </li>
             <li className="w-full text-center">
               <Link
-                className="text-white font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg"
+                className="text-gray-200 font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg"
                 to="/characters/create"
                 onClick={() => {
                   setIsOpen(false);
@@ -111,7 +111,7 @@ const NavBar = () => {
             </li>
             <li>
               <button
-                className="text-white font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg focus:outline-none"
+                className="text-gray-200 font-bold hover:text-[#49bae1] block px-4 py-2 rounded-lg focus:outline-none"
                 onClick={() => {
                   authLogout();
                   setIsOpen(false);
