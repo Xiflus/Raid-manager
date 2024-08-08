@@ -147,9 +147,11 @@ const createTables = async () => {
                 tittle VARCHAR(80) UNIQUE NOT NULL,
                 content TEXT NOT NULL,
                 character_id CHAR(36),
+                guild_id CHAR(36),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-                FOREIGN KEY (character_id) REFERENCES characters(id)
+                FOREIGN KEY (character_id) REFERENCES characters(id),
+                FOREIGN KEY (guild_id) REFERENCES guilds(id)
             )	
         `);
 		// Creamos la tabla de files
