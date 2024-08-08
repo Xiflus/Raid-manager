@@ -1,4 +1,5 @@
 import { useRef, useContext } from "react";
+import { useParams } from "react-router-dom";
 import { showToast } from "../utils/toast.jsx";
 import { createPostServices } from "../../services/postServices";
 import { CharacterContext } from "../context/CharacterContext";
@@ -9,6 +10,7 @@ const NewPostPage = () => {
 	const { authUser } = useContext(AuthContext);
 	!authUser && window.location.replace("/login");
 	const { selectedCharacter } = useContext(CharacterContext);
+	const { guildId } = useParams();
 	const titleRef = useRef();
 	const contentRef = useRef();
 	const photosRef = useRef();
@@ -18,7 +20,7 @@ const NewPostPage = () => {
 		const title = titleRef.current.value;
 		const content = contentRef.current.value;
 		const photos = photosRef.current.files;
-		const guildId = window.location.pathname.split("/")[2];
+
 		const formData = new FormData();
 		formData.append("title", title);
 		formData.append("content", content);
@@ -26,7 +28,7 @@ const NewPostPage = () => {
 			formData.append("photos", photos[i]);
 		}
 		try {
-			formData.append("characterId", selectedCharacter[0].id);
+			formData.append("characterId", selectedCharacter[0]?.id);
 			await createPostServices({ guildId, formData });
 			titleRef.current.value = "";
 			contentRef.current.value = "";

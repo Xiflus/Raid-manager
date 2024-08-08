@@ -12,10 +12,10 @@ const newPostController = async (req, res, next) => {
 		await validateSchema(newPostSchema, req.body);
 		//obtenemos body
 		const { title, content, characterId } = req.body;
-		const userId = req.user.id;
-		const entryId = uuid4();
-		await insertPostModel(entryId, title, content, characterId);
-		const character = await selectUserCharacterModel(userId, characterId);
+		const guildId = req.params.guildId;
+		console.log("newPostController -> guildId", guildId);
+		const postId = uuid4();
+		await insertPostModel(postId, title, content, characterId, guildId);
 
 		//preparamos para posible multimedia
 		let files = [];
@@ -27,7 +27,7 @@ const newPostController = async (req, res, next) => {
 			for (const file of filesArray) {
 				const fileName = await saveFile(file, 150);
 
-				const fileId = await insertFileModel(fileName, entryId);
+				const fileId = await insertFileModel(fileName, postId);
 
 				//pusheamos los archivos
 				files.push({ id: fileId, name: fileName });

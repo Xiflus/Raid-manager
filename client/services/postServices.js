@@ -24,8 +24,6 @@ export const selectAllPostsServices = async () => {
 };
 
 export const selectPostsPageService = async (characterId, guildId, page = 1) => {
-	console.log("selectPostsPageService -> characterId", characterId);
-
 	// Ajustar la URL para incluir el parámetro de página
 	const res = await fetch(`${VITE_API_URL}/api/guilds/${guildId}/posts?page=${page}&characterId=${characterId}`, setHeaders());
 
